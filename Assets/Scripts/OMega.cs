@@ -14,5 +14,6 @@ public class OMega : MonoBehaviour
     void Update()
     {
         
+        
     }
 }
