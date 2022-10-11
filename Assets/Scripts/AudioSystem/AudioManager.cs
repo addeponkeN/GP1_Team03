@@ -27,6 +27,8 @@ public static class AudioManager
             _audioSourceContainer = new GameObject("AudioSourcePool");
             Object.DontDestroyOnLoad(_audioSourceContainer);
 
+            
+            
             var loadedAudioClips = Resources.LoadAll<AudioClip>("Sound/");
 
             const string musicPrefix = "music_";
