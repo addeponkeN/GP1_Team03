@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        //  very nice
     }
 
-    void Update()
+    private void Update()
     {
-        
     }
 }
