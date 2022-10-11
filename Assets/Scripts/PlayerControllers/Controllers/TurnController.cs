@@ -5,20 +5,17 @@ namespace PlayerControllers.Controllers
     public class TurnController : BasePlayerController
     {
         private float _rotationSpeed = 100f;
+        private MovementController _movement;
 
-        private MovementController movement;
-        
         public override void Init()
         {
             base.Init();
-            movement = Manager.GetController<MovementController>();
+            _movement = Manager.GetController<MovementController>();
         }
 
         public override void Update(float delta)
         {
             base.Update(delta);
-
-            //  NICE
 
             float dir = Input.GetAxisRaw("Horizontal");
             if(dir == 0)
@@ -27,14 +24,10 @@ namespace PlayerControllers.Controllers
             float dt = Time.deltaTime;
             var player = Manager.PlayerGo;
 
-            float movementTurnSpeed = 1f - (movement.Speed * 0.5f / movement.MaxSpeed);
+            float movementTurnSpeed = 1f - (_movement.Speed * 0.5f / _movement.MaxSpeed);
             float finalTurnSpeed = _rotationSpeed * movementTurnSpeed * dir;
-
-            Debug.Log($"Speed: {(movement.Speed / movement.MaxSpeed) * 100f}%");
             
             player.transform.rotation *= Quaternion.AngleAxis(finalTurnSpeed * dt, Vector3.up);
-            
-            
         }
     }
 }

@@ -5,7 +5,6 @@ namespace PlayerControllers
 {
     public class ControllerSet : BasePlayerController
     {
-        //  NICE
         public virtual bool ControllersEnabled
         {
             get => _controllersEnabled;
