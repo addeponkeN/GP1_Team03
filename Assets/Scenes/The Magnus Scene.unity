@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1937475190}
   - component: {fileID: 1937475192}
-  - component: {fileID: 1937475191}
+  - component: {fileID: 1937475193}
   m_Layer: 0
   m_Name: People Pickup
   m_TagString: Untagged
@@ -354,7 +354,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1937475191
+--- !u!135 &1937475192
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937475189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1937475193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,19 +384,11 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 1
-  _people: []
+  _people:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _pickupInput: {fileID: 0}
-  _collider: {fileID: 0}
---- !u!135 &1937475192
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937475189}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  _collider: {fileID: 1937475192}
