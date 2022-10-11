@@ -2,14 +2,28 @@
 using Settings;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace AudioSystem
 {
-public static class AudioManager
+    public static class AudioManager
     {
-        public static float ScaledSfxVolume => GameSettings.Get.SfxVolume.Value * GameSettings.Get.MasterVolume.Value;
+        public static float ScaledSfxVolume
+            => GameSettings.Get.SfxVolume * GameSettings.Get.MasterVolume;
 
-        public static float ScaledMusicVolume =>
-            GameSettings.Get.MusicVolume.Value * GameSettings.Get.MasterVolume.Value;
+        public static float ScaledMusicVolume
+            => GameSettings.Get.MusicVolume * GameSettings.Get.MasterVolume;
+
+        private static Dictionary<string, AudioClip> AudioClips
+        {
+            get
+            {
+                if(_audioClips == null)
+                {
+                    Load();
+                }
+
+                return _audioClips;
+            }
+        }
 
         private static Dictionary<string, AudioClip> _audioClips;
         private static AudioPlayer _musicPlayer;
@@ -27,8 +41,6 @@ public static class AudioManager
             _audioSourceContainer = new GameObject("AudioSourcePool");
             Object.DontDestroyOnLoad(_audioSourceContainer);
 
-            
-            
             var loadedAudioClips = Resources.LoadAll<AudioClip>("Sound/");
 
             const string musicPrefix = "music_";
@@ -45,9 +57,9 @@ public static class AudioManager
 
             Debug.Log($"Loaded {_audioClips.Count} audio clips");
 
-            // GameSettings.Get.MasterVolume.OnChangedEvent += OnAnyVolumeChangedEvent;
-            // GameSettings.Get.SfxVolume.OnChangedEvent += OnAnyVolumeChangedEvent;
-            // GameSettings.Get.MusicVolume.OnChangedEvent += OnAnyVolumeChangedEvent;
+            GameSettings.Get.MasterVolume.OnChangedEvent += OnAnyVolumeChangedEvent;
+            GameSettings.Get.SfxVolume.OnChangedEvent += OnAnyVolumeChangedEvent;
+            GameSettings.Get.MusicVolume.OnChangedEvent += OnAnyVolumeChangedEvent;
         }
 
         private static void OnAnyVolumeChangedEvent()
@@ -66,7 +78,7 @@ public static class AudioManager
 
         public static AudioClip GetSoundClip(string name)
         {
-            if(_audioClips.TryGetValue(name, out var clip))
+            if(AudioClips.TryGetValue(name, out var clip))
             {
                 return clip;
             }
@@ -74,6 +86,10 @@ public static class AudioManager
             return null;
         }
 
+        /// <summary>
+        /// Get (or create) a poolable AudioPlayer
+        /// </summary>
+        /// <returns></returns>
         private static AudioPlayer GetAudioPlayer()
         {
             AudioPlayer retSource;
@@ -95,7 +111,7 @@ public static class AudioManager
 
         private static AudioPlayer GetAudioPlayerSource(string name)
         {
-            if(_audioClips.TryGetValue(name, out var clip))
+            if(AudioClips.TryGetValue(name, out var clip))
             {
                 var player = GetAudioPlayer();
                 player.gameObject.name = name;
@@ -109,6 +125,10 @@ public static class AudioManager
             return null;
         }
 
+        /// <summary>
+        /// Plays a song from the Resources/Audio/Music/ folder 
+        /// </summary>
+        /// <param name="musicName">Name of music file on Resources/Audio/Music/</param>
         public static void PlayMusic(string musicName)
         {
             if(_musicPlayer == null)
@@ -127,6 +147,11 @@ public static class AudioManager
             source.Play();
         }
 
+        /// <summary>
+        /// Plays a SFX from the Resources/Audio/Sfx/ folder 
+        /// </summary>
+        /// <param name="sfxName">Name of SFX file on Resources/Audio/SFX/</param>
+        /// <returns></returns>
         public static AudioSource PlaySfx(string sfxName)
         {
             var player = GetAudioPlayerSource(sfxName);
@@ -143,6 +168,12 @@ public static class AudioManager
             return source;
         }
 
+        /// <summary>
+        /// Plays a SFX from the Resources/Audio/Sfx/ folder 
+        /// </summary>
+        /// <param name="sfxName">Name of SFX file on Resources/Audio/SFX/</param>
+        /// <param name="position">World location of the sound</param>
+        /// <returns></returns>
         public static AudioSource PlaySfx(string sfxName, Vector3 position)
         {
             var player = GetAudioPlayerSource(sfxName);

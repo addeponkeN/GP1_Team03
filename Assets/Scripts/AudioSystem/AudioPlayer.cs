@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace AudioSystem
 {
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour

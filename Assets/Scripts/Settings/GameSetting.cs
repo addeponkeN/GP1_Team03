@@ -4,6 +4,8 @@ namespace Settings
 {
     public struct GameSetting<T>
     {
+        public static implicit operator T(GameSetting<T> setting) => setting.Value;
+        
         public string Name { get; private set; }
         public T Value { get; private set; }
 
@@ -21,6 +23,5 @@ namespace Settings
             Value = value;
             OnChangedEvent?.Invoke();
         }
-        
     }
 }

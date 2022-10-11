@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Util
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Accelerator
     {
         public float Speed => _speed;

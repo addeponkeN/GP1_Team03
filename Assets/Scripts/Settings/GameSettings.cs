@@ -6,11 +6,15 @@ namespace Settings
 {
     public static class GameSettings
     {
-        private const string Filetype = "ckn";
+        public const string PublisherName = "Futuregames";
+        public const string ProjectName = "BikeMania";
+
+        private const string Filetype = "cfg";
         private const string Filename = "settings";
 
-        private static readonly string
-            FolderPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/chickens3d/";
+        private static readonly string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private static readonly string SavePath = $"{AppData}/{PublisherName}/{ProjectName}/";
+
 
         private static GameSettingsFile _file;
 
@@ -29,7 +33,7 @@ namespace Settings
 
         private static string GetSettingsFullPath()
         {
-            return $"{FolderPath}/{Filename}.{Filetype}";
+            return $"{SavePath}/{Filename}.{Filetype}";
         }
 
         public static void Save()
@@ -40,7 +44,7 @@ namespace Settings
         public static void Load()
         {
             //  checks if directory exists, if not - creates new directory
-            Directory.CreateDirectory(FolderPath);
+            Directory.CreateDirectory(SavePath);
 
             string fullPath = GetSettingsFullPath();
 
@@ -62,6 +66,4 @@ namespace Settings
             Save();
         }
     }
-
-
 }

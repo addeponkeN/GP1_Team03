@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 
 namespace PlayerControllers
 {
-    public class  PlayerControllerManager : ControllerSet
+    public class PlayerControllerManager : ControllerSet
     {
-        [NonSerialized] public GameObject PlayerGo;
-
+        /// <summary>
+        /// The player root GameObject
+        /// </summary>
+        public GameObject PlayerGo => Player.gameObject;
+        
+        public Player Player; 
         public PlayerInput Input;
 
         public override bool ControllersEnabled
@@ -18,18 +22,14 @@ namespace PlayerControllers
                 base.ControllersEnabled = value;
                 Input.enabled = ControllersEnabled;
             }
-            //  NICE
         }
 
-        public PlayerControllerManager(GameObject pl)
+        public PlayerControllerManager(Player pl)
         {
-            PlayerGo = pl;
+            Player = pl;
+            Input = pl.GetComponent<PlayerInput>();
             Manager = this;
         }
 
-        public override void Update(float delta)
-        {
-            base.Update(delta);
-        }
     }
 }

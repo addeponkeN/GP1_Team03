@@ -14,11 +14,11 @@ namespace PlayerControllers.Controllers
         {
             base.Init();
             
-            //  todo - get stats from player
-            float accelerationSpeed = 5f;
-            float maxAccelerationSpeed = 10f;
-
-            _accelerator = new Accelerator(accelerationSpeed, maxAccelerationSpeed);
+            var stats = Manager.Player.Stats;
+            _accelerator = new Accelerator(
+                stats.MovementAcceleration, 
+                stats.MaxMoveSpeed);
+            
         }
 
         public override void Update(float delta)

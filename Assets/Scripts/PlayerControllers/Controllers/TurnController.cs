@@ -14,17 +14,16 @@ namespace PlayerControllers.Controllers
         /// todo - Move this to player stat container layer
         /// </summary>
         private float _movementTurnSpeedModifier = 0.5f;
-        
+
         public override void Init()
         {
             base.Init();
             _movement = Manager.GetController<MovementController>();
 
-            //  todo - get stats from player
-            float rotationAcceleration = 100f;
-            float maxRotationSpeed = 120f;
-
-            _accelerator = new Accelerator(rotationAcceleration, maxRotationSpeed);
+            var stats = Manager.Player.Stats;
+            _accelerator = new Accelerator(
+                stats.RotationSpeed * 10f,
+                stats.MaxRotationSpeed * 10f);
         }
 
         public override void Update(float delta)
@@ -37,7 +36,7 @@ namespace PlayerControllers.Controllers
             if(_accelerator.IsAccelerating())
             {
                 var player = Manager.PlayerGo;
-                
+
                 float movementModifier = 1f - (_movement.Speed * _movementTurnSpeedModifier / _movement.MaxSpeed);
                 float finalTurnSpeed = _accelerator.Acceleration * movementModifier * dir;
 
