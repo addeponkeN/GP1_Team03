@@ -15,8 +15,6 @@ namespace PlayerControllers.Controllers
 
         public override void Update(float delta)
         {
-            //  NICE
-
             base.Update(delta);
 
             var player = Manager.PlayerGo;
