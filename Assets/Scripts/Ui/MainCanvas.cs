@@ -2,7 +2,7 @@
 
 namespace Ui
 {
-    public class MainCanvas: MonoBehaviour
+    public class MainCanvas : MonoBehaviour
     {
         
     }
