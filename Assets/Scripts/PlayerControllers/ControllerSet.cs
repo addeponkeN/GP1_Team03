@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Util;
 
 namespace PlayerControllers
 {
@@ -34,7 +35,7 @@ namespace PlayerControllers
         }
 
         public T GetController<T>() where T : BasePlayerController
-            => Controllers.FirstOrDefault(x => x is T) as T;
+            => Controllers.FirstFast(x => x is T) as T;
 
         public override void Init()
         {
