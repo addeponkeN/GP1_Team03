@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
         Stats.Init(this);
         ControllerManager.AddController(new MovementController());
         ControllerManager.AddController(new TurnController());
+        ControllerManager.AddController(new BoostController());
 
         ControllerManager.Init();
     }

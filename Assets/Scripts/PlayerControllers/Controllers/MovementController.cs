@@ -9,6 +9,8 @@ namespace PlayerControllers.Controllers
         public float Speed => _accelerator.Speed;
         public float MaxSpeed => _accelerator.MaxSpeed;
 
+        public float MoveSpeedMultiplier { get; set; } = 1f;
+
         private Accelerator _accelerator;
         private PlayerStatContainer _stats;
         private InputActionReference _inputMove;
@@ -17,10 +19,13 @@ namespace PlayerControllers.Controllers
         {
             base.Init();
             _stats = Manager.Player.Stats;
+
+            const float acceleratorBreakSensitivity = 0.25f;
+            
             _accelerator = new Accelerator(
                 _stats.MovementAcceleration,
-                _stats.MaxMoveSpeed);
-            _accelerator.Sensitivity = 0.25f;
+                _stats.MaxMoveSpeed,
+                acceleratorBreakSensitivity);
 
             _inputMove = Manager.Player.Input.Movement;
             _inputMove.action.Enable();
@@ -32,9 +37,9 @@ namespace PlayerControllers.Controllers
 
             var dir = _inputMove.action.ReadValue<Vector2>().y;
             
-            var stats = Manager.Player.Stats;
-            _accelerator.Acceleration = stats.MovementAcceleration;
-            _accelerator.MaxSpeed = stats.MaxMoveSpeed;
+            //  fetch the latest player stats and apply to the controller
+            _accelerator.Acceleration = _stats.MovementAcceleration * MoveSpeedMultiplier;
+            _accelerator.MaxSpeed = _stats.MaxMoveSpeed * MoveSpeedMultiplier;
 
             _accelerator.Update(dt, dir);
 
@@ -43,7 +48,7 @@ namespace PlayerControllers.Controllers
                 var body = Manager.Player.Body;
                 var tf = body.transform;
                 var fw = tf.forward;
-                fw = new Vector3(fw.x, 0, fw.z);
+                fw.y = 0;
 
                 var move = fw * (_accelerator.Speed * dt);
                 body.velocity *= 0.5f;
