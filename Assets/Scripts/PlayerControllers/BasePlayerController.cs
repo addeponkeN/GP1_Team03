@@ -12,7 +12,7 @@ namespace PlayerControllers
     
         public virtual void Update(float delta) { }
 
-        public virtual void FixedUpdate() { }
+        public virtual void FixedUpdate(float fixedDelta) { }
 
         public virtual void SetEnabled(bool enabled) { }
 

@@ -65,11 +65,11 @@ namespace PlayerControllers
             }
         }
 
-        public override void FixedUpdate()
+        public override void FixedUpdate(float fixedDelta)
         {
             for(int i = 0; i < Controllers.Count; i++)
             {
-                Controllers[i].FixedUpdate();
+                Controllers[i].FixedUpdate(fixedDelta);
             }
         }
 

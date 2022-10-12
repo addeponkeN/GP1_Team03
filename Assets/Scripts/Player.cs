@@ -1,4 +1,5 @@
 ﻿using System;
+using Cinemachine;
 using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
@@ -7,8 +8,11 @@ using UnityEngine;
 /// <summary>
 /// Main player script
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    [NonSerialized] public Rigidbody Body;
+    
     public PlayerStatContainer Stats;
     public PlayerControllerManager ControllerManager;
 
@@ -16,22 +20,24 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Body = GetComponent<Rigidbody>();
+        
         ControllerManager = new PlayerControllerManager(this);
         Stats.Init(this);
+        ControllerManager.AddController(new MovementController());
+        ControllerManager.AddController(new TurnController());
     }
 
     private void Start()
     {
-        _updateManager.Initialise(GameCore.Get.gameObject.GetComponent<UpdateRelay>());
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
-        
-        ControllerManager.AddController(new MovementController());
-        ControllerManager.AddController(new TurnController());
+        _updateManager.Subscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
+
     }
 
     private void OnDestroy()
     {
         _updateManager.Unsubscribe(ControllerManager.Update, UpdateType.Update);
+        _updateManager.Unsubscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
     }
-
 }

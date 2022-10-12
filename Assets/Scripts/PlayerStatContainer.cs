@@ -9,13 +9,18 @@ public class PlayerStatContainer : ScriptableObject
 
 //  PLAYER STAT FIELDS
 
+
     [TooltipAttribute("The movement acceleration of the bike")]
-    [Range(1f, 50f)] 
+    [Range(1f, 500f)] 
+    public float MovementSpeed;
+
+    [TooltipAttribute("The movement acceleration of the bike")]
+    [Range(1f, 500f)] 
     public float MovementAcceleration;
 
 
     [TooltipAttribute("The maximum speed of the bike")]
-    [Range(2f, 50f)]
+    [Range(2f, 500f)]
     public float MaxMoveSpeed;
 
 
@@ -35,6 +40,7 @@ public class PlayerStatContainer : ScriptableObject
     [Range(0f, 1f)]
     public float RotationSpeedModifier;
 
+    
     
     /// <summary>
     /// Setup the stat container
