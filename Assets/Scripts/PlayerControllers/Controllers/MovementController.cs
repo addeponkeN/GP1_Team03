@@ -24,8 +24,8 @@ namespace PlayerControllers.Controllers
         {
             base.FixedUpdate(dt);
             var stats = Manager.Player.Stats;
-            _accelerator.Acceleration = stats.MovementAcceleration * 10f;
-            _accelerator.MaxSpeed = stats.MaxMoveSpeed * 10f;
+            _accelerator.Acceleration = stats.MovementAcceleration;
+            _accelerator.MaxSpeed = stats.MaxMoveSpeed;
 
             float dir = Input.GetAxisRaw("Vertical");
             _accelerator.Update(dt, dir);
@@ -39,7 +39,8 @@ namespace PlayerControllers.Controllers
 
                 var move = fw * (_accelerator.Speed * dt);
                 body.velocity *= 0.5f;
-                body.AddForce(move, ForceMode.VelocityChange);
+                body.MovePosition(tf.position + move);
+                // body.AddForce(move, ForceMode.VelocityChange);
             }
         }
     }
