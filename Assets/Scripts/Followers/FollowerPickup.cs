@@ -34,23 +34,15 @@ public class FollowerPickup : MonoBehaviour
     /// Subscribes to interaction input
     /// </summary>
     private void OnEnable(){
-        if (_pickupInput != null)
-            _pickupInput.action.canceled += ctx => OnInteractInput(ctx);
+        _pickupInput.action.canceled += ctx => OnInteractInput(ctx);
+        _pickupInput.action.Enable();
     }
 
     /// <summary>
     /// Unsubscribes from interaction input
     /// </summary>
     private void OnDisable(){
-        if (_pickupInput != null)
-            _pickupInput.action.canceled -= OnInteractInput;
-    }
-
-    // TEMP
-    private void Update(){
-        if (Input.GetKeyUp(KeyCode.Space)){
-            OnInteractInput(default(CallbackContext));
-        }
+        _pickupInput.action.canceled -= OnInteractInput;
     }
 
 // INPUT EVENTS
@@ -86,7 +78,8 @@ public class FollowerPickup : MonoBehaviour
                 _people.RemoveAt(j);
             }
             
-            followers.AddFollowers(recruited);
+            Debug.LogWarning($"{_player.gameObject.name.ToUpper()} Recruited {recruited.Length} Followers");
+            followers.Add(recruited);
         }
 
         _onPickup.Invoke();
@@ -105,6 +98,7 @@ public class FollowerPickup : MonoBehaviour
         var layer = other.gameObject.layer;
         if (((1 << layer) & _playerLayer) == 0) return;
 
+        Debug.LogWarning($"{other.gameObject.name} entered pickup zone");
         _player = other.transform;
     }
 
@@ -113,6 +107,7 @@ public class FollowerPickup : MonoBehaviour
     /// </summary>
     private void OnTriggerExit(Collider other){
         if (other.transform != _player) return;
+        Debug.LogWarning($"{_player.gameObject.name} left pickup zone");
         _player = null;
     }
 

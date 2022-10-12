@@ -32,14 +32,14 @@ public class Follower
     /// <summary>
     /// Adds a new parent to this follower
     /// </summary>
-    public void AddParent(Follower parent){
+    public void SetParent(Follower parent){
         _parent = parent;
     }
 
     /// <summary>
     /// Adds a new child to this follower
     /// </summary>
-    public void AddChild(Follower child){
+    public void SetChild(Follower child){
         _child = child;
     }
 
@@ -47,8 +47,8 @@ public class Follower
     /// Removes this follower from the chain
     /// </summary>
     public void Remove(){
-        _parent.AddChild(_child);
-        _child.AddParent(_parent);
+        _child?.SetParent(_parent);
+        _parent?.SetChild(_child);
     }
 
 // MOVEMENT

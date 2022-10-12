@@ -10,6 +10,7 @@ public class PlayerFollowers : MonoBehaviour
     [SF] private float _followPadding = 1f;
     [SF] private UpdateManager _update = null;
 
+    private int _followCount = 0;
     private Follower _child = null;
     private MovementController _move = null;
 
@@ -39,7 +40,7 @@ public class PlayerFollowers : MonoBehaviour
     /// <summary>
     /// Adds a new follower to the player
     /// </summary>
-    public void AddFollower(Rigidbody follower){
+    public void Add(Rigidbody follower){
         Follower parent = _child;
 
         while (parent?.Child != null){
@@ -50,16 +51,39 @@ public class PlayerFollowers : MonoBehaviour
         var follow = new Follower(parent, follower, collider.radius + _followPadding);
 
         if (parent == null) _child = follow;
-        else parent.AddChild(follow);
+        else parent.SetChild(follow);
+        Debug.LogWarning("Added a new follower");
+        _followCount++;
     }
 
     /// <summary>
     /// Adds a group of followers to the player
     /// </summary>
-    public void AddFollowers(Rigidbody[] followers){
+    public void Add(Rigidbody[] followers){
         for (int i = 0; i < followers.Length; i++){
-            AddFollower(followers[i]);
+            Add(followers[i]);
         }
+    }
+
+    /// <summary>
+    /// Removes number of player followers
+    /// </summary>
+    public void Remove(int count){
+        count = Mathf.Min(_followCount, count);
+        Remove(_child, count);
+    }
+
+    /// <summary>
+    /// Recursively remove followers for count
+    /// </summary>
+    private void Remove(Follower follower, int count){
+        if (count < 1) return;
+
+        Debug.LogWarning($"Removing Nr {count}");
+        follower.Remove();
+        Remove(follower.Child, --count);
+        
+        _followCount--;
     }
 
 // MOVEMENT
