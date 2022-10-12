@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
         ControllerManager.Init();
     }
-
+    
     private void Start()
     {
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
