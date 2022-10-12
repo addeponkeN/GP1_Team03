@@ -8,8 +8,11 @@ using UnityEngine;
 /// <summary>
 /// Main player script
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    [NonSerialized] public Rigidbody Body;
+    
     public PlayerStatContainer Stats;
     public PlayerControllerManager ControllerManager;
 
@@ -17,14 +20,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Body = GetComponent<Rigidbody>();
+        
         ControllerManager = new PlayerControllerManager(this);
         Stats.Init(this);
     }
 
     private void Start()
     {
-        _updateManager.Initialise(GameCore.Get.gameObject.GetComponent<UpdateRelay>());
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
+        _updateManager.Subscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
 
         ControllerManager.AddController(new MovementController());
         ControllerManager.AddController(new TurnController());
@@ -33,5 +38,6 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         _updateManager.Unsubscribe(ControllerManager.Update, UpdateType.Update);
+        _updateManager.Unsubscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
     }
 }
