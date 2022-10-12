@@ -6,8 +6,6 @@ using Jellybeans.Updates;
 public class Hazard : MonoBehaviour
 {
     [SF] private float _collisionTimer = 2.5f;
-    [SF] private float _minPlayerSpeed = 3f;
-    [SF] private float _minBreakSpeed = 25f;
     [SF] private Vector2Int _minMaxFollowerLoss = Vector2Int.one;
     [Space]
     [SF] private LayerMask _playerLayer = 1 << 0;
@@ -15,6 +13,7 @@ public class Hazard : MonoBehaviour
     [SF] private UpdateManager _update = null;
     
     private float _timer = 0f;
+    private readonly float _speedPercent = 0.75f;
 
 // COLLISION HANDLING
 
@@ -29,11 +28,15 @@ public class Hazard : MonoBehaviour
         if (_timer > 0) return;
 
         var player = other.gameObject;
-        var movement = GetMovement(player);    
-        if (movement.Speed < _minPlayerSpeed) return;
+        var movement = GetMovement(player);
 
-        // Speed that breaks hazard
-        if (movement.Speed >= _minBreakSpeed){
+        // Min speed to loose followers
+        var minSpeed = _stats.MaxMoveSpeed * _speedPercent;
+        if (movement.Speed < minSpeed) return;
+
+        // Min speed to break hazard
+        var boostSpeed = _stats.MaxMoveSpeed * _stats.BoostAmount;
+        if (movement.Speed >= (boostSpeed * _speedPercent)){
             this.gameObject.SetActive(false);
             return;
         }
@@ -48,7 +51,8 @@ public class Hazard : MonoBehaviour
     private void RemoveFollower(GameObject player, float speed){
         var followers = player.GetComponent<PlayerFollowers>();
 
-        var percent = Mathf.InverseLerp(_minPlayerSpeed, _stats.MaxMoveSpeed, speed);
+        var minSpeed = (_stats.MaxMoveSpeed * _speedPercent);
+        var percent = Mathf.InverseLerp(minSpeed, _stats.MaxMoveSpeed, speed);
         var count = (int)Mathf.Lerp(_minMaxFollowerLoss.x, _minMaxFollowerLoss.y, percent);
 
         followers.Remove(count);
