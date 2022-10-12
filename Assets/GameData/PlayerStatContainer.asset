@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d9ffc313f64c3297c5a36e428688e2, type: 3}
   m_Name: PlayerStatContainer
   m_EditorClassIdentifier: 
-  MovementAcceleration: 6
-  MaxMoveSpeed: 10
-  RotationSpeed: 2
-  MaxRotationSpeed: 5
-  RotationSpeedModifier: 0.5
+  MovementAcceleration: 30
+  MaxMoveSpeed: 50
+  RotationSpeed: 8
+  MaxRotationSpeed: 8
+  RotationSpeedModifier: 0.25
