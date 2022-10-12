@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
         
         ControllerManager = new PlayerControllerManager(this);
         Stats.Init(this);
+        ControllerManager.AddController(new MovementController());
+        ControllerManager.AddController(new TurnController());
     }
 
     private void Start()
@@ -31,8 +33,6 @@ public class Player : MonoBehaviour
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
         _updateManager.Subscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
 
-        ControllerManager.AddController(new MovementController());
-        ControllerManager.AddController(new TurnController());
     }
 
     private void OnDestroy()
