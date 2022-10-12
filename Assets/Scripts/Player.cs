@@ -25,13 +25,13 @@ public class Player : MonoBehaviour
     {
         Body = GetComponent<Rigidbody>();
         CapCollider = GetComponent<CapsuleCollider>();
+        
+        Stats.Init(this);
 
         ControllerManager = new PlayerControllerManager(this);
-        Stats.Init(this);
         ControllerManager.AddController(new MovementController());
         ControllerManager.AddController(new TurnController());
         ControllerManager.AddController(new BoostController());
-
         ControllerManager.Init();
     }
     

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Util;
 
 namespace PlayerControllers
@@ -24,7 +23,7 @@ namespace PlayerControllers
 
         private bool _controllersEnabled = false;
         private bool _inited = false;
-        
+
         public ControllerSet()
         {
             Controllers = new List<BasePlayerController>();
@@ -38,7 +37,8 @@ namespace PlayerControllers
         {
             controller.IsAlive = true;
             controller.Manager = Manager;
-            controller.Init();
+            if(_inited)
+                controller.Init();
             Controllers.Add(controller);
         }
 

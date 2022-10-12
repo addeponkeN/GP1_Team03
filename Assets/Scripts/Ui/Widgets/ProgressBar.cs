@@ -6,12 +6,19 @@ namespace Ui.Widgets
 {
     public class ProgressBar : MonoBehaviour
     {
+        /// <summary>
+        /// Slider value
+        /// Range between 0f to 1f
+        /// </summary>
         public float Value
         {
             get => _slider.value;
             set => _slider.value = value;
         }
         
+        /// <summary>
+        /// Invoked when 'Value' is set
+        /// </summary>
         public event Action<float> ValueChangedEvent;
 
 //  UNITY EDITOR FIELDS
@@ -75,14 +82,6 @@ namespace Ui.Widgets
         public void Slider_ValueChanged()
         {
             ValueChangedEvent?.Invoke(_slider.value);
-        }
-
-        private void Reset()
-        {
-            BackgroundColor = Color.white;
-            ForegroundColor = new Color(0.75f, 0.75f, 0.75f);
-
-            UpdateComponents();
         }
     }
 }
