@@ -9,7 +9,6 @@ public class PlayerStatContainer : ScriptableObject
 
 //  PLAYER STAT FIELDS
 
-
     [Header("Movement")] 
     [TooltipAttribute("The movement acceleration of the bike")] 
     [Range(1f, 30f)]
@@ -33,7 +32,7 @@ public class PlayerStatContainer : ScriptableObject
     public float MaxRotationSpeed = 8f;
 
 
-    [TooltipAttribute("**RotationScales** rotation speed with movement speed\n" +
+    [TooltipAttribute("Scale rotation speed with movement speed\n" +
                       "0f = No rotation speed when moving\n" +
                       "1f = Max rotation when moving\n")]
     [Range(0f, 1f)]
@@ -45,6 +44,7 @@ public class PlayerStatContainer : ScriptableObject
     [TooltipAttribute("Amount of time the boost should last")] 
     [Range(0f, 5f)]
     public float BoostTime = 1.5f;
+    
     
     [TooltipAttribute("Amount multiplied by speed")] 
     [Range(1f, 10f)]
