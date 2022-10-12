@@ -3,6 +3,7 @@ using SF = UnityEngine.SerializeField;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SphereCollider))]
 public class FollowerPickup : MonoBehaviour
@@ -11,13 +12,13 @@ public class FollowerPickup : MonoBehaviour
     [SF] private int _zones = 3;
     [SF] private int _minPickupCount = 1;
     [SF] private LayerMask _playerLayer = 1 << 0;
-    [SF] private List<Transform> _people = null;
-
-    [Header("References")]
     [SF] private InputActionReference _pickupInput = null;
-    [SF] private SphereCollider _collider = null;
+    [SF] private List<Rigidbody> _people = null;
+    [Space]
+    [SF] private UnityEvent _onPickup = new();
 
     private Transform _player = null;
+    private SphereCollider _collider = null;
 
 // INITIALISATION
 
@@ -25,6 +26,7 @@ public class FollowerPickup : MonoBehaviour
     /// Initialises the collider
     /// </summary>
     private void Awake(){
+        _collider ??= GetComponent<SphereCollider>();
         _collider.isTrigger = true;
     }
 
@@ -32,14 +34,16 @@ public class FollowerPickup : MonoBehaviour
     /// Subscribes to interaction input
     /// </summary>
     private void OnEnable(){
-        //_pickupInput.action.canceled += ctx => OnInteractInput(ctx);
+        if (_pickupInput != null)
+            _pickupInput.action.canceled += ctx => OnInteractInput(ctx);
     }
 
     /// <summary>
     /// Unsubscribes from interaction input
     /// </summary>
     private void OnDisable(){
-        //_pickupInput.action.canceled -= OnInteractInput;
+        if (_pickupInput != null)
+            _pickupInput.action.canceled -= OnInteractInput;
     }
 
     // TEMP
@@ -56,6 +60,7 @@ public class FollowerPickup : MonoBehaviour
     /// </summary>
     private void OnInteractInput(CallbackContext context){
         if (_player == null) return;
+        var followers = _player.GetComponent<PlayerFollowers>();
 
         var distance = Vector3.Distance(
             _player.position, transform.position
@@ -71,7 +76,7 @@ public class FollowerPickup : MonoBehaviour
 
             var percent = Mathf.InverseLerp(0, _zones, i + 1);
             var count =  (int)Mathf.Lerp(_minPickupCount, _people.Count, percent);
-            var recruited = new Transform[count];
+            var recruited = new Rigidbody[count];
 
             for (int j = count - 1; j >= 0; j--){
                 var person = _people[j];
@@ -80,10 +85,11 @@ public class FollowerPickup : MonoBehaviour
                 recruited[j] = person;
                 _people.RemoveAt(j);
             }
-
-            var followers = _player.GetComponent<PlayerFollowers>();
+            
             followers.AddFollowers(recruited);
         }
+
+        _onPickup.Invoke();
     }
 
 // TRIGGERING
@@ -113,7 +119,7 @@ public class FollowerPickup : MonoBehaviour
     /// Draws a percent based circle around the pickup
     /// </summary>
     private void OnDrawGizmos(){
-        if (_collider == null) return;
+        _collider ??= GetComponent<SphereCollider>();
         var radius = _collider.radius;
         var difference = 1f / _zones;
 

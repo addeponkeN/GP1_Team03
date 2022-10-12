@@ -1,37 +1,72 @@
-using System.Collections.Generic;
+using SF = UnityEngine.SerializeField;
 using UnityEngine;
+using Jellybeans.Updates;
+using PlayerControllers.Controllers;
 
+[RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
 {
-    private List<Transform> _followers = null;
+    [SF] private UpdateManager _update = null;
 
+    private MovementController _move = null;
+    private Follower _child = null;
 
-    public void AddFollower(Transform follower){
-        _followers ??= new List<Transform>();
+// INITIALISATION
 
-        if (!_followers.Contains(follower))
-            _followers.Add(follower);
+    private void Start(){
+        var controller = GetComponent<Player>().ControllerManager;
+        _move = controller.GetController<MovementController>();
+        if (_move == null) Debug.Log("Null");
     }
 
-    public void AddFollowers(Transform[] followers){
-        _followers ??= new List<Transform>();
+    /// <summary>
+    /// Subscribes to fixed update
+    /// </summary>
+    private void OnEnable(){
+        _update.Subscribe(OnFixedUpdate, UpdateType.FixedUpdate);
+    }
 
+    /// <summary>
+    /// Unsubscribes to fixed update
+    /// </summary>
+    private void OnDisable(){
+        _update.Unsubscribe(OnFixedUpdate, UpdateType.FixedUpdate);
+    }
+
+// MANAGEMENT
+
+    /// <summary>
+    /// Adds a new follower to the player
+    /// </summary>
+    public void AddFollower(Rigidbody follower){
+        Follower parent = _child;
+
+        while (parent?.Child != null){
+            parent = parent.Child;
+        }
+
+        var collider = follower.GetComponent<SphereCollider>();
+        var follow = new Follower(parent, follower, collider.radius);
+
+        if (parent == null) _child = follow;
+        else parent.AddChild(follow);
+    }
+
+    /// <summary>
+    /// Adds a group of followers to the player
+    /// </summary>
+    public void AddFollowers(Rigidbody[] followers){
         for (int i = 0; i < followers.Length; i++){
-            var follower = followers[i];
-            
-            if (!_followers.Contains(follower))
-                _followers.Add(follower);
+            AddFollower(followers[i]);
         }
     }
 
-    public void RemoveFollowers(Transform follower){
-        if (_followers == null ||
-            _followers.Count == 0)
-            return;
+// MOVEMENT
 
-        var index = _followers.IndexOf(follower);
-        if (index < 0) return;
-        
-        _followers.RemoveAt(index);
+    /// <summary>
+    /// On update manager fixed update event
+    /// </summary>
+    private void OnFixedUpdate(float fixedDeltaTime){
+        _child?.Move(transform.position, _move.Speed, fixedDeltaTime);
     }
 }
