@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d9ffc313f64c3297c5a36e428688e2, type: 3}
   m_Name: HugosGameStats
   m_EditorClassIdentifier: 
-  MovementSpeed: 30
-  MovementAcceleration: 30
-  MaxMoveSpeed: 30
+  MovementAcceleration: 5
+  MaxMoveSpeed: 10
   RotationSpeed: 10
   MaxRotationSpeed: 15
-  RotationSpeedModifier: 0
+  RotationSpeedModifier: 0.1
