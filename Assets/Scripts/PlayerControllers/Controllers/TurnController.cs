@@ -27,24 +27,22 @@ namespace PlayerControllers.Controllers
                 _stats.MaxRotationSpeed * 10f);
         }
 
-        public override void Update(float delta)
+        public override void FixedUpdate(float fixedDelta)
         {
-            base.Update(delta);
-
+            base.FixedUpdate(fixedDelta);
             float dir = Input.GetAxisRaw("Horizontal");
-            _accelerator.Update(delta, dir);
+            _accelerator.Update(fixedDelta, dir);
             _accelerator.Acceleration = _stats.RotationSpeed * 10f;
             _accelerator.MaxSpeed = _stats.MaxRotationSpeed * 10f;
 
-            Debug.Log(_accelerator.Speed);
             if(_accelerator.IsAccelerating())
             {
-                var player = Manager.PlayerGo;
+                var body = Manager.Player.Body;
 
                 float movementModifier = 1f - (_movement.Speed * MovementTurnSpeedModifier / _movement.MaxSpeed);
                 float finalTurnSpeed = _accelerator.Speed * movementModifier;
-
-                player.transform.rotation *= Quaternion.AngleAxis(finalTurnSpeed * delta, Vector3.up);
+                
+                body.MoveRotation(body.rotation * Quaternion.AngleAxis(finalTurnSpeed * fixedDelta, Vector3.up));
             }
         }
     }

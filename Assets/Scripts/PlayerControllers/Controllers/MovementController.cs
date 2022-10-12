@@ -16,28 +16,30 @@ namespace PlayerControllers.Controllers
             base.Init();
             _stats = Manager.Player.Stats;
             _accelerator = new Accelerator(
-                _stats.MovementAcceleration, 
+                _stats.MovementAcceleration,
                 _stats.MaxMoveSpeed);
         }
 
-        public override void Update(float delta)
+        public override void FixedUpdate(float dt)
         {
-            base.Update(delta);
-
+            base.FixedUpdate(dt);
             var stats = Manager.Player.Stats;
-            _accelerator.Acceleration = stats.MovementAcceleration;
-            _accelerator.MaxSpeed = stats.MaxMoveSpeed;
-            
+            _accelerator.Acceleration = stats.MovementAcceleration * 10f;
+            _accelerator.MaxSpeed = stats.MaxMoveSpeed * 10f;
+
             float dir = Input.GetAxisRaw("Vertical");
-            _accelerator.Update(delta, dir);
+            _accelerator.Update(dt, dir);
 
             if(_accelerator.IsAccelerating())
             {
-                var player = Manager.PlayerGo;
-                var fw = player.transform.forward;
-                
-                var move = fw * (_accelerator.Speed * delta);
-                player.transform.position += move;
+                var body = Manager.Player.Body;
+                var tf = body.transform;
+                var fw = tf.forward;
+                fw = new Vector3(fw.x, 0, fw.z);
+
+                var move = fw * (_accelerator.Speed * dt);
+                body.velocity *= 0.5f;
+                body.AddForce(move, ForceMode.VelocityChange);
             }
         }
     }
