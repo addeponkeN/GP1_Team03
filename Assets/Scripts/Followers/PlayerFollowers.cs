@@ -2,21 +2,22 @@ using SF = UnityEngine.SerializeField;
 using UnityEngine;
 using Jellybeans.Updates;
 using PlayerControllers.Controllers;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
 {
+    [SF] private float _followPadding = 1f;
     [SF] private UpdateManager _update = null;
 
-    private MovementController _move = null;
     private Follower _child = null;
+    private MovementController _move = null;
 
 // INITIALISATION
 
     private void Start(){
         var controller = GetComponent<Player>().ControllerManager;
         _move = controller.GetController<MovementController>();
-        if (_move == null) Debug.Log("Null");
     }
 
     /// <summary>
@@ -46,7 +47,7 @@ public class PlayerFollowers : MonoBehaviour
         }
 
         var collider = follower.GetComponent<SphereCollider>();
-        var follow = new Follower(parent, follower, collider.radius);
+        var follow = new Follower(parent, follower, collider.radius + _followPadding);
 
         if (parent == null) _child = follow;
         else parent.AddChild(follow);
@@ -67,6 +68,7 @@ public class PlayerFollowers : MonoBehaviour
     /// On update manager fixed update event
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
-        _child?.Move(transform.position, _move.Speed, fixedDeltaTime);
+        var position = transform.position + (-transform.forward * _followPadding);
+        _child?.Move(position, _move.Speed, fixedDeltaTime);
     }
 }

@@ -90,6 +90,10 @@ public class FollowerPickup : MonoBehaviour
         }
 
         _onPickup.Invoke();
+
+        if (_people.Count == 0){
+            enabled = false;
+        }
     }
 
 // TRIGGERING
@@ -119,12 +123,13 @@ public class FollowerPickup : MonoBehaviour
     /// Draws a percent based circle around the pickup
     /// </summary>
     private void OnDrawGizmos(){
+        if (!enabled) return;
+
         _collider ??= GetComponent<SphereCollider>();
         var radius = _collider.radius;
         var difference = 1f / _zones;
 
-        for (int i = 0; i <= _zones; i++)
-        {
+        for (int i = 0; i <= _zones; i++){
             var percent = difference * i;
             var colour = Color.Lerp(Color.red, Color.green, percent);
 

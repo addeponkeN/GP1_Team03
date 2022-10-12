@@ -58,12 +58,16 @@ public class Follower
     /// </summary>
     public void Move(Vector3 target, float speed, float deltaTime){
         var positon = _rigidbody.position;
-        var direction = (target - positon);
+        var difference = (target - positon);
+        var direction = difference.normalized;
+
+        var rotation = Quaternion.LookRotation(difference);
+        _rigidbody.MoveRotation(rotation);
 
         var velocity = direction * (speed * deltaTime);
         _rigidbody.MovePosition(positon + velocity);
 
-        var offset = -direction.normalized * _radius;
+        var offset = -direction * _radius;
         _child?.Move(positon + offset, speed, deltaTime);
     }
 }
