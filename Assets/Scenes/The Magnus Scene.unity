@@ -349,8 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
   Input:
-    Movement: {fileID: 7503884912492243399, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
-    Boost: {fileID: 6532391055967103618, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    Movement: {fileID: 7503884912492243399, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
+    Boost: {fileID: 6532391055967103618, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
   _updateManager: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
 --- !u!136 &377345451
 CapsuleCollider:
@@ -844,7 +844,7 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 1
-  _pickupInput: {fileID: 7268336583125652101, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+  _pickupInput: {fileID: 7268336583125652101, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
   _people:
   - {fileID: 1133471464}
   - {fileID: 1365983413}
