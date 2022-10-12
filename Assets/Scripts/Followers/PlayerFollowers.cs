@@ -52,7 +52,7 @@ public class PlayerFollowers : MonoBehaviour
 
         if (parent == null) _child = follow;
         else parent.SetChild(follow);
-        Debug.LogWarning("Added a new follower");
+
         _followCount++;
     }
 
@@ -79,7 +79,6 @@ public class PlayerFollowers : MonoBehaviour
     private void Remove(Follower follower, int count){
         if (count < 1) return;
 
-        Debug.LogWarning($"Removing Nr {count}");
         follower.Remove();
         Remove(follower.Child, --count);
         

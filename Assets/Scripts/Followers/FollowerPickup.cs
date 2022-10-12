@@ -78,7 +78,6 @@ public class FollowerPickup : MonoBehaviour
                 _people.RemoveAt(j);
             }
             
-            Debug.LogWarning($"{_player.gameObject.name.ToUpper()} Recruited {recruited.Length} Followers");
             followers.Add(recruited);
         }
 
@@ -98,7 +97,6 @@ public class FollowerPickup : MonoBehaviour
         var layer = other.gameObject.layer;
         if (((1 << layer) & _playerLayer) == 0) return;
 
-        Debug.LogWarning($"{other.gameObject.name} entered pickup zone");
         _player = other.transform;
     }
 
@@ -107,7 +105,7 @@ public class FollowerPickup : MonoBehaviour
     /// </summary>
     private void OnTriggerExit(Collider other){
         if (other.transform != _player) return;
-        Debug.LogWarning($"{_player.gameObject.name} left pickup zone");
+
         _player = null;
     }
 
