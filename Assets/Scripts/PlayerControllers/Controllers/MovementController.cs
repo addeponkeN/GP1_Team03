@@ -9,22 +9,25 @@ namespace PlayerControllers.Controllers
         public float MaxSpeed => _accelerator.MaxSpeed;
 
         private Accelerator _accelerator;
+        private PlayerStatContainer _stats;
 
         public override void Init()
         {
             base.Init();
-            
-            var stats = Manager.Player.Stats;
+            _stats = Manager.Player.Stats;
             _accelerator = new Accelerator(
-                stats.MovementAcceleration, 
-                stats.MaxMoveSpeed);
-            
+                _stats.MovementAcceleration, 
+                _stats.MaxMoveSpeed);
         }
 
         public override void Update(float delta)
         {
             base.Update(delta);
 
+            var stats = Manager.Player.Stats;
+            _accelerator.Acceleration = stats.MovementAcceleration;
+            _accelerator.MaxSpeed = stats.MaxMoveSpeed;
+            
             float dir = Input.GetAxisRaw("Vertical");
             _accelerator.Update(delta, dir);
 

@@ -34,6 +34,10 @@ namespace Attributes
             _value = EditorGUI.Slider(position, label, _value, range.Min, range.Max);
 
             prop.floatValue = _value;
+            
+            property.serializedObject.Update();
+            property.serializedObject.ApplyModifiedProperties();
+                
             // prop.floatValue = _value;
             // property.floatValue = _value;
         }

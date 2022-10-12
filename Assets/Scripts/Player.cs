@@ -1,4 +1,5 @@
-﻿using Jellybeans.Updates;
+﻿using System;
+using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
 using UnityEngine;
@@ -16,12 +17,16 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         ControllerManager = new PlayerControllerManager(this);
-        ControllerManager.AddController(new MovementController());
-        ControllerManager.AddController(new TurnController());
-
         Stats.Init(this);
+    }
+
+    private void Start()
+    {
         _updateManager.Initialise(GameCore.Get.gameObject.GetComponent<UpdateRelay>());
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
+        
+        ControllerManager.AddController(new MovementController());
+        ControllerManager.AddController(new TurnController());
     }
 
     private void OnDestroy()

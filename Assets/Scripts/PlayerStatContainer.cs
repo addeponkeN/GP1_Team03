@@ -1,5 +1,4 @@
 using System;
-using Attributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStatContainer",
@@ -10,37 +9,37 @@ public class PlayerStatContainer : ScriptableObject
 
 //  PLAYER STAT FIELDS
 
-    [Range(1f, 50f)] [TooltipAttribute("The movement acceleration of the bike")]
+    [TooltipAttribute("The movement acceleration of the bike")]
+    [Range(1f, 50f)] 
     public float MovementAcceleration;
 
 
-    [StatFloatRange(2f, 50f)] [TooltipAttribute("The maximum speed of the bike")]
-    public Stat<float> MaxMoveSpeed = new(25f);
+    [TooltipAttribute("The maximum speed of the bike")]
+    [Range(2f, 50f)]
+    public float MaxMoveSpeed;
 
 
     [TooltipAttribute("The rotation speed of the bike")]
-    [StatFloatRange(1f, 50f)] 
-    public Stat<float> RotationSpeed;
+    [Range(1f, 50f)] 
+    public float RotationSpeed;
     
     
     [TooltipAttribute("The maximum rotation speed of the bike")]
-    [StatFloatRange(1f, 50f)] 
-    public Stat<float> MaxRotationSpeed;
+    [Range(1f, 50f)] 
+    public float MaxRotationSpeed;
 
     
-    [SerializeField]
-    [TooltipAttribute("Scales rotation speed with movement speed\n" +
+    [TooltipAttribute("**RotationScales** rotation speed with movement speed\n" +
                       "0f = No rotation speed when moving\n" +
-                      "1f = Max rotation when moving\n" +
-                      "0.5f = Half rotation speed when movement speed is at max")]
-    [StatFloatRange(0f, 1f)]
-    public Stat<float> MovementRotationSpeedModifier;
+                      "1f = Max rotation when moving\n")]
+    [Range(0f, 1f)]
+    public float RotationSpeedModifier;
 
     
     /// <summary>
     /// Setup the stat container
     /// </summary>
-    /// <param name="player">The main player</param>
+    /// <param name="player">Reference to the main player</param>
     public void Init(Player player)
     {
         _p = player;
@@ -50,21 +49,21 @@ public class PlayerStatContainer : ScriptableObject
 [Serializable]
 public class Stat<T>
 {
-    public static implicit operator T(Stat<T> stat) => stat.Value; 
-    
-    public event Action<Stat<T>> ValueChangedEvent;
-    
-    [SerializeField] public T Value;
+     public static implicit operator T(Stat<T> stat) => stat.Value; 
+     
+     public event Action<Stat<T>> ValueChangedEvent;
+     
+     [SerializeField] public T Value;
 
-    public Stat(T value)
-    {
-        Value = value;
-        ValueChangedEvent = null;
-    }
+     public Stat(T value)
+     {
+         Value = value;
+         ValueChangedEvent = null;
+     }
 
-    public void SetValue(T value)
-    {
-        Value = value;
-        ValueChangedEvent?.Invoke(this);
-    }
+     public void SetValue(T value)
+     {
+         Value = value;
+         ValueChangedEvent?.Invoke(this);
+     }
 }
