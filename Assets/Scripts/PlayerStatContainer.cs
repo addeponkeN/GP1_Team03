@@ -10,35 +10,27 @@ public class PlayerStatContainer : ScriptableObject
 //  PLAYER STAT FIELDS
 
 
-    [TooltipAttribute("The movement acceleration of the bike")]
-    [Range(1f, 500f)] 
-    public float MovementSpeed;
-
-    [TooltipAttribute("The movement acceleration of the bike")]
-    [Range(1f, 500f)] 
-    public float MovementAcceleration;
+    [TooltipAttribute("The movement acceleration of the bike")] [Range(1f, 500f)]
+    public float MovementAcceleration = 5f;
 
 
-    [TooltipAttribute("The maximum speed of the bike")]
-    [Range(2f, 500f)]
-    public float MaxMoveSpeed;
+    [TooltipAttribute("The maximum speed of the bike")] [Range(2f, 500f)]
+    public float MaxMoveSpeed = 50f;
 
 
-    [TooltipAttribute("The rotation speed of the bike")]
-    [Range(1f, 50f)] 
-    public float RotationSpeed;
-    
-    
-    [TooltipAttribute("The maximum rotation speed of the bike")]
-    [Range(1f, 50f)] 
-    public float MaxRotationSpeed;
+    [TooltipAttribute("The rotation speed of the bike")] [Range(1f, 50f)]
+    public float RotationSpeed = 8f;
 
-    
+
+    [TooltipAttribute("The maximum rotation speed of the bike")] [Range(1f, 50f)]
+    public float MaxRotationSpeed = 8f;
+
+
     [TooltipAttribute("**RotationScales** rotation speed with movement speed\n" +
                       "0f = No rotation speed when moving\n" +
                       "1f = Max rotation when moving\n")]
     [Range(0f, 1f)]
-    public float RotationSpeedModifier;
+    public float RotationSpeedModifier = .25f;
 
     
     
