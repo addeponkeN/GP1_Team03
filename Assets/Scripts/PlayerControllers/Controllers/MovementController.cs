@@ -20,37 +20,25 @@ namespace PlayerControllers.Controllers
             _accelerator = new Accelerator(
                 _stats.MovementAcceleration,
                 _stats.MaxMoveSpeed);
+            _accelerator.Sensitivity = 0.25f;
 
             _inputMove = Manager.Player.Input.Movement;
-            
-            // _inputMove.action.ca
-        }
-
-        public override void SetEnabled(bool enabled)
-        {
-            base.SetEnabled(enabled);
-            // if(enabled)
-            // {
-                // _inputMove.action.
-            // }
-            // else
-            // {
-                // _inputMove.action.Disable();
-            // }
+            _inputMove.action.Enable();
         }
 
         public override void FixedUpdate(float dt)
         {
             base.FixedUpdate(dt);
 
+            var dir = _inputMove.action.ReadValue<Vector2>().y;
+            
             var stats = Manager.Player.Stats;
             _accelerator.Acceleration = stats.MovementAcceleration;
             _accelerator.MaxSpeed = stats.MaxMoveSpeed;
 
-            float dir = _inputMove.action.ReadValue<Vector2>().x;
-            Debug.Log(dir);
-            
             _accelerator.Update(dt, dir);
+
+            Debug.Log(_accelerator.Speed);
 
             if(_accelerator.IsAccelerating())
             {

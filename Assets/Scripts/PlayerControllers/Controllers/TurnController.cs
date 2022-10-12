@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using Util;
 
 namespace PlayerControllers.Controllers
@@ -8,6 +9,7 @@ namespace PlayerControllers.Controllers
         private MovementController _movement;
         private Accelerator _accelerator;
         private PlayerStatContainer _stats;
+        private InputActionReference _input;
 
         /// <summary>
         /// How much movement speed slows down the rotation speed
@@ -20,6 +22,8 @@ namespace PlayerControllers.Controllers
         {
             base.Init();
             _movement = Manager.GetController<MovementController>();
+            _input = Manager.Input.Movement;
+            _input.action.Enable();
 
             _stats = Manager.Player.Stats;
             _accelerator = new Accelerator(
@@ -30,7 +34,9 @@ namespace PlayerControllers.Controllers
         public override void FixedUpdate(float fixedDelta)
         {
             base.FixedUpdate(fixedDelta);
-            float dir = Input.GetAxisRaw("Horizontal");
+            
+            float dir = _input.action.ReadValue<Vector2>().x;
+            
             _accelerator.Update(fixedDelta, dir);
             _accelerator.Acceleration = _stats.RotationSpeed * 10f;
             _accelerator.MaxSpeed = _stats.MaxRotationSpeed * 10f;

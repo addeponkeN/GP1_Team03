@@ -48,6 +48,9 @@ public class Player : MonoBehaviour
 
     private void Reset()
     {
+        CapCollider = GetComponent<CapsuleCollider>();
+        Body = GetComponent<Rigidbody>();
+        
         //  reset capsule collider
         CapCollider.center = new Vector3(-.42f, -0.065f, -0.039f);
         CapCollider.radius = 0.65f;

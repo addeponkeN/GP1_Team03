@@ -5,7 +5,12 @@ namespace PlayerControllers
         /// <summary>
         /// The player root GameObject
         /// </summary>
-        public Player Player; 
+        public Player Player;
+
+        /// <summary>
+        /// Getter of the player's InputContainer
+        /// </summary>
+        public InputContainer Input => Player.Input;
 
         public PlayerControllerManager(Player pl)
         {
