@@ -1,4 +1,5 @@
 ﻿using System;
+using Cinemachine;
 using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     {
         _updateManager.Initialise(GameCore.Get.gameObject.GetComponent<UpdateRelay>());
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
-        
+
         ControllerManager.AddController(new MovementController());
         ControllerManager.AddController(new TurnController());
     }
@@ -33,5 +34,4 @@ public class Player : MonoBehaviour
     {
         _updateManager.Unsubscribe(ControllerManager.Update, UpdateType.Update);
     }
-
 }

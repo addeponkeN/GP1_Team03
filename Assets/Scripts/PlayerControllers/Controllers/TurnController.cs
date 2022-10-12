@@ -33,15 +33,16 @@ namespace PlayerControllers.Controllers
 
             float dir = Input.GetAxisRaw("Horizontal");
             _accelerator.Update(delta, dir);
-            _accelerator.Acceleration = _stats.RotationSpeed;
-            _accelerator.MaxSpeed = _stats.MaxRotationSpeed;
+            _accelerator.Acceleration = _stats.RotationSpeed * 10f;
+            _accelerator.MaxSpeed = _stats.MaxRotationSpeed * 10f;
 
+            Debug.Log(_accelerator.Speed);
             if(_accelerator.IsAccelerating())
             {
                 var player = Manager.PlayerGo;
 
                 float movementModifier = 1f - (_movement.Speed * MovementTurnSpeedModifier / _movement.MaxSpeed);
-                float finalTurnSpeed = _accelerator.Acceleration * movementModifier * dir;
+                float finalTurnSpeed = _accelerator.Speed * movementModifier;
 
                 player.transform.rotation *= Quaternion.AngleAxis(finalTurnSpeed * delta, Vector3.up);
             }
