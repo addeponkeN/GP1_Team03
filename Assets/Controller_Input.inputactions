@@ -47,6 +47,17 @@
                 },
                 {
                     "name": "",
+                    "id": "224bdb0b-bbb9-4a63-8468-aca71e19fc65",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "62f1377c-0560-4e68-a39e-d0893652bbe1",
                     "path": "<XInputController>/buttonEast",
                     "interactions": "",
@@ -57,7 +68,18 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "",
+                    "id": "7ca0eaab-49c0-4c8a-8fa6-d8c9b01b1022",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recruit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Adaptive Controller",
                     "id": "9e257132-b44a-4e2a-81b9-fbdb89ba773a",
                     "path": "2DVector",
                     "interactions": "",
@@ -104,6 +126,61 @@
                     "name": "right",
                     "id": "3bcf119f-5583-4468-b400-8ffefb31f092",
                     "path": "<XInputController>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "0095378b-44e3-430a-9680-59b907d83450",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "23c02536-f8a2-4d1d-9692-fe0ee0189e81",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "f394debc-212c-48aa-afd5-24c1a21706df",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "dd605735-4ef5-47b2-9083-b174addbe757",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "d3d39bac-64ae-4802-afa1-69d2028305c6",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
