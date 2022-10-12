@@ -1,21 +1,82 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressBar : MonoBehaviour
+namespace Ui.Widgets
 {
-    private Slider _slider;
-    private Image _fill;
-    
-    private void Awake()
+    public class ProgressBar : MonoBehaviour
     {
-        _slider = GetComponentInChildren<Slider>();
-        _fill = GetComponentInChildren<Image>();
-    }
+        public event Action<float> ValueChangedEvent;
+        
+//  UNITY EDITOR FIELDS
 
-    public void Slider_ValueChanged()
-    {
-        _fill.gameObject.SetActive(_slider.value > 0);
+        [Header("Background")] 
+        [SerializeField] private Sprite BackgroundImage;
+        [SerializeField] private Color BackgroundColor = Color.white;
+
+        [Space(2)] 
+        
+        [Header("Foreground")] 
+        [SerializeField] private Sprite ForegroundImage;
+        [SerializeField] private Color ForegroundColor = Color.white;
+
+        [Space(5)] 
+        [SerializeField] private Slider.SliderEvent onValueChanged;
+
+
+//  CACHED COMPONENTS
+
+        private Slider _slider;
+        private Image _foreground;
+        private Image _background;
+
+        private void Awake()
+        {
+            _slider = GetComponentInChildren<Slider>();
+
+            FindAndCacheChildrenImages();
+            UpdateComponents();
+            
+            _slider.onValueChanged = onValueChanged;
+        }
+
+        /// <summary>
+        /// Get the images from 'Background' and 'Fill' gameobjects and assign.
+        /// </summary>
+        private void FindAndCacheChildrenImages()
+        {
+            var children = gameObject.GetComponentsInChildren<Image>();
+            if(children.Length < 2)
+            {
+                Debug.LogWarning($"No image children found in {gameObject.name}");
+                return;
+            }
+
+            _background = children[0]; //  Background
+            _foreground = children[1]; //  Fill
+        }
+
+        private void UpdateComponents()
+        {
+            _background.sprite = BackgroundImage;
+            _background.color = BackgroundColor;
+
+            _foreground.sprite = ForegroundImage;
+            _foreground.color = ForegroundColor;
+        }
+
+        public void Slider_ValueChanged()
+        {
+            _foreground.gameObject.SetActive(_slider.value > 0);
+            ValueChangedEvent?.Invoke(_slider.value);
+        }
+
+        private void Reset()
+        {
+            BackgroundColor = Color.white;
+            ForegroundColor = new Color(0.75f, 0.75f, 0.75f);
+
+            UpdateComponents();
+        }
     }
-    
 }
-
