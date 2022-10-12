@@ -6,8 +6,14 @@ namespace Ui.Widgets
 {
     public class ProgressBar : MonoBehaviour
     {
-        public event Action<float> ValueChangedEvent;
+        public float Value
+        {
+            get => _slider.value;
+            set => _slider.value = value;
+        }
         
+        public event Action<float> ValueChangedEvent;
+
 //  UNITY EDITOR FIELDS
 
         [Header("Background")] 
@@ -20,7 +26,8 @@ namespace Ui.Widgets
         [SerializeField] private Sprite ForegroundImage;
         [SerializeField] private Color ForegroundColor = Color.white;
 
-        [Space(5)] 
+        [Space(5)]
+        
         [SerializeField] private Slider.SliderEvent onValueChanged;
 
 
@@ -36,7 +43,7 @@ namespace Ui.Widgets
 
             FindAndCacheChildrenImages();
             UpdateComponents();
-            
+
             _slider.onValueChanged = onValueChanged;
         }
 
@@ -67,7 +74,6 @@ namespace Ui.Widgets
 
         public void Slider_ValueChanged()
         {
-            _foreground.gameObject.SetActive(_slider.value > 0);
             ValueChangedEvent?.Invoke(_slider.value);
         }
 

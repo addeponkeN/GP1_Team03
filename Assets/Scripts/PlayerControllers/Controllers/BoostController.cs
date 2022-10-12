@@ -5,20 +5,33 @@ namespace PlayerControllers.Controllers
 {
     public class BoostController : BasePlayerController
     {
+        public class BoostResponse
+        {
+            public bool CanBoost { get; private set; }
+
+            public void SetCanBoost(bool canBoost)
+            {
+                CanBoost = canBoost;
+            }
+        }
+
         public bool IsBoosting => _boostTimer > 0f;
 
         public event Action BoostedEvent;
-        
+        public event Action<BoostResponse> AttemptBoostEvent;
+
         private float _boostTimer;
         private bool _boosted;
 
+        private BoostResponse _boostRespone;
         private MovementController _move;
         private PlayerStatContainer _stats;
         private InputActionReference _input;
-        
+
         public override void Init()
         {
             base.Init();
+            _boostRespone = new();
             _move = Manager.GetController<MovementController>();
             _stats = Manager.Player.Stats;
             _input = Manager.Input.Boost;
@@ -59,19 +72,24 @@ namespace PlayerControllers.Controllers
 
         private bool CanBoost()
         {
-            return !IsBoosting;
+            if(IsBoosting) return false;
+
+            _boostRespone.SetCanBoost(true);
+            AttemptBoostEvent?.Invoke(_boostRespone);
+
+            return _boostRespone.CanBoost;
         }
 
         private void StartBoost()
         {
             _boostTimer = _stats.BoostTime;
-            _move.MoveSpeedMultiplier = 3f;
+            _move.SetMultipliers(_stats.BoostAmount * 2f, _stats.BoostAmount);
             BoostedEvent?.Invoke();
         }
 
         private void EndBoost()
         {
-            _move.MoveSpeedMultiplier = 1f;
+            _move.SetMultipliers();
         }
 
         public override void Exit()

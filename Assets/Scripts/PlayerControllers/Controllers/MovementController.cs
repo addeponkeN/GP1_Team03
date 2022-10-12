@@ -9,7 +9,8 @@ namespace PlayerControllers.Controllers
         public float Speed => _accelerator.Speed;
         public float MaxSpeed => _accelerator.MaxSpeed;
 
-        public float MoveSpeedMultiplier { get; set; } = 1f;
+        public float SpeedMultiplier { get; set; } = 1f;
+        public float MaxSpeedMultiplier { get; set; } = 1f;
 
         private Accelerator _accelerator;
         private PlayerStatContainer _stats;
@@ -21,7 +22,7 @@ namespace PlayerControllers.Controllers
             _stats = Manager.Player.Stats;
 
             const float acceleratorBreakSensitivity = 0.25f;
-            
+
             _accelerator = new Accelerator(
                 _stats.MovementAcceleration,
                 _stats.MaxMoveSpeed,
@@ -31,17 +32,23 @@ namespace PlayerControllers.Controllers
             _inputMove.action.Enable();
         }
 
+        public void SetMultipliers(float speed = 1f, float maxSpeed = 1f)
+        {
+            SpeedMultiplier = speed;
+            MaxSpeedMultiplier = maxSpeed;
+        }
+
         public override void FixedUpdate(float dt)
         {
             base.FixedUpdate(dt);
 
-            var dir = _inputMove.action.ReadValue<Vector2>().y;
-            
-            //  fetch the latest player stats and apply to the controller
-            _accelerator.Acceleration = _stats.MovementAcceleration * MoveSpeedMultiplier;
-            _accelerator.MaxSpeed = _stats.MaxMoveSpeed * MoveSpeedMultiplier;
+            var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
 
-            _accelerator.Update(dt, dir);
+            //  fetch the player stats and apply to the controller
+            _accelerator.Acceleration = _stats.MovementAcceleration * SpeedMultiplier;
+            _accelerator.MaxSpeed = _stats.MaxMoveSpeed * MaxSpeedMultiplier;
+
+            _accelerator.Update(dt, forwardVelocity);
 
             if(_accelerator.IsAccelerating())
             {
