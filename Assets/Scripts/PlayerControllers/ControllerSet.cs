@@ -23,7 +23,8 @@ namespace PlayerControllers
         public List<BasePlayerController> Controllers;
 
         private bool _controllersEnabled = false;
-
+        private bool _inited = false;
+        
         public ControllerSet()
         {
             Controllers = new List<BasePlayerController>();

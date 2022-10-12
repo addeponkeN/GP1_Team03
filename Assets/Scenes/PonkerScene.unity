@@ -1198,9 +1198,9 @@ MonoBehaviour:
   m_LookAt: {fileID: 931992495}
   m_Follow: {fileID: 931992495}
   m_Lens:
-    FieldOfView: 60
+    FieldOfView: 65
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.1
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -1222,7 +1222,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612178832}
-  m_LocalRotation: {x: 0.22975291, y: -0.000000018722698, z: 0.0000000044198294, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
   m_LocalPosition: {x: -3.69, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612178832}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
   m_Name: 
@@ -2129,9 +2129,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
-  field of view: 60
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2156,7 +2156,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271159189}
-  m_LocalRotation: {x: 0.22975291, y: -0.000000018722698, z: 0.0000000044198294, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
   m_LocalPosition: {x: -3.69, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3959,9 +3959,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
-      propertyPath: Stats
+      propertyPath: Input.Boost
       value: 
-      objectReference: {fileID: 11400000, guid: e50598fc0e5ced949ad055ddbe6eddf4, type: 2}
+      objectReference: {fileID: 6532391055967103618, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
+      propertyPath: _inputBoost
+      value: 
+      objectReference: {fileID: 6532391055967103618, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
+      propertyPath: _inputPickup
+      value: 
+      objectReference: {fileID: 7268336583125652101, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
+      propertyPath: Input.Recruit
+      value: 
+      objectReference: {fileID: 7268336583125652101, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
+      propertyPath: _inputRecruit
+      value: 
+      objectReference: {fileID: 7268336583125652101, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
+      propertyPath: Input.Movement
+      value: 
+      objectReference: {fileID: 7503884912492243399, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
+    - target: {fileID: 1615374732842025362, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
+      propertyPath: _inputMovement
+      value: 
+      objectReference: {fileID: 7503884912492243399, guid: 842475d879fb8074390cf6c4e77ad227, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e97c2a05dce3b3428ab370a7c34505e, type: 3}
 --- !u!1001 &3896708440609183448

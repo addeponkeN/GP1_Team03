@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using Util;
 
 namespace PlayerControllers.Controllers
@@ -10,6 +11,7 @@ namespace PlayerControllers.Controllers
 
         private Accelerator _accelerator;
         private PlayerStatContainer _stats;
+        private InputActionReference _inputMove;
 
         public override void Init()
         {
@@ -18,16 +20,36 @@ namespace PlayerControllers.Controllers
             _accelerator = new Accelerator(
                 _stats.MovementAcceleration,
                 _stats.MaxMoveSpeed);
+
+            _inputMove = Manager.Player.Input.Movement;
+            
+            // _inputMove.action.ca
+        }
+
+        public override void SetEnabled(bool enabled)
+        {
+            base.SetEnabled(enabled);
+            // if(enabled)
+            // {
+                // _inputMove.action.
+            // }
+            // else
+            // {
+                // _inputMove.action.Disable();
+            // }
         }
 
         public override void FixedUpdate(float dt)
         {
             base.FixedUpdate(dt);
+
             var stats = Manager.Player.Stats;
             _accelerator.Acceleration = stats.MovementAcceleration;
             _accelerator.MaxSpeed = stats.MaxMoveSpeed;
 
-            float dir = Input.GetAxisRaw("Vertical");
+            float dir = _inputMove.action.ReadValue<Vector2>().x;
+            Debug.Log(dir);
+            
             _accelerator.Update(dt, dir);
 
             if(_accelerator.IsAccelerating())
@@ -40,7 +62,6 @@ namespace PlayerControllers.Controllers
                 var move = fw * (_accelerator.Speed * dt);
                 body.velocity *= 0.5f;
                 body.MovePosition(tf.position + move);
-                // body.AddForce(move, ForceMode.VelocityChange);
             }
         }
     }
