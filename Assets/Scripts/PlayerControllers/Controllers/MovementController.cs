@@ -38,8 +38,6 @@ namespace PlayerControllers.Controllers
 
             _accelerator.Update(dt, dir);
 
-            Debug.Log(_accelerator.Speed);
-
             if(_accelerator.IsAccelerating())
             {
                 var body = Manager.Player.Body;
