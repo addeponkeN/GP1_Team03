@@ -2,7 +2,6 @@ using SF = UnityEngine.SerializeField;
 using UnityEngine;
 using Jellybeans.Updates;
 using PlayerControllers.Controllers;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
@@ -11,11 +10,25 @@ public class PlayerFollowers : MonoBehaviour
     [SF] private UpdateManager _update = null;
 
     private int _followCount = 0;
-    private Follower _child = null;
+    private Follower _root = null;
     private MovementController _move = null;
+
+// PROPERTIES
+
+    public int Count => _followCount;
 
 // INITIALISATION
 
+    /// <summary>
+    /// Initialises the root
+    /// </summary>
+    private void Awake(){
+        _root = new Follower(null, null, 0f);
+    }
+
+    /// <summary>
+    /// Initialises the player movement controller reference
+    /// </summary>
     private void Start(){
         var controller = GetComponent<Player>().ControllerManager;
         _move = controller.GetController<MovementController>();
@@ -24,16 +37,12 @@ public class PlayerFollowers : MonoBehaviour
     /// <summary>
     /// Subscribes to fixed update
     /// </summary>
-    private void OnEnable(){
-        _update.Subscribe(OnFixedUpdate, UpdateType.FixedUpdate);
-    }
+    private void OnEnable() => RunUpdate(true);
 
     /// <summary>
     /// Unsubscribes to fixed update
     /// </summary>
-    private void OnDisable(){
-        _update.Unsubscribe(OnFixedUpdate, UpdateType.FixedUpdate);
-    }
+    private void OnDisable() => RunUpdate(false);
 
 // MANAGEMENT
 
@@ -41,17 +50,17 @@ public class PlayerFollowers : MonoBehaviour
     /// Adds a new follower to the player
     /// </summary>
     public void Add(Rigidbody follower){
-        Follower parent = _child;
+        Follower parent = _root;
 
-        while (parent?.Child != null){
+        while (parent.Child != null){
             parent = parent.Child;
         }
 
         var collider = follower.GetComponent<SphereCollider>();
-        var follow = new Follower(parent, follower, collider.radius + _followPadding);
+        var radius = collider.radius + _followPadding;
 
-        if (parent == null) _child = follow;
-        else parent.SetChild(follow);
+        var follow = new Follower(parent, follower, radius);
+        parent.SetChild(follow);
 
         _followCount++;
     }
@@ -70,7 +79,7 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     public void Remove(int count){
         count = Mathf.Min(_followCount, count);
-        Remove(_child, count);
+        Remove(_root.Child, count);
     }
 
     /// <summary>
@@ -78,10 +87,11 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void Remove(Follower follower, int count){
         if (count < 1) return;
-
-        follower.Remove();
-        Remove(follower.Child, --count);
         
+        follower.Remove();
+        follower.GameObject.SetActive(false);
+
+        Remove(follower.Child, --count);
         _followCount--;
     }
 
@@ -91,7 +101,16 @@ public class PlayerFollowers : MonoBehaviour
     /// On update manager fixed update event
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
+        if (_root.Child == null) return;
         var position = transform.position + (-transform.forward * _followPadding);
-        _child?.Move(position, _move.Speed, fixedDeltaTime);
+        _root.Child.Move(position, _move.Speed, fixedDeltaTime);
+    }
+
+    /// <summary>
+    /// Toggles the fixed update loop
+    /// </summary>
+    private void RunUpdate(bool run){
+        if (run) _update.Subscribe(OnFixedUpdate, UpdateType.FixedUpdate);
+        else _update.Unsubscribe(OnFixedUpdate, UpdateType.FixedUpdate);
     }
 }

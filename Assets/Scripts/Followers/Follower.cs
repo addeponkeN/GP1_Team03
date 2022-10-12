@@ -12,6 +12,7 @@ public class Follower
 
     public Follower Parent => _parent;
     public Follower Child => _child;
+    public GameObject GameObject => _rigidbody.gameObject;
 
 // INITIALISATION
 
