@@ -26,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 6000430500639964619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7142859, y: 1.7142859, z: 1.7142859}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6654625703989208247}
@@ -50,6 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2472844ae262c459394b542875a84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackgroundImage: {fileID: 21300000, guid: a52e0b55c90a900438180a74e07756b0, type: 3}
+  BackgroundColor: {r: 0.7830189, g: 0.74227583, b: 0, a: 1}
+  ForegroundImage: {fileID: 21300000, guid: a52e0b55c90a900438180a74e07756b0, type: 3}
+  ForegroundColor: {r: 1, g: 0.99574625, b: 0.0047169924, a: 1}
+  onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6654625702370402819
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,19 +336,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6000430500639964617}
-        m_TargetAssemblyTypeName: ProgressBar, Assembly-CSharp
-        m_MethodName: Slider_ValueChanged
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &6654625703989208245
 CanvasRenderer:
   m_ObjectHideFlags: 0
