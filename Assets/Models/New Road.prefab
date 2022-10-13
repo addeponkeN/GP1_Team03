@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7801562554442991094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 978.488, y: 155.24, z: 462.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -150,4 +150,4 @@ MonoBehaviour:
       isRightHanded: 1
     uvOffset: {x: 0, y: 1}
   autoGenerate: 1
-  SourceMesh: {fileID: 8441333049256515316, guid: 9b440dea87725b241a46400670be470b, type: 3}
+  SourceMesh: {fileID: 1235621651323668378, guid: 3326d952a22538e4da3e95483500ee9e, type: 3}
