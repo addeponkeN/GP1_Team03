@@ -114,7 +114,7 @@
                 {
                     "name": "up",
                     "id": "e3f90254-4f35-45e6-9a8f-db84848ca379",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<XInputController>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
