@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc9d1020fce1534a9be1f887a3d8736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followPadding: 3
+  _followPadding: 2
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
   _onPickup:
     m_PersistentCalls:
@@ -970,7 +970,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8481814257399496073, guid: 2e4ec86aa3c01b44dadae82510e7e12f, type: 3}
       propertyPath: _speedTimeCurve.m_Curve.Array.data[1].value
-      value: 10
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481814257399496073, guid: 2e4ec86aa3c01b44dadae82510e7e12f, type: 3}
+      propertyPath: _speedTimeCurve.m_Curve.Array.data[0].inSlope
+      value: 29.410383
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481814257399496073, guid: 2e4ec86aa3c01b44dadae82510e7e12f, type: 3}
+      propertyPath: _speedTimeCurve.m_Curve.Array.data[0].outSlope
+      value: 29.410383
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481814257399496073, guid: 2e4ec86aa3c01b44dadae82510e7e12f, type: 3}
+      propertyPath: _speedTimeCurve.m_Curve.Array.data[0].outWeight
+      value: 0.033333335
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e4ec86aa3c01b44dadae82510e7e12f, type: 3}

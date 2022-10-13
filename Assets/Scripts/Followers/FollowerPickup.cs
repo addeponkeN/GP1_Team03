@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using PlayerControllers.Controllers;
 
 [RequireComponent(typeof(SphereCollider))]
 public class FollowerPickup : MonoBehaviour
@@ -98,6 +99,7 @@ public class FollowerPickup : MonoBehaviour
         if (((1 << layer) & _playerLayer) == 0) return;
 
         _player = other.transform;
+        SetBoost(_player, false);
     }
 
     /// <summary>
@@ -106,7 +108,14 @@ public class FollowerPickup : MonoBehaviour
     private void OnTriggerExit(Collider other){
         if (other.transform != _player) return;
 
+        SetBoost(_player, true);
         _player = null;
+    }
+
+    private void SetBoost(Transform player, bool enabled){
+        var controller = _player.GetComponent<Player>().ControllerManager;
+        var boost = controller.GetController<BoostController>();
+        boost.SetEnabled(enabled);
     }
 
 // DEBUGGING VISUALS
