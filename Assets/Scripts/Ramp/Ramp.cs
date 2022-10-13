@@ -64,7 +64,7 @@ public class Ramp : MonoBehaviour
         // Init values
         _index = 0;
         _time = _minCurveTime;
-        _current = _rigidbody.transform.position;
+        _current = _rigidbody.position;
         _target = _points[_index].position;
 
         SetUpdate(true);
@@ -78,20 +78,21 @@ public class Ramp : MonoBehaviour
 
         var speed = _speedTimeCurve.Evaluate(_time);
         var direction = (_target - _current).normalized;
-        var velocity = (direction * (speed * fixedDeltaTime));
-        Debug.Log($"TIME {_time} Speed {speed}");
-        _rigidbody.MovePosition(_rigidbody.position + velocity);
+        var velocity = direction * speed;
+
+        _rigidbody.transform.Translate(velocity);
+        //_rigidbody.MovePosition(_rigidbody.position + velocity);
         _rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
         if (Vector3.Distance(_current, _target) < 0.1f){
             if (_index + 1 < _points.Length){ 
-                _current = _rigidbody.transform.position;
+                _current = _rigidbody.position;
                 _target = _points[++_index].position;
             
             } else _time = _maxCurveTime;
         }
 
-        if (_time > _maxCurveTime){
+        if (_time >= _maxCurveTime){
             SetUpdate(false);
             SetControl(_player, true);
         }
