@@ -21,7 +21,7 @@ namespace PlayerControllers
 
         public List<BasePlayerController> Controllers;
 
-        private bool _controllersEnabled = false;
+        private bool _controllersEnabled = true;
         private bool _inited = false;
 
         public ControllerSet()
@@ -60,6 +60,7 @@ namespace PlayerControllers
 
         public override void Update(float delta)
         {
+            if(!_controllersEnabled) return;
             for(int i = 0; i < Controllers.Count; i++)
             {
                 Controllers[i].Update(delta);
@@ -68,6 +69,7 @@ namespace PlayerControllers
 
         public override void FixedUpdate(float fixedDelta)
         {
+            if(!_controllersEnabled) return;
             for(int i = 0; i < Controllers.Count; i++)
             {
                 Controllers[i].FixedUpdate(fixedDelta);

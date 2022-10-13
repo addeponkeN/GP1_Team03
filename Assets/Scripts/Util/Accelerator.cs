@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Util
 {
@@ -10,14 +11,24 @@ namespace Util
         public float Speed => _speed;
 
         public float Acceleration;
+        public float Deceleration;
         public float MaxSpeed;
         public float Sensitivity;
 
         private float _speed;
 
-        public Accelerator(float acceleration, float maxSpeed, float sensitivity = 0.1f)
+        public Accelerator(float acceleration, float maxSpeed, float sensitivity = 0.25f)
         {
             Acceleration = acceleration;
+            Deceleration = acceleration;
+            MaxSpeed = maxSpeed;
+            Sensitivity = sensitivity;
+        }
+
+        public Accelerator(float acceleration, float deceleration, float maxSpeed, float sensitivity = 0.25f)
+        {
+            Acceleration = acceleration;
+            Deceleration = deceleration;
             MaxSpeed = maxSpeed;
             Sensitivity = sensitivity;
         }
@@ -31,7 +42,7 @@ namespace Util
         private bool IsSpeedAboveMaxSpeed()
             => AbsoluteSpeed > AbsoluteMaxSpeed;
 
-        private void Brake(float dt)
+        private void Decelerate(float dt)
         {
             //  if acceleration is less than SENSITIVITY, force stop
             //  to stop any micro movement jitter
@@ -43,7 +54,7 @@ namespace Util
             {
                 //  deaccelerate
                 var accelNormalized = OmegaMathf.Normalize(_speed);
-                _speed += Acceleration * -accelNormalized * dt;
+                _speed += Deceleration * -accelNormalized * dt;
             }
         }
 
@@ -51,12 +62,19 @@ namespace Util
         {
             if(direction == 0 || IsSpeedAboveMaxSpeed())
             {
-                Brake(dt);
+                Decelerate(dt);
             }
             else
             {
-                //  accelerate
-                _speed += direction * Acceleration * dt;
+                if(_speed > 0 && direction < 0 || _speed < 0 && direction > 0)
+                {
+                    Decelerate(dt);
+                }
+                else
+                {
+                    //  accelerate
+                    _speed += direction * Acceleration * dt;
+                }
             }
         }
     }

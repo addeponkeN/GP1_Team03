@@ -2,6 +2,7 @@ using SF = UnityEngine.SerializeField;
 using UnityEngine;
 using Jellybeans.Updates;
 using PlayerControllers.Controllers;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
@@ -12,6 +13,9 @@ public class PlayerFollowers : MonoBehaviour
     private int _followCount = 0;
     private Follower _root = null;
     private MovementController _move = null;
+
+    [Space, SF] private UnityEvent _onPickup = new();
+    [Space, SF] private UnityEvent _onLost = new();
 
 // PROPERTIES
 
@@ -72,6 +76,7 @@ public class PlayerFollowers : MonoBehaviour
         for (int i = 0; i < followers.Length; i++){
             Add(followers[i]);
         }
+        _onPickup.Invoke();
     }
 
     /// <summary>
@@ -80,6 +85,7 @@ public class PlayerFollowers : MonoBehaviour
     public void Remove(int count){
         count = Mathf.Min(_followCount, count);
         Remove(_root.Child, count);
+        _onLost.Invoke();
     }
 
     /// <summary>
