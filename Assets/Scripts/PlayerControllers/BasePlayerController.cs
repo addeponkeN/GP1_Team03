@@ -3,6 +3,7 @@ namespace PlayerControllers
     public abstract class BasePlayerController
     {
         public bool IsAlive { get; set; } = true;
+        public bool Enabled { get; set; } = true;
         public PlayerControllerManager Manager { get; set; }
 
         /// <summary>
