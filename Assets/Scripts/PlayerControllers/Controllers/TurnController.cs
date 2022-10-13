@@ -42,7 +42,6 @@ namespace PlayerControllers.Controllers
             _accelerator.Acceleration = _stats.RotationSpeed * 10f;
             _accelerator.Deceleration = _stats.RotationSpeed * 10f * 2f;
             _accelerator.MaxSpeed = _stats.MaxRotationSpeed * 10f;
-            Debug.Log(_accelerator.Speed);
 
             if(_accelerator.IsAccelerating())
             {
