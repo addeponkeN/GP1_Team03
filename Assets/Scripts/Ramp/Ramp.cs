@@ -3,6 +3,7 @@ using UnityEngine;
 using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
+using UnityEngine.UIElements;
 
 public class Ramp : MonoBehaviour
 {
@@ -17,11 +18,11 @@ public class Ramp : MonoBehaviour
     private float _maxCurveTime = 0;
     
     private int _index = 0;
-    private float _startSpeed = 0f;
     private Vector3 _current = Vector3.zero;
     private Vector3 _target = Vector3.zero;
 
     private GameObject _player = null;
+    private Transform _transform = null;
     private Rigidbody _rigidbody = null;
     private PlayerControllerManager _controller = null;
 
@@ -49,6 +50,7 @@ public class Ramp : MonoBehaviour
             return;
 
         _player ??= other.gameObject;
+        _transform ??= other.transform;
         _rigidbody ??= _player.GetComponent<Rigidbody>();
 
         // Disables movement controller
@@ -64,7 +66,7 @@ public class Ramp : MonoBehaviour
         // Init values
         _index = 0;
         _time = _minCurveTime;
-        _current = _rigidbody.position;
+        _current = _transform.position;
         _target = _points[_index].position;
 
         SetUpdate(true);
@@ -78,15 +80,15 @@ public class Ramp : MonoBehaviour
 
         var speed = _speedTimeCurve.Evaluate(_time);
         var direction = (_target - _current).normalized;
-        var velocity = direction * speed;
+        var velocity = direction * (speed * fixedDeltaTime);
 
-        _rigidbody.transform.Translate(velocity);
         //_rigidbody.MovePosition(_rigidbody.position + velocity);
+        _transform.Translate(velocity, Space.World);
         _rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
         if (Vector3.Distance(_current, _target) < 0.1f){
             if (_index + 1 < _points.Length){ 
-                _current = _rigidbody.position;
+                _current = _transform.position;
                 _target = _points[++_index].position;
             
             } else _time = _maxCurveTime;
@@ -95,6 +97,7 @@ public class Ramp : MonoBehaviour
         if (_time >= _maxCurveTime){
             SetUpdate(false);
             SetControl(_player, true);
+            Debug.Log("Arrived");
         }
     }
 
