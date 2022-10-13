@@ -58,15 +58,16 @@ public class FollowerPickup : MonoBehaviour
         var distance = Vector3.Distance(
             _player.position, transform.position
         );
-        
-        var radius = _collider.radius;
+
+        var scale = transform.localScale;
+        var radius = _collider.radius * Mathf.Max(scale.x, scale.z);
         var difference = radius / _zones;
 
         for (int i = 0; i <= _zones; i++){
             bool less = distance < radius - (difference * i);
             bool greater = distance > radius - (difference * (i + 1));
             if (!less || !greater) continue;
-
+            
             var percent = Mathf.InverseLerp(0, _zones, i + 1);
             var count =  (int)Mathf.Lerp(_minPickupCount, _people.Count, percent);
             var recruited = new Rigidbody[count];

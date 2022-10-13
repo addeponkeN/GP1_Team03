@@ -59,6 +59,8 @@ public class PlayerFollowers : MonoBehaviour
         while (parent.Child != null){
             parent = parent.Child;
         }
+        
+        follower.transform.SetParent(null);
 
         var collider = follower.GetComponent<SphereCollider>();
         var radius = collider.radius + _followPadding;
