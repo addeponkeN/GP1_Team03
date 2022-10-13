@@ -21,7 +21,7 @@ namespace PlayerControllers
 
         public List<BasePlayerController> Controllers;
 
-        private bool _controllersEnabled = false;
+        private bool _controllersEnabled = true;
         private bool _inited = false;
 
         public ControllerSet()
