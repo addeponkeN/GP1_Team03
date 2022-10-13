@@ -15,7 +15,10 @@ namespace PlayerControllers
 
         public virtual void FixedUpdate(float fixedDelta) { }
 
-        public virtual void SetEnabled(bool enabled) { }
+        public virtual void SetEnabled(bool enabled)
+        {
+            Enabled = enabled;
+        }
 
         /// <summary>
         /// This is called when a controller is removed from a control set
