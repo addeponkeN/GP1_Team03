@@ -5,6 +5,7 @@ using Jellybeans.Updates;
 
 public class Hazard : MonoBehaviour
 {
+    [SF] private bool _canBeDestroyed = true;
     [SF] private float _collisionTimer = 2.5f;
     [SF] private Vector2Int _minMaxFollowerLoss = Vector2Int.one;
     [Space]
@@ -36,7 +37,7 @@ public class Hazard : MonoBehaviour
 
         // Min speed to break hazard
         var boostSpeed = _stats.MaxMoveSpeed * _stats.BoostAmount;
-        if (movement.Speed >= (boostSpeed * _speedPercent)){
+        if (_canBeDestroyed && (movement.Speed >= (boostSpeed * _speedPercent))){
             this.gameObject.SetActive(false);
             return;
         }
