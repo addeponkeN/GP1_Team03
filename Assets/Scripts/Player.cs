@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [NonSerialized] public Rigidbody Body;
     [NonSerialized] public CapsuleCollider CapCollider;
 
+    public PlayerEnergy Energy;
     public PlayerStatContainer Stats;
     public PlayerControllerManager ControllerManager;
     public InputContainer Input;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     {
         Body = GetComponent<Rigidbody>();
         CapCollider = GetComponent<CapsuleCollider>();
+
+        Energy = new PlayerEnergy();
         
         Stats.Init(this);
 
@@ -34,15 +37,19 @@ public class Player : MonoBehaviour
         ControllerManager.AddController(new BoostController());
         ControllerManager.Init();
     }
-    
+
     private void Start()
     {
+        Energy.Start(this);
+        
+        _updateManager.Subscribe(Energy.Update, UpdateType.Update);
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
         _updateManager.Subscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
     }
 
     private void OnDestroy()
     {
+        _updateManager.Unsubscribe(Energy.Update, UpdateType.Update);
         _updateManager.Unsubscribe(ControllerManager.Update, UpdateType.Update);
         _updateManager.Unsubscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
     }
@@ -51,7 +58,7 @@ public class Player : MonoBehaviour
     {
         CapCollider = GetComponent<CapsuleCollider>();
         Body = GetComponent<Rigidbody>();
-        
+
         //  reset capsule collider
         CapCollider.center = new Vector3(-.42f, -0.065f, -0.039f);
         CapCollider.radius = 0.65f;
