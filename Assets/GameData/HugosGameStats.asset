@@ -17,3 +17,8 @@ MonoBehaviour:
   RotationSpeed: 10
   MaxRotationSpeed: 15
   RotationSpeedModifier: 0.1
+  BoostTime: 1.5
+  BoostAmount: 2
+  MaxEnergy: 100
+  EnergyRegeneration: 2
+  BoostCost: 20
