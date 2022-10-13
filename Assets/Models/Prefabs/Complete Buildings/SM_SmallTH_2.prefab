@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5302591204637191484
 Transform:
@@ -46,9 +46,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5302591204637191484}
     m_Modifications:
+    - target: {fileID: 3426071370584274864, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438551724104589228, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7037249968716093515, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
       propertyPath: m_Name
       value: SM_SmallTH_OuterRoofWWindows (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037249968716093515, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7701864699708818161, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
       propertyPath: m_RootOrder
@@ -97,6 +109,10 @@ PrefabInstance:
     - target: {fileID: 7701864699708818161, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735223607568633639, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
@@ -160,6 +176,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_SmallTH_BottomMiddleWDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 1136012464217938616, guid: baa1a9c8aefa3d640b28bdf4f3f0b1fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799281832193548058, guid: baa1a9c8aefa3d640b28bdf4f3f0b1fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa1a9c8aefa3d640b28bdf4f3f0b1fb, type: 3}
 --- !u!4 &1586492043494024063 stripped
@@ -192,6 +216,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5302591204637191484}
     m_Modifications:
+    - target: {fileID: 3448956992311792817, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279736081744844296, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8292776643242519649, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -239,6 +271,10 @@ PrefabInstance:
     - target: {fileID: 8673383981679392475, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
       propertyPath: m_Name
       value: SM_SmallTH_RoofWWIndows
+      objectReference: {fileID: 0}
+    - target: {fileID: 8673383981679392475, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
@@ -302,6 +338,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_SmallTH_BottomMiddleWDoor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1136012464217938616, guid: baa1a9c8aefa3d640b28bdf4f3f0b1fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799281832193548058, guid: baa1a9c8aefa3d640b28bdf4f3f0b1fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa1a9c8aefa3d640b28bdf4f3f0b1fb, type: 3}
 --- !u!4 &4973027063969764852 stripped
@@ -316,6 +360,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5302591204637191484}
     m_Modifications:
+    - target: {fileID: 3448956992311792817, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279736081744844296, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8292776643242519649, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -364,6 +416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_SmallTH_RoofWWIndows (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8673383981679392475, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 449f018cbe1fc5545bdc1c9b4125f025, type: 3}
 --- !u!4 &3578106140542983919 stripped
@@ -378,9 +434,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5302591204637191484}
     m_Modifications:
+    - target: {fileID: 3426071370584274864, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438551724104589228, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7037249968716093515, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
       propertyPath: m_Name
       value: SM_SmallTH_OuterRoofWWindows
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037249968716093515, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7701864699708818161, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
       propertyPath: m_RootOrder
@@ -426,6 +494,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7735223607568633639, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4918a5771ec1749aab42c60d5586bd, type: 3}
 --- !u!4 &3439510119161870552 stripped
@@ -443,6 +515,10 @@ PrefabInstance:
     - target: {fileID: 2788119249484588154, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
       propertyPath: m_Name
       value: SM_SmallTH_OuterBottomWWIndows (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788119249484588154, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3313157305281117888, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
       propertyPath: m_RootOrder
@@ -492,6 +568,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3477558300748859206, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843644700283594926, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871282134231170359, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
 --- !u!1 &8327753343029890320 stripped
@@ -527,6 +615,10 @@ PrefabInstance:
     - target: {fileID: 2788119249484588154, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
       propertyPath: m_Name
       value: SM_SmallTH_OuterBottomWWIndows
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788119249484588154, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3313157305281117888, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
       propertyPath: m_RootOrder
@@ -571,6 +663,18 @@ PrefabInstance:
     - target: {fileID: 3313157305281117888, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477558300748859206, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843644700283594926, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871282134231170359, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44def469546de7649a9f1ab74eca6526, type: 3}
