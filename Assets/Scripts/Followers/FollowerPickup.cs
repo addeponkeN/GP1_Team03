@@ -109,7 +109,7 @@ public class FollowerPickup : MonoBehaviour
         _player = null;
     }
 
-// DEBUGGING
+// DEBUGGING VISUALS
 #if UNITY_EDITOR
 
     /// <summary>
@@ -137,16 +137,19 @@ public class FollowerPickup : MonoBehaviour
         Gizmos.color = colour;
 
         var centre = transform.position;
+        var scale = transform.localScale;
+
         var point = centre + (Vector3.forward * radius);
         var previus = point;
+        previus.Scale(scale);
 
         var edges = 16f;
         var amount = 360f / edges;
 
-        for (int i = 1; i <= edges; i++)
-        {
+        for (int i = 1; i <= edges; i++){
             var offset = Quaternion.Euler(0, amount * i, 0);
             var current = offset * (point - centre) + centre;
+            current.Scale(scale);
 
             Gizmos.DrawLine(previus, current);
             previus = current;
