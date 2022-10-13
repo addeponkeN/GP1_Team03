@@ -91,14 +91,14 @@ public class Ramp : MonoBehaviour
             if (_index + 1 < _points.Length){ 
                 _current = position;
                 _target = _points[++_index].position;
-                Debug.Log($"Moving to Point {_index}");
+                //Debug.Log($"Moving to Point {_index}");
             } else _time = _maxCurveTime;
         }
 
         if (_time >= _maxCurveTime){
             SetUpdate(false);
             SetControl(_player, true);
-            Debug.Log("Arrived");
+            //Debug.Log("Arrived");
         }
     }
 
