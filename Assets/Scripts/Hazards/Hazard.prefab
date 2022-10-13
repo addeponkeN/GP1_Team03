@@ -111,11 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionTimer: 2.5
-  _minPlayerSpeed: 3
-  _minBreakSpeed: 25
   _minMaxFollowerLoss: {x: 1, y: 3}
   _playerLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   _stats: {fileID: 11400000, guid: e50598fc0e5ced949ad055ddbe6eddf4, type: 2}
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}

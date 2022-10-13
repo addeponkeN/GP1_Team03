@@ -61,9 +61,7 @@ public class Ramp : MonoBehaviour
         keys[0].value = movement.Speed;
         _speedTimeCurve = new AnimationCurve(keys);
 
-        Debug.Log($"Player Start Speed {movement.Speed}");
-
-        // Init curves
+        // Init values
         _index = 0;
         _time = _minCurveTime;
         _current = _rigidbody.transform.position;
@@ -78,10 +76,10 @@ public class Ramp : MonoBehaviour
     private void OnFixedUpdate(float fixedDeltaTime){
         _time += fixedDeltaTime;
 
-        var direction = (_target - _current).normalized;
         var speed = _speedTimeCurve.Evaluate(_time);
+        var direction = (_target - _current).normalized;
         var velocity = (direction * (speed * fixedDeltaTime));
-        Debug.Log($"Player Speed {speed}");
+        Debug.Log($"TIME {_time} Speed {speed}");
         _rigidbody.MovePosition(_rigidbody.position + velocity);
         _rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
