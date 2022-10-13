@@ -147,10 +147,10 @@ public class FollowerPickup : MonoBehaviour
 
         var centre = transform.position;
         var scale = transform.localScale;
+        radius *= Mathf.Max(scale.x, scale.z);
 
         var point = centre + (Vector3.forward * radius);
         var previus = point;
-        previus.Scale(scale);
 
         var edges = 16f;
         var amount = 360f / edges;
@@ -158,7 +158,6 @@ public class FollowerPickup : MonoBehaviour
         for (int i = 1; i <= edges; i++){
             var offset = Quaternion.Euler(0, amount * i, 0);
             var current = offset * (point - centre) + centre;
-            current.Scale(scale);
 
             Gizmos.DrawLine(previus, current);
             previus = current;

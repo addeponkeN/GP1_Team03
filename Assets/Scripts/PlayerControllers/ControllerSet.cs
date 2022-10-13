@@ -52,6 +52,7 @@ namespace PlayerControllers
 
         public override void Init()
         {
+            _inited = true;
             for(int i = 0; i < Controllers.Count; i++)
             {
                 Controllers[i].Init();
@@ -63,7 +64,8 @@ namespace PlayerControllers
             if(!_controllersEnabled) return;
             for(int i = 0; i < Controllers.Count; i++)
             {
-                Controllers[i].Update(delta);
+                if(Controllers[i].Enabled)
+                    Controllers[i].Update(delta);
             }
         }
 
@@ -72,7 +74,8 @@ namespace PlayerControllers
             if(!_controllersEnabled) return;
             for(int i = 0; i < Controllers.Count; i++)
             {
-                Controllers[i].FixedUpdate(fixedDelta);
+                if(Controllers[i].Enabled)
+                    Controllers[i].FixedUpdate(fixedDelta);
             }
         }
 
