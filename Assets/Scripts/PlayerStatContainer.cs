@@ -51,6 +51,7 @@ public class PlayerStatContainer : ScriptableObject
     [Range(1f, 5f)]
     public float BoostAmount = 3f;
     
+    
     [Space] 
     [Header("Energy")]
     
