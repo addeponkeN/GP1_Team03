@@ -78,19 +78,20 @@ public class Ramp : MonoBehaviour
     private void OnFixedUpdate(float fixedDeltaTime){
         _time += fixedDeltaTime;
 
+        var position = _transform.position;
         var speed = _speedTimeCurve.Evaluate(_time);
-        var direction = (_target - _current).normalized;
+        var direction = (_target - position).normalized;
         var velocity = direction * (speed * fixedDeltaTime);
 
         //_rigidbody.MovePosition(_rigidbody.position + velocity);
         _transform.Translate(velocity, Space.World);
         _rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
-        if (Vector3.Distance(_current, _target) < 0.1f){
+        if (Vector3.Distance(position, _target) < 0.1f){
             if (_index + 1 < _points.Length){ 
-                _current = _transform.position;
+                _current = position;
                 _target = _points[++_index].position;
-            
+                Debug.Log($"Moving to Point {_index}");
             } else _time = _maxCurveTime;
         }
 
