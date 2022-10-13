@@ -10,6 +10,7 @@ public class PlayerStatContainer : ScriptableObject
 //  PLAYER STAT FIELDS
 
     [Header("Movement")] 
+    
     [TooltipAttribute("The movement acceleration of the bike")] 
     [Range(1f, 30f)]
     public float MovementAcceleration = 5f;
@@ -19,9 +20,9 @@ public class PlayerStatContainer : ScriptableObject
     [Range(2f, 50f)]
     public float MaxMoveSpeed = 50f;
 
-
     [Space]
     [Header("Rotation")] 
+    
     [TooltipAttribute("The rotation speed of the bike")] 
     [Range(1f, 50f)]
     public float RotationSpeed = 8f;
@@ -38,18 +39,33 @@ public class PlayerStatContainer : ScriptableObject
     [Range(0f, 1f)]
     public float RotationSpeedModifier = .25f;
 
-
     [Space] 
     [Header("Boosting")]
+    
     [TooltipAttribute("Amount of time the boost should last")] 
     [Range(0f, 5f)]
     public float BoostTime = 1.5f;
     
     
     [TooltipAttribute("Amount multiplied by speed")] 
-    [Range(1f, 10f)]
-    public float BoostAmount = 3f;
+    [Range(10f, 500f)]
+    public float BoostAmount = 100f;
+    
+    [Space] 
+    [Header("Energy")]
+    
+    [TooltipAttribute("The max energy")] 
+    [Range(1f, 300f)]
+    public float MaxEnergy = 100f;
 
+    [TooltipAttribute("Energy regeneration per second")] 
+    [Range(1f, 50f)]
+    public float EnergyRegeneration = 2f;
+    
+    [TooltipAttribute("Energy cost of the boost")] 
+    [Range(1f, 50f)]
+    public float BoostCost = 20f;
+    
 
     /// <summary>
     /// Setup the stat container
@@ -59,6 +75,7 @@ public class PlayerStatContainer : ScriptableObject
     {
         _p = player;
     }
+    
 }
 
 [Serializable]
