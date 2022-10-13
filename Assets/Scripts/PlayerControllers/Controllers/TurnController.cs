@@ -28,7 +28,8 @@ namespace PlayerControllers.Controllers
             _stats = Manager.Player.Stats;
             _accelerator = new Accelerator(
                 _stats.RotationSpeed * 10f,
-                _stats.MaxRotationSpeed * 10f);
+                _stats.MaxRotationSpeed * 10f, 
+                5f);
         }
 
         public override void FixedUpdate(float fixedDelta)
@@ -39,7 +40,7 @@ namespace PlayerControllers.Controllers
             
             _accelerator.Update(fixedDelta, dir);
             _accelerator.Acceleration = _stats.RotationSpeed * 10f;
-            _accelerator.Deceleration = _stats.RotationSpeed * 10f * 3f;
+            _accelerator.Deceleration = _stats.RotationSpeed * 10f * 2f;
             _accelerator.MaxSpeed = _stats.MaxRotationSpeed * 10f;
 
             if(_accelerator.IsAccelerating())
