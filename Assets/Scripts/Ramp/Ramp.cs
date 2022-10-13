@@ -2,20 +2,24 @@ using SF = UnityEngine.SerializeField;
 using UnityEngine;
 using Jellybeans.Updates;
 using PlayerControllers;
+using PlayerControllers.Controllers;
 
 public class Ramp : MonoBehaviour
 {
-    [SF] private AnimationCurve _speedTimeCurve = AnimationCurve.Linear(0, 5, 1, 10);
+    [SF] private AnimationCurve _speedTimeCurve = AnimationCurve.Linear(0, 0, 3, 3);
     [SF] private LayerMask _playerLayer = 1 << 0;
     [SF] private UpdateManager _update = null;
     [SF] private Transform[] _points = null;
 
-    private int _current = 0;
+    private bool _running = false;
     private float _time = 0f;
     private float _minCurveTime = 0;
     private float _maxCurveTime = 0;
-    private Vector3 _point1 = Vector3.zero;
-    private Vector3 _point2 = Vector3.zero;
+    
+    private int _index = 0;
+    private float _startSpeed = 0f;
+    private Vector3 _current = Vector3.zero;
+    private Vector3 _target = Vector3.zero;
 
     private GameObject _player = null;
     private Rigidbody _rigidbody = null;
@@ -27,8 +31,9 @@ public class Ramp : MonoBehaviour
     /// Initialise curve settings
     /// </summary>
     private void Awake(){
-        _minCurveTime = _speedTimeCurve.keys[_speedTimeCurve.length - 1].time;
-        _maxCurveTime = _speedTimeCurve.keys[0].time;
+        var length = _speedTimeCurve.length - 1;
+        _minCurveTime = _speedTimeCurve.keys[0].time;
+        _maxCurveTime = _speedTimeCurve.keys[length].time;
     }
 
 // RAMP HANDLING
@@ -37,18 +42,33 @@ public class Ramp : MonoBehaviour
     /// On player entering ramp
     /// </summary>
     private void OnTriggerEnter(Collider other){
+        if (_running) return;
+
         var layer = other.gameObject.layer;
-        if (((1 << layer) & _playerLayer) == 0) return;
+        if (((1 << layer) & _playerLayer) == 0) 
+            return;
 
         _player ??= other.gameObject;
         _rigidbody ??= _player.GetComponent<Rigidbody>();
+
+        // Disables movement controller
         _controller ??= _player.GetComponent<Player>().ControllerManager;
         SetControl(_player, false);
 
-        _current = 0;
+        // Set initial speed on curve
+        var movement = _controller.GetController<MovementController>();
+        var keys = _speedTimeCurve.keys;
+        keys[0].value = movement.Speed;
+        _speedTimeCurve = new AnimationCurve(keys);
+
+        Debug.Log($"Player Start Speed {movement.Speed}");
+
+        // Init curves
+        _index = 0;
         _time = _minCurveTime;
-        _point1 = _rigidbody.transform.position;
-        _point2 = _points[_current].position;
+        _current = _rigidbody.transform.position;
+        _target = _points[_index].position;
+
         SetUpdate(true);
     }
 
@@ -57,15 +77,18 @@ public class Ramp : MonoBehaviour
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
         _time += fixedDeltaTime;
-        Debug.Log("running");
-        var direction = (_point2 - _point1).normalized;
-        var speed = _speedTimeCurve.Evaluate(_time);
-        _rigidbody.MovePosition(_rigidbody.position + (direction * speed));
 
-        if (Vector3.Distance(_point1, _point2) < 0.01){
-            if (_current + 1< _points.Length){ 
-                _point1 = _rigidbody.transform.position;
-                _point2 = _points[++_current].position;
+        var direction = (_target - _current).normalized;
+        var speed = _speedTimeCurve.Evaluate(_time);
+        var velocity = (direction * (speed * fixedDeltaTime));
+        Debug.Log($"Player Speed {speed}");
+        _rigidbody.MovePosition(_rigidbody.position + velocity);
+        _rigidbody.MoveRotation(Quaternion.LookRotation(direction));
+
+        if (Vector3.Distance(_current, _target) < 0.1f){
+            if (_index + 1 < _points.Length){ 
+                _current = _rigidbody.transform.position;
+                _target = _points[++_index].position;
             
             } else _time = _maxCurveTime;
         }
@@ -88,8 +111,17 @@ public class Ramp : MonoBehaviour
     /// Toggles update loop
     /// </summary>
     private void SetUpdate(bool enabled){
-        if (enabled) _update.Subscribe(OnFixedUpdate, UpdateType.FixedUpdate);
-        else _update.Unsubscribe(OnFixedUpdate, UpdateType.FixedUpdate);
+        if (enabled) _update.Subscribe(
+            OnFixedUpdate, 
+            UpdateType.FixedUpdate
+        );
+        
+        else _update.Unsubscribe(
+            OnFixedUpdate, 
+            UpdateType.FixedUpdate
+        );
+
+        _running = enabled;
     }
 
 // DEBUGGING VISUALS

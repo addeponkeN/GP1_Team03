@@ -16,8 +16,13 @@ namespace Ui
         {
             //  temporary check
             var player = GameCore.Get?.Player;
-            if(player == null) return;
+            if(player == null)
+            {
+                Debug.Log("player null in EnergyBar (GameCore)");
+                return;
+            }
 
+            _progressBar.Value = player.Energy.Energy;
             player.Energy.EnergyChangedEvent += EnergyOnEnergyChangedEvent;
         }
 

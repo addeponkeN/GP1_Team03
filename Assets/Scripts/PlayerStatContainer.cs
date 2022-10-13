@@ -48,8 +48,8 @@ public class PlayerStatContainer : ScriptableObject
     
     
     [TooltipAttribute("Amount multiplied by speed")] 
-    [Range(10f, 500f)]
-    public float BoostAmount = 100f;
+    [Range(1f, 5f)]
+    public float BoostAmount = 3f;
     
     [Space] 
     [Header("Energy")]
