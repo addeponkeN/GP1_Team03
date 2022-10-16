@@ -1,10 +1,8 @@
 ﻿using System;
-using Cinemachine;
 using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// Main player script
@@ -15,6 +13,9 @@ public class Player : MonoBehaviour
     [NonSerialized] public Rigidbody Body;
     [NonSerialized] public CapsuleCollider CapCollider;
 
+    [SerializeField] private MovementController _movement;
+    [SerializeField] private TurnController _turning;
+    
     public PlayerEnergy Energy;
     public PlayerStatContainer Stats;
     public PlayerControllerManager ControllerManager;
@@ -32,8 +33,8 @@ public class Player : MonoBehaviour
         Stats.Init(this);
 
         ControllerManager = new PlayerControllerManager(this);
-        ControllerManager.AddController(new MovementController());
-        ControllerManager.AddController(new TurnController());
+        ControllerManager.AddController(_movement);
+        ControllerManager.AddController(_turning);
         ControllerManager.AddController(new BoostController());
         ControllerManager.Init();
     }

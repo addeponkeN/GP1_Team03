@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using Attributes;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Util;
 
 namespace PlayerControllers.Controllers
 {
+    [Serializable]
     public class MovementController : BasePlayerController
     {
         public float Speed => _accelerator.Speed;
@@ -15,6 +19,12 @@ namespace PlayerControllers.Controllers
         private Accelerator _accelerator;
         private PlayerStatContainer _stats;
         private InputActionReference _inputMove;
+
+        private bool _isMoving;
+        private bool _isOldMoving;
+
+        [SerializeField] private UnityEvent onStartedMoving;
+        [SerializeField] private UnityEvent onStoppedMoving;
 
         public override void Init()
         {
@@ -41,8 +51,25 @@ namespace PlayerControllers.Controllers
         public override void FixedUpdate(float dt)
         {
             base.FixedUpdate(dt);
+            _isOldMoving = _isMoving;
 
             var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
+
+            _isMoving = forwardVelocity != 0f;
+
+            if(_isMoving != _isOldMoving)
+            {
+                if(_isMoving)
+                {
+                    Debug.Log("moving started");
+                    onStartedMoving?.Invoke();
+                }
+                else
+                {
+                    Debug.Log("moving stopped");
+                    onStoppedMoving?.Invoke();
+                }
+            }
 
             //  fetch the player stats and apply to the controller
             _accelerator.Acceleration = _stats.MovementAcceleration * SpeedMultiplier;

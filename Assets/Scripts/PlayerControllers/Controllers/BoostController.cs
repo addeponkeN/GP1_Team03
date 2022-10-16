@@ -72,6 +72,7 @@ namespace PlayerControllers.Controllers
 
         private bool CanBoost()
         {
+            if(!Enabled) return false;
             if(IsBoosting) return false;
 
             _boostRespone.SetCanBoost(true);

@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
 
 namespace PlayerControllers.Controllers
 {
+    [Serializable]
     public class TurnController : BasePlayerController
     {
         private MovementController _movement;
@@ -40,7 +42,7 @@ namespace PlayerControllers.Controllers
             
             _accelerator.Update(fixedDelta, dir);
             _accelerator.Acceleration = _stats.RotationSpeed * 10f;
-            _accelerator.Deceleration = _stats.RotationSpeed * 10f * 2f;
+            _accelerator.Deceleration = _stats.RotationSpeed * 10f * 3f;
             _accelerator.MaxSpeed = _stats.MaxRotationSpeed * 10f;
 
             if(_accelerator.IsAccelerating())

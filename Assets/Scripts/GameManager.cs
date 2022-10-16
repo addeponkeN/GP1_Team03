@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Losing Triggers")] 
     [SerializeField] private UnityEvent _onGameLost;
-
+    
     private Player _player;
     
     private void Awake()
@@ -74,4 +74,5 @@ public class GameManager : MonoBehaviour
         var followers = _player.GetComponent<PlayerFollowers>();
         return followers.Count >= Rules.FollowerWinCount;
     }
+    
 }

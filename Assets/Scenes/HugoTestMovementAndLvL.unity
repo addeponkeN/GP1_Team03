@@ -8514,7 +8514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028371, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_CollideAgainst.m_Bits
-      value: 64
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
