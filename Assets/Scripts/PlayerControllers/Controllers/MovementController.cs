@@ -1,5 +1,4 @@
 ﻿using System;
-using Attributes;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -87,9 +86,15 @@ namespace PlayerControllers.Controllers
                 fw.y = 0;
 
                 var move = fw * (_accelerator.Speed * dt);
-                body.velocity *= 0.5f;
+                // move.y = body.velocity.y;
+                // body.velocity *= 0.5f;
                 body.MovePosition(tf.position + move);
             }
+        }
+
+        public void Stop()
+        {
+            _accelerator.Stop();
         }
     }
 }
