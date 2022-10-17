@@ -54,6 +54,8 @@ namespace PlayerControllers.Controllers
             _isOldMoving = _isMoving;
 
             var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
+            //  temporary permanent forward movement
+            forwardVelocity = 1f;
 
             _isMoving = forwardVelocity != 0f;
 
