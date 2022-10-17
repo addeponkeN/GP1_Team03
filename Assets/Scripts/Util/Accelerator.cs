@@ -77,5 +77,10 @@ namespace Util
                 }
             }
         }
+
+        public void Stop()
+        {
+            _speed = 0;
+        }
     }
 }
