@@ -1,7 +1,6 @@
 using Jellybeans.Updates;
 using UnityEngine;
 using UnityEngine.Events;
-using Util;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,14 +27,17 @@ public class GameManager : MonoBehaviour
         if(Rules == null)
             Rules = _defaultRules;
 
-        var gameTimer = new Timer(Rules.Time);
-        gameTimer.DoneEvent += GameTimerOnDoneEvent;
-        _updateManager.Subscribe(gameTimer.Update, UpdateType.Update);
+        //var gameTimer = new Timer(Rules.Time);
+
+        //gameObject.AddComponent<Timer>();
+
+        //gameTimer.DoneEvent += GameTimerOnDoneEvent;
+        //_updateManager.Subscribe(gameTimer.Update, UpdateType.Update);
     }
 
     private void GameTimerOnDoneEvent(Timer timer)
     {
-        _updateManager.Unsubscribe(timer.Update, UpdateType.Update);
+        //_updateManager.Unsubscribe(timer.Update, UpdateType.Update);
     }
 
     private void Start()
