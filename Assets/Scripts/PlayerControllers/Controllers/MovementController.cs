@@ -86,8 +86,6 @@ namespace PlayerControllers.Controllers
                 fw.y = 0;
 
                 var move = fw * (_accelerator.Speed * dt);
-                // move.y = body.velocity.y;
-                // body.velocity *= 0.5f;
                 body.MovePosition(tf.position + move);
             }
         }
