@@ -112,18 +112,18 @@ MonoBehaviour:
   points:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 9}
-  - {x: 0, y: 0, z: 10}
+  - {x: -0.074962616, y: 0, z: 17.173733}
+  - {x: -0.074962616, y: 0, z: 18.173733}
   normals:
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
   angles: []
   bounds:
-    m_Center: {x: 0, y: 0, z: 5}
-    m_Extent: {x: 0, y: 0, z: 5}
+    m_Center: {x: -0.037481308, y: 0, z: 9.086866}
+    m_Extent: {x: 0.037481308, y: 0, z: 9.086866}
   boundingBoxes:
-  - m_Center: {x: 0, y: 0, z: 5}
-    m_Extent: {x: 0, y: 0, z: 5}
+  - m_Center: {x: -0.037481308, y: 0, z: 9.086866}
+    m_Extent: {x: 0.037481308, y: 0, z: 9.086866}
 --- !u!33 &6358925209486892791
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   settings:
     SourceOrientation:
       forward: 2
-      up: 4
+      up: 5
       isRightHanded: 1
     uvOffset: {x: 0, y: 1}
   autoGenerate: 1
