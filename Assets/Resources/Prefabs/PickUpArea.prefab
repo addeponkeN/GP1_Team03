@@ -146,10 +146,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zones: 3
   _minPickupCount: 1
+  _respawnTimer: 10
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
   _pickupInput: {fileID: 7268336583125652101, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
+  _followerPrefab:
+  - {fileID: 3587364546884249861, guid: 59ffe64e6b95bc0428b5e79179f8acb2, type: 3}
   _people:
   - {fileID: 0}
   - {fileID: 0}

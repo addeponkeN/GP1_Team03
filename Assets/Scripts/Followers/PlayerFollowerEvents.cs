@@ -8,13 +8,14 @@ public class PlayerFollowerEvents : MonoBehaviour
     /// On follower picked up event
     /// </summary>
     public void OnPickedUp(Follower follower){
-
+        if (follower == null) return;
     }
 
     /// <summary>
     /// On follower crashed event
     /// </summary>
     public void OnCrashed(Follower follower){
+        if (follower == null) return;
         Destroy(follower.GameObject);
     }
 
@@ -22,6 +23,7 @@ public class PlayerFollowerEvents : MonoBehaviour
     /// On follower removed on level up event
     /// </summary>
     public void OnRemoved(Follower follower){
+        if (follower == null) return;
         Destroy(follower.GameObject);
     }
 }

@@ -24,7 +24,8 @@ public class PlayerFollowerCounter : MonoBehaviour
     /// </summary>
     private void Awake(){
         _followers = gameObject.GetComponent<PlayerFollowers>();
-        UpdatedFollowers();
+        _followerCount = _followers.Count;
+        UpdateText();
     }
 
     /// <summary>
@@ -40,6 +41,11 @@ public class PlayerFollowerCounter : MonoBehaviour
         var current = (_followers.Count - _followers.KeeptOnLevelUp);
         _followerCount = min + current;
 
+        UpdateText();
+    }
+
+    private void UpdateText(){
+        if (_hudText == null) return;
         _hudText.text = _followerCount.ToString();
     }
 }
