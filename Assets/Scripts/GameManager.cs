@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
         //_updateManager.Subscribe(gameTimer.Update, UpdateType.Update);
     }
 
-    private void GameTimerOnDoneEvent(Timer timer)
-    {
+    // private void GameTimerOnDoneEvent(Timer timer)
+    // {
         //_updateManager.Unsubscribe(timer.Update, UpdateType.Update);
-    }
+    // }
 
     private void Start()
     {
