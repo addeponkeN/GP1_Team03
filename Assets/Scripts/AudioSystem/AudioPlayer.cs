@@ -14,9 +14,9 @@ namespace AudioSystem
             _source = GetComponent<AudioSource>();
         }
 
-        public void SetAudioClip(string name)
+        public void SetAudioClip(string clipName)
         {
-            _source.clip = AudioManager.GetSoundClip(name);
+            _source.clip = AudioManager.GetSoundClip(clipName);
         }
         
         public AudioSource GetSource()
@@ -41,7 +41,7 @@ namespace AudioSystem
 
         public void UpdateVolume()
         {
-            _source.volume = IsMusic ? AudioManager.ScaledMusicVolume : AudioManager.ScaledSfxVolume;
+            _source.volume = IsMusic ? AudioManager.MusicVolume : AudioManager.SfxVolume;
         }
 
     }

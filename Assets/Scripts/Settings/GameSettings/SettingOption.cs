@@ -1,17 +1,17 @@
 using System;
 
-namespace Settings
+namespace Settings.GameSettings
 {
-    public struct GameSetting<T>
+    public class SettingOption<T>
     {
-        public static implicit operator T(GameSetting<T> setting) => setting.Value;
+        public static implicit operator T(SettingOption<T> settingOption) => settingOption.Value;
         
         public string Name { get; private set; }
         public T Value { get; private set; }
 
         public event Action OnChangedEvent;
 
-        public GameSetting(string name, T value)
+        public SettingOption(string name, T value)
         {
             Name = name;
             Value = value;

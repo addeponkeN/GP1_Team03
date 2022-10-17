@@ -83,5 +83,6 @@ namespace Ui.Widgets
         {
             ValueChangedEvent?.Invoke(_slider.value);
         }
+        
     }
 }
