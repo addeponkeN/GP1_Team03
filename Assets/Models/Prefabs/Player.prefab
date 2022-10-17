@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1169388009905437839}
   - component: {fileID: 6397550863810637000}
   - component: {fileID: 6839268991967416155}
+  - component: {fileID: 1478948888806665886}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _followPadding: 1
+  _keptOnLevelUp: 2
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
   _onPickup:
     m_PersistentCalls:
@@ -144,6 +146,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerFollowerCounter, Assembly-CSharp
         m_MethodName: UpdatedFollowers
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1478948888806665886}
+        m_TargetAssemblyTypeName: PlayerFollowerEvents, Assembly-CSharp
+        m_MethodName: OnPickedUp
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -167,9 +181,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1478948888806665886}
+        m_TargetAssemblyTypeName: PlayerFollowerEvents, Assembly-CSharp
+        m_MethodName: OnCrashed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onRemoved:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1478948888806665886}
+        m_TargetAssemblyTypeName: PlayerFollowerEvents, Assembly-CSharp
+        m_MethodName: OnRemoved
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6839268991967416155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +222,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelUpCount: 20
   _hudText: {fileID: 0}
+--- !u!114 &1478948888806665886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959280164926006823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dab84c57b6640a459daad9757a320f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3613911563108270485
 PrefabInstance:
   m_ObjectHideFlags: 0

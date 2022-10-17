@@ -12,13 +12,17 @@ public class FollowerPickup : MonoBehaviour
     [Header("Circle Settings")]
     [SF] private int _zones = 3;
     [SF] private int _minPickupCount = 1;
+    [SF] private float _respawnTimer = 10f;
     [SF] private LayerMask _playerLayer = 1 << 0;
     [SF] private InputActionReference _pickupInput = null;
-    [SF] private List<Rigidbody> _people = null;
+    [SF] private GameObject[] _followerPrefab = null;
+    [SF] private List<GameObject> _people = null;
     [Space]
     [SF] private UnityEvent _onPickup = new();
 
+    private float _timer = 0f;
     private Transform _player = null;
+    private PlayerFollowers _followers = null;
     private SphereCollider _collider = null;
 
 // INITIALISATION
@@ -46,14 +50,27 @@ public class FollowerPickup : MonoBehaviour
         _pickupInput.action.canceled -= OnInteractInput;
     }
 
-// INPUT EVENTS
+// FOLLOWERS
 
     /// <summary>
     /// On interact button released
     /// </summary>
     private void OnInteractInput(CallbackContext context){
         if (_player == null) return;
-        var followers = _player.GetComponent<PlayerFollowers>();
+
+        var recruited = GetFollowers();
+        _followers.Add(recruited);
+        _onPickup.Invoke();
+
+        SetActiveState(false);
+        Invoke("RespawnFollowers", _respawnTimer);
+    }
+
+    /// <summary>
+    /// Returns the recruited followers
+    /// </summary>
+    private List<Rigidbody> GetFollowers(){
+        var recruited = new List<Rigidbody>();
 
         var distance = Vector3.Distance(
             _player.position, transform.position
@@ -70,24 +87,54 @@ public class FollowerPickup : MonoBehaviour
             
             var percent = Mathf.InverseLerp(0, _zones, i + 1);
             var count =  (int)Mathf.Lerp(_minPickupCount, _people.Count, percent);
-            var recruited = new Rigidbody[count];
 
             for (int j = count - 1; j >= 0; j--){
                 var person = _people[j];
+
                 if (person == null) continue;
+                person.SetActive(false);
+
+                var prefab = _followerPrefab[
+                    Random.Range(0, _followerPrefab.Length)
+                ];
+
+                var follower = Instantiate(
+                    prefab,
+                    person.transform.position,
+                    person.transform.rotation
+                );
                 
-                recruited[j] = person;
-                _people.RemoveAt(j);
+                var rb = follower.GetComponent<Rigidbody>();
+                recruited.Add(rb);
             }
-            
-            followers.Add(recruited);
         }
 
-        _onPickup.Invoke();
+        return recruited;
+    }
 
-        if (_people.Count == 0){
-            enabled = false;
+    /// <summary>
+    /// Toggles the visible state
+    /// </summary>
+    private void SetActiveState(bool active){
+        var mr = GetComponent<MeshRenderer>();
+        if (mr != null) mr.enabled = active;
+
+        for (int i = 0; i < transform.childCount; i++){
+            var child = transform.GetChild(i);
+            child.gameObject.SetActive(active);
         }
+
+        for (int i = 0; i < _people.Count; i++)
+            _people[i]?.SetActive(active);
+
+        _collider.enabled = active;
+    }
+
+    /// <summary>
+    /// Respawns the pickup circle and its followers
+    /// </summary>
+    private void RespawnFollowers(){
+        SetActiveState(true);
     }
 
 // TRIGGERING
@@ -99,7 +146,9 @@ public class FollowerPickup : MonoBehaviour
         var layer = other.gameObject.layer;
         if (((1 << layer) & _playerLayer) == 0) return;
 
-        _player = other.transform;
+        _player ??= other.transform;
+        _followers ??= _player.GetComponent<PlayerFollowers>();
+        
         SetBoost(_player, false);
     }
 
@@ -113,6 +162,9 @@ public class FollowerPickup : MonoBehaviour
         _player = null;
     }
 
+    /// <summary>
+    /// Toggles boost when inside/outside the pickup circle
+    /// </summary>
     private void SetBoost(Transform player, bool enabled){
         var controller = _player.GetComponent<Player>().ControllerManager;
         var boost = controller.GetController<BoostController>();

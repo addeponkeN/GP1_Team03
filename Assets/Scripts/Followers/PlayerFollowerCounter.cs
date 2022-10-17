@@ -20,15 +20,16 @@ public class PlayerFollowerCounter : MonoBehaviour
 // INITIALISATION
 
     /// <summary>
-    /// 
+    /// Initialises the follow counter
     /// </summary>
     private void Awake(){
         _followers = gameObject.GetComponent<PlayerFollowers>();
         _followerCount = _followers.Count;
+        UpdateText();
     }
 
     /// <summary>
-    /// 
+    /// Update the follow counter
     /// </summary>
     public void UpdatedFollowers(){
         if (_followers.Count >= _levelUpCount){
@@ -40,6 +41,11 @@ public class PlayerFollowerCounter : MonoBehaviour
         var current = (_followers.Count - _followers.KeeptOnLevelUp);
         _followerCount = min + current;
 
+        UpdateText();
+    }
+
+    private void UpdateText(){
+        if (_hudText == null) return;
         _hudText.text = _followerCount.ToString();
     }
 }

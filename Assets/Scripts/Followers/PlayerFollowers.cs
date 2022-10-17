@@ -1,8 +1,9 @@
 using SF = UnityEngine.SerializeField;
 using UnityEngine;
+using UnityEngine.Events;
+using System.Collections.Generic;
 using Jellybeans.Updates;
 using PlayerControllers.Controllers;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
@@ -56,8 +57,8 @@ public class PlayerFollowers : MonoBehaviour
     /// <summary>
     /// Adds a group of followers to the player
     /// </summary>
-    public void Add(Rigidbody[] fellows){
-        for (int i = 0; i < fellows.Length; i++){
+    public void Add(List<Rigidbody> fellows){
+        for (int i = 0; i < fellows.Count; i++){
             Add(fellows[i]);
         }
     }
@@ -108,7 +109,7 @@ public class PlayerFollowers : MonoBehaviour
 
 
     /// <summary>
-    /// Remove all but 2 player followers, starting from the back
+    /// Removes all followers, starting from the back
     /// </summary>
     public void Clear(){
         var parent = _root;
