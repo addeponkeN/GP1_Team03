@@ -1,5 +1,4 @@
-﻿using System;
-using PlayerControllers.Controllers;
+﻿using PlayerControllers.Controllers;
 using UnityEngine;
 
 namespace PlayerPush
@@ -10,7 +9,7 @@ namespace PlayerPush
         /// Direction of the pusher
         /// </summary>
         public Vector3 Direction = Vector3.up;
-
+        
         /// <summary>
         /// The push force
         /// </summary>
@@ -29,11 +28,15 @@ namespace PlayerPush
                 return;
 
             var player = other.gameObject.GetComponent<Player>();
-            // StopPlayer(player);
+            StopPlayer(player);
 
+            var pushDirection = transform.forward;
+
+            var finalDirection = (pushDirection + Direction).normalized;
+            
             var body = player.GetComponent<Rigidbody>();
-            body.MovePosition(body.position + Direction * 0.1f);
-            body.AddForce(Direction * Power);
+            body.MovePosition(body.position + finalDirection * 0.1f);
+            body.AddForce(finalDirection * Power, ForceMode.Impulse);
         }
 
         private void StopPlayer(Player player)
