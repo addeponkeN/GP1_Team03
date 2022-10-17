@@ -5,7 +5,6 @@ namespace BikeMania
     public class GroundedController
     {
         private MovementController _move;
-
         private bool _isDisabledUntilGrounded;
 
         public GroundedController(Player player)
