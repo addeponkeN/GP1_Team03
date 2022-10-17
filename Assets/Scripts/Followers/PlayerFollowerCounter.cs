@@ -20,15 +20,15 @@ public class PlayerFollowerCounter : MonoBehaviour
 // INITIALISATION
 
     /// <summary>
-    /// 
+    /// Initialises the follow counter
     /// </summary>
     private void Awake(){
         _followers = gameObject.GetComponent<PlayerFollowers>();
-        _followerCount = _followers.Count;
+        UpdatedFollowers();
     }
 
     /// <summary>
-    /// 
+    /// Update the follow counter
     /// </summary>
     public void UpdatedFollowers(){
         if (_followers.Count >= _levelUpCount){
