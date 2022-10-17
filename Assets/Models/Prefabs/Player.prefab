@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 602866508914062138}
   - component: {fileID: -1169388009905437839}
   - component: {fileID: 6397550863810637000}
+  - component: {fileID: 6839268991967416155}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -80,6 +81,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f96cb606bb447ead92dc4b860b3256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movement:
+    onStartedMoving:
+      m_PersistentCalls:
+        m_Calls: []
+    onStoppedMoving:
+      m_PersistentCalls:
+        m_Calls: []
   Stats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
   Input:
     Movement: {fileID: 7503884912492243399, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
@@ -131,10 +139,51 @@ MonoBehaviour:
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
   _onPickup:
     m_PersistentCalls:
-      m_Calls: []
-  _onLost:
+      m_Calls:
+      - m_Target: {fileID: 6839268991967416155}
+        m_TargetAssemblyTypeName: PlayerFollowerCounter, Assembly-CSharp
+        m_MethodName: UpdatedFollowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCrash:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6839268991967416155}
+        m_TargetAssemblyTypeName: PlayerFollowerCounter, Assembly-CSharp
+        m_MethodName: UpdatedFollowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6839268991967416155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959280164926006823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3314b2882f214cd4ab11bdc53508d16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelUpCount: 20
+  _hudText: {fileID: 0}
 --- !u!1001 &3613911563108270485
 PrefabInstance:
   m_ObjectHideFlags: 0

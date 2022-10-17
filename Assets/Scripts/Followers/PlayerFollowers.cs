@@ -8,18 +8,21 @@ using UnityEngine.Events;
 public class PlayerFollowers : MonoBehaviour
 {
     [SF] private float _followPadding = 1f;
+    [SF] private int _keptOnLevelUp = 2;
     [SF] private UpdateManager _update = null;
 
     private int _followCount = 0;
     private Follower _root = null;
     private MovementController _move = null;
 
-    [Space, SF] private UnityEvent _onPickup = new();
-    [Space, SF] private UnityEvent _onLost = new();
+    [Space, SF] private UnityEvent<Follower> _onPickup = new();
+    [Space, SF] private UnityEvent<Follower> _onCrash = new();
+    [Space, SF] private UnityEvent<Follower> _onRemoved = new();
 
 // PROPERTIES
 
     public int Count => _followCount;
+    public int KeeptOnLevelUp => _keptOnLevelUp;
 
 // INITIALISATION
 
@@ -51,35 +54,36 @@ public class PlayerFollowers : MonoBehaviour
 // MANAGEMENT
 
     /// <summary>
+    /// Adds a group of followers to the player
+    /// </summary>
+    public void Add(Rigidbody[] fellows){
+        for (int i = 0; i < fellows.Length; i++){
+            Add(fellows[i]);
+        }
+    }
+
+    /// <summary>
     /// Adds a new follower to the player
     /// </summary>
-    public void Add(Rigidbody follower){
+    public void Add(Rigidbody fellow){
         Follower parent = _root;
 
         while (parent.Child != null){
             parent = parent.Child;
         }
         
-        follower.transform.SetParent(null);
+        fellow.transform.SetParent(null);
 
-        var collider = follower.GetComponent<SphereCollider>();
+        var collider = fellow.GetComponent<SphereCollider>();
         var radius = collider.radius + _followPadding;
 
-        var follow = new Follower(parent, follower, radius);
-        parent.SetChild(follow);
+        var follower = new Follower(parent, fellow, radius);
+        parent.SetChild(follower);
 
         _followCount++;
+        _onPickup.Invoke(follower);
     }
 
-    /// <summary>
-    /// Adds a group of followers to the player
-    /// </summary>
-    public void Add(Rigidbody[] followers){
-        for (int i = 0; i < followers.Length; i++){
-            Add(followers[i]);
-        }
-        _onPickup.Invoke();
-    }
 
     /// <summary>
     /// Removes number of player followers
@@ -87,7 +91,6 @@ public class PlayerFollowers : MonoBehaviour
     public void Remove(int count){
         count = Mathf.Min(_followCount, count);
         Remove(_root.Child, count);
-        _onLost.Invoke();
     }
 
     /// <summary>
@@ -95,12 +98,40 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void Remove(Follower follower, int count){
         if (count < 1) return;
-        
         follower.Remove();
-        follower.GameObject.SetActive(false);
 
         Remove(follower.Child, --count);
         _followCount--;
+
+        _onCrash.Invoke(follower);
+    }
+
+
+    /// <summary>
+    /// Remove all but 2 player followers, starting from the back
+    /// </summary>
+    public void Clear(){
+        var parent = _root;
+        
+        while(parent.Child != null){
+            parent = parent.Child;
+        }
+
+        var count = _followCount - _keptOnLevelUp;
+        Clear(parent, count);
+    }
+
+    /// <summary>
+    /// Recursivly removes followers, from the back, for count
+    /// </summary>
+    private void Clear(Follower follower, int count){
+        if (count < 1) return;
+        follower.Remove();
+
+        Clear(follower.Parent, --count);
+        _followCount--;
+
+        _onRemoved.Invoke(follower);
     }
 
 // MOVEMENT
