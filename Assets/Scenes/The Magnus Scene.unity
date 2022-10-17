@@ -1032,6 +1032,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2645315465334854645, guid: 1693db60be50ea04d8eb65bd7343d1d6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2645315465334854647, guid: 1693db60be50ea04d8eb65bd7343d1d6, type: 3}
       propertyPath: m_Name
       value: Hazard
