@@ -198,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229256980}
   - component: {fileID: 229256979}
+  - component: {fileID: 229256981}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -282,6 +283,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: -15, z: 0}
+--- !u!114 &229256981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229256978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &318208524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4447833469977525405, guid: 3756f5203995430449d1dcfbab333745, type: 3}
@@ -350,7 +371,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f4598dac10c2ae479198af779b790ae, type: 2}
+  - {fileID: 2100000, guid: c85a05ca25bb81f4da12a8d1b12355f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1011,6 +1032,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2645315465334854645, guid: 1693db60be50ea04d8eb65bd7343d1d6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2645315465334854647, guid: 1693db60be50ea04d8eb65bd7343d1d6, type: 3}
       propertyPath: m_Name
       value: Hazard
