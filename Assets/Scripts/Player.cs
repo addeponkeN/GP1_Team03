@@ -1,4 +1,5 @@
 ﻿using System;
+using BikeMania;
 using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public PlayerEnergy Energy;
     public PlayerStatContainer Stats;
     public PlayerControllerManager ControllerManager;
+    public GroundedController GroundedController;
     public InputContainer Input;
 
     [SerializeField] private UpdateManager _updateManager;
@@ -37,6 +39,8 @@ public class Player : MonoBehaviour
         ControllerManager.AddController(_turning);
         ControllerManager.AddController(new BoostController());
         ControllerManager.Init();
+
+        GroundedController = new(this);
     }
 
     private void Start()
@@ -57,6 +61,7 @@ public class Player : MonoBehaviour
 
     private void Reset()
     {
+        return; //  temp
         CapCollider = GetComponent<CapsuleCollider>();
         Body = GetComponent<Rigidbody>();
 

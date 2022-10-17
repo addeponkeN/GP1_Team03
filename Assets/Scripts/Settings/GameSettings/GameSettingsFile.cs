@@ -1,6 +1,6 @@
 ﻿namespace Settings.GameSettings
 {
-    public class GameSettingsFile : RootFile
+    public class GameSettingsFile
     {
         public SettingOption<float> MasterVolume = new("mastervol", 0.5f);
         public SettingOption<float> SfxVolume = new("sfxvol", 1f);

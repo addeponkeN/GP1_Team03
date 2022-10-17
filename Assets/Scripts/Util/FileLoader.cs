@@ -1,22 +1,23 @@
 ﻿using System.IO;
-using Util;
 
-namespace Settings
+namespace Util
 {
-    public abstract class RootFile
-    {
-    }
-
-    public class FileLoader<T> where T : RootFile, new()
+    public class FileLoader<T> where T : new()
     {
         protected T File;
 
-        private string _filename;
+        protected string Filename;
+        protected string FolderPath;
+
         private bool _loaded;
 
         public FileLoader(string filename)
+            : this(filename, "") { }
+
+        public FileLoader(string filename, string folderPath)
         {
-            _filename = filename;
+            Filename = filename;
+            FolderPath = folderPath;
             _loaded = false;
         }
 
@@ -29,10 +30,11 @@ namespace Settings
             return File;
         }
 
+        protected string GetFolderPath()
+            => FolderPath;
+
         protected string GetFullPath()
-        {
-            return $"{PathHelper.ProjectName}/{_filename}";
-        }
+            => $"{FolderPath}/{Filename}";
 
         public void Save()
         {
@@ -41,18 +43,23 @@ namespace Settings
 
         public void Load()
         {
+            if(_loaded) return;
+
+            _loaded = true;
+            
             //  checks if directory exists, if not - creates new directory
-            Directory.CreateDirectory(GetFullPath());
+            Directory.CreateDirectory(GetFolderPath());
 
             string fullPath = GetFullPath();
 
-            //  if no settings file could be found - create new & save
+            //  if no file could be found - create new & save
             if(!System.IO.File.Exists(fullPath))
             {
                 CreateNew();
             }
             else
             {
+                //  try load file, create new if failed
                 if((File = JsonHelper.Load<T>(fullPath)) == null)
                     CreateNew();
             }

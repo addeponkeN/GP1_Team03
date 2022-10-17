@@ -24,10 +24,12 @@ namespace PlayerPush
             //  set locals
             var dest = _destination.position;
             var pos = transform.position;
-            var direction = (dest - pos).normalized;
+            var playerPos = player.transform.position;
+            
+            var direction = (dest - playerPos).normalized;
             var distance = Vector2.Distance(
                 new Vector2(dest.x, dest.z),
-                new Vector2(pos.x, pos.z));
+                new Vector2(playerPos.x, playerPos.z));
 
             const float magicalMathNumber = 16.666f;
 
@@ -61,9 +63,8 @@ namespace PlayerPush
         /// <param name="player"></param>
         private void StopPlayer(Player player)
         {
-            var move = player.ControllerManager.GetController<MovementController>();
-            move.Stop();
-            move.Enabled = false;
+            player.GroundedController.DisableMovementUntilGrounded();
         }
+        
     }
 }

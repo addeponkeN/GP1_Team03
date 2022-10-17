@@ -3,9 +3,7 @@ using UnityEngine;
 
 namespace Attributes
 {
-    public class ReadOnly : PropertyAttribute
-    {
-    }
+    public class ReadOnly : PropertyAttribute { }
 
     [CustomPropertyDrawer(typeof(ReadOnly))]
     public class ReadOnlyDrawer : PropertyDrawer

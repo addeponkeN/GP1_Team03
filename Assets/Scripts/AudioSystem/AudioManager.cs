@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Settings;
 using UnityEngine;
 
 namespace AudioSystem

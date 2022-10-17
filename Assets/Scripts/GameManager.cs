@@ -1,6 +1,10 @@
 using Jellybeans.Updates;
+using Settings;
+using Settings.GameSettings;
+using Settings.Leaderboard;
 using UnityEngine;
 using UnityEngine.Events;
+using Util;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,25 +24,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent _onGameLost;
     
     private Player _player;
-    
+
+    public FileLoader<LeaderboardFile> Leaderboard;
+    public FileLoader<GameSettingsFile> GameSettings;
+
     private void Awake()
     {
         _defaultRules = ScriptableObject.CreateInstance<GameRules>();
         if(Rules == null)
             Rules = _defaultRules;
 
-        //var gameTimer = new Timer(Rules.Time);
-
-        //gameObject.AddComponent<Timer>();
-
-        //gameTimer.DoneEvent += GameTimerOnDoneEvent;
-        //_updateManager.Subscribe(gameTimer.Update, UpdateType.Update);
+        Leaderboard = new(PathHelper.LeaderboardFilename, PathHelper.ExternalDataPath);
+        GameSettings = new(PathHelper.GameSettingsFilename, PathHelper.ExternalDataPath);
     }
-
-    // private void GameTimerOnDoneEvent(Timer timer)
-    // {
-        //_updateManager.Unsubscribe(timer.Update, UpdateType.Update);
-    // }
 
     private void Start()
     {
