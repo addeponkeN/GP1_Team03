@@ -30,37 +30,32 @@ namespace PointPathing
         [SerializeField, ReadOnly]
         private string _notes;
 
+        [SerializeField] private float _interval = .5f;
         [SerializeField] private float _radius = 0.35f;
         [SerializeField] private bool _alwaysDraw = true;
-
-        private void Awake()
-        {
-        }
 
         private void Start()
         {
             var childPoints = transform.GetComponentsInChildren<Transform>();
             _finalPoints.Clear();
 
-            float interval = 0.5f;
-
             for(int i = 0; i < childPoints.Length - 1; i++)
             {
-                var p1 = childPoints[i];
-                var p2 = childPoints[i + 1];
+                var p1 = childPoints[i].position;
+                var p2 = childPoints[i + 1].position;
 
-                var distance = Vector3.Distance(p1.position, p2.position);
+                var distance = Vector3.Distance(p1, p2);
 
-                int steps = (int)(distance / interval);
+                int steps = (int)(distance / _interval);
 
-                var direction = (p2.position - p1.position).normalized;
+                var direction = (p2 - p1).normalized;
 
                 int mask = 1 << 8;
                 
                 for(int j = 0; j <= steps; j++)
                 {
-                    var step = interval * j;
-                    var checkPos = p1.position + new Vector3(0, 3f, 0) + direction * step;
+                    var step = _interval * j;
+                    var checkPos = p1 + new Vector3(0, 3f, 0) + direction * step;
                     var ray = new Ray(checkPos, -Vector3.up);
 
                     if(!Physics.Raycast(ray, out var info, 999f, mask))
