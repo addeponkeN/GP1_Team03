@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameRules : ScriptableObject
 {
     [Tooltip("The amount of followers that is required to win")]
-    [Range(1, 1000)]
+    [Range(1, 100)]
     public int FollowerWinCount = 30;
 
     [Tooltip("The amount of time before losing (in seconds)")]
@@ -21,4 +21,11 @@ public class GameRules : ScriptableObject
 
     [Tooltip("The amount of followers that are required to level up")]
     public int LevelUpCount = 20;
+
+    [Tooltip("How many players")]
+    [Range(1, 2)]
+    public int PlayerCount = 1;
+    
+    
+    
 }
