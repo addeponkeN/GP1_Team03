@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using Util;
@@ -31,7 +32,7 @@ namespace PointPathing
         [SerializeField] private float _radius = 0.35f;
         [SerializeField] private bool _alwaysDraw = true;
 
-        private void Start()
+        private void Awake()
         {
             var childPoints = transform.GetComponentsInChildren<Transform>();
             if(childPoints.Length <= 1)
@@ -67,6 +68,7 @@ namespace PointPathing
                     _finalPoints.Add(new PathPoint(info.point));
                 }
             }
+            
         }
 
 #if UNITY_EDITOR

@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Util;
 
@@ -20,25 +19,17 @@ namespace PlayerControllers.Controllers
         private Accelerator _accelerator;
         private PlayerStatContainer _stats;
         private InputActionReference _inputMove;
-
         private Animator _anim;
 
-        private float baseMaxSpeed;
-        
-        private bool _isMoving;
-        private bool _isOldMoving;
-
-        [SerializeField] private UnityEvent onStartedMoving;
-        [SerializeField] private UnityEvent onStoppedMoving;
+        private float _baseMaxSpeed;
+        private float _animSpeed = 1f;
 
         public override void Init()
         {
             base.Init();
 
-
-            _anim = Manager.Player.GetComponentInChildren<Animator>();
             _stats = Manager.Player.Stats;
-            baseMaxSpeed = _stats.MaxMoveSpeed;
+            _baseMaxSpeed = _stats.MaxMoveSpeed;
 
             const float acceleratorBreakSensitivity = 0.25f;
 
@@ -51,39 +42,49 @@ namespace PlayerControllers.Controllers
             _inputMove.action.Enable();
         }
 
+        public void AssignAnimator(Animator anim, float animationSpeed = 1f)
+        {
+            _animSpeed = animationSpeed;
+            _anim = anim;
+        }
+
         public void SetMultipliers(float speed = 1f, float maxSpeed = 1f)
         {
             SpeedMultiplier = speed;
             MaxSpeedMultiplier = maxSpeed;
         }
 
+        private void UpdateAnimator()
+        {
+            float moveSpeedPercentage = Speed / _baseMaxSpeed;
+            _anim.speed = moveSpeedPercentage * _animSpeed;
+        }
+
         public override void FixedUpdate(float dt)
         {
             base.FixedUpdate(dt);
-            _isOldMoving = _isMoving;
+            // _isOldMoving = _isMoving;
 
-            var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
+            // var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
+
             //  temporary permanent forward movement
-            forwardVelocity = 1f;
+            var forwardVelocity = 1f;
 
-            float prec = Speed / baseMaxSpeed;
-            _anim.speed = prec;
-
-            _isMoving = forwardVelocity != 0f;
-
-            if(_isMoving != _isOldMoving)
-            {
-                if(_isMoving)
-                {
-                    Debug.Log("moving started");
-                    onStartedMoving?.Invoke();
-                }
-                else
-                {
-                    Debug.Log("moving stopped");
-                    onStoppedMoving?.Invoke();
-                }
-            }
+            // _isMoving = forwardVelocity != 0f;
+            //
+            // if(_isMoving != _isOldMoving)
+            // {
+            //     if(_isMoving)
+            //     {
+            //         Debug.Log("moving started");
+            //         onStartedMoving?.Invoke();
+            //     }
+            //     else
+            //     {
+            //         Debug.Log("moving stopped");
+            //         onStoppedMoving?.Invoke();
+            //     }
+            // }
 
             //  fetch the player stats and apply to the controller
             _accelerator.Acceleration = _stats.MovementAcceleration * SpeedMultiplier;
@@ -101,6 +102,9 @@ namespace PlayerControllers.Controllers
                 var move = fw * (_accelerator.Speed * dt);
                 body.MovePosition(tf.position + move);
             }
+
+            if(_anim != null)
+                UpdateAnimator();
         }
 
         public void Stop()

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private MovementController _movement;
     [SerializeField] private TurnController _turning;
-    
+
     public PlayerEnergy Energy;
     public PlayerStatContainer Stats;
     public PlayerControllerManager ControllerManager;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         CapCollider = GetComponent<CapsuleCollider>();
 
         Energy = new PlayerEnergy();
-        
+
         Stats.Init(this);
 
         ControllerManager = new PlayerControllerManager(this);
@@ -40,13 +40,15 @@ public class Player : MonoBehaviour
         ControllerManager.AddController(new BoostController());
         ControllerManager.Init();
 
+        _movement.AssignAnimator(GetComponentInChildren<Animator>());
+
         GroundedController = new(this);
     }
 
     private void Start()
     {
         Energy.Start(this);
-        
+
         _updateManager.Subscribe(Energy.Update, UpdateType.Update);
         _updateManager.Subscribe(ControllerManager.Update, UpdateType.Update);
         _updateManager.Subscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
@@ -58,5 +60,4 @@ public class Player : MonoBehaviour
         _updateManager.Unsubscribe(ControllerManager.Update, UpdateType.Update);
         _updateManager.Unsubscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
     }
-
 }
