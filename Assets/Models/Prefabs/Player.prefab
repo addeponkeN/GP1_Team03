@@ -5024,7 +5024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab84c57b6640a459daad9757a320f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickupFXPrefab: {fileID: 0}
+  _pickupFXPrefab: {fileID: 7800295113829079376, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
 --- !u!82 &1920005127
 AudioSource:
   m_ObjectHideFlags: 0
