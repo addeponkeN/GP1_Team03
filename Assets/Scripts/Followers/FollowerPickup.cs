@@ -20,7 +20,6 @@ public class FollowerPickup : MonoBehaviour
     [Space]
     [SF] private UnityEvent _onPickup = new();
 
-    private float _timer = 0f;
     private Transform _player = null;
     private PlayerFollowers _followers = null;
     private SphereCollider _collider = null;
@@ -64,13 +63,15 @@ public class FollowerPickup : MonoBehaviour
 
         SetActiveState(false);
         Invoke("RespawnFollowers", _respawnTimer);
+
+        _player = null;
     }
 
     /// <summary>
     /// Returns the recruited followers
     /// </summary>
-    private List<Rigidbody> GetFollowers(){
-        var recruited = new List<Rigidbody>();
+    private List<Transform> GetFollowers(){
+        var recruited = new List<Transform>();
 
         var distance = Vector3.Distance(
             _player.position, transform.position
@@ -99,13 +100,10 @@ public class FollowerPickup : MonoBehaviour
                 ];
 
                 var follower = Instantiate(
-                    prefab,
-                    person.transform.position,
-                    person.transform.rotation
+                    prefab, person.transform.position, person.transform.rotation, null
                 );
                 
-                var rb = follower.GetComponent<Rigidbody>();
-                recruited.Add(rb);
+                recruited.Add(follower.transform);
             }
         }
 

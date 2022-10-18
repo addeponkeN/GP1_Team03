@@ -12,7 +12,9 @@ public class PlayerFollowers : MonoBehaviour
     [SF] private UpdateManager _update = null;
 
     private int _followCount = 0;
+    private float _followOffset = 0f;
     private Follower _root = null;
+    private CapsuleCollider _collider = null;
     private MovementController _move = null;
 
     [Space, SF] private UnityEvent<Follower> _onPickup = new();
@@ -30,8 +32,12 @@ public class PlayerFollowers : MonoBehaviour
     /// Initialises the root
     /// </summary>
     private void Awake(){
-        var rb = GetComponent<Rigidbody>();
-        _root = new Follower(null, rb, 0f);
+        _collider = GetComponent<CapsuleCollider>();
+        _followOffset = (_collider.height * 0.5f) * _gameRules.FollowPadding;
+
+        _root = new Follower(
+            null, transform, _collider.radius
+        );
     }
 
     /// <summary>
@@ -57,28 +63,23 @@ public class PlayerFollowers : MonoBehaviour
     /// <summary>
     /// Adds a group of followers to the player
     /// </summary>
-    public void Add(List<Rigidbody> fellows){
-        for (int i = 0; i < fellows.Count; i++){
-            Add(fellows[i]);
+    public void Add(List<Transform> followers){
+        for (int i = 0; i < followers.Count; i++){
+            Add(followers[i]);
         }
     }
 
     /// <summary>
     /// Adds a new follower to the player
     /// </summary>
-    public void Add(Rigidbody fellow){
+    public void Add(Transform fellow){
         Follower parent = _root;
 
         while (parent.Child != null){
             parent = parent.Child;
         }
-        
-        fellow.transform.SetParent(null);
 
-        var collider = fellow.GetComponent<SphereCollider>();
-        var radius = collider.radius + _gameRules.FollowPadding;
-
-        var follower = new Follower(parent, fellow, radius);
+        var follower = new Follower(parent, fellow, _followOffset);
         parent.SetChild(follower);
 
         _followCount++;
@@ -142,7 +143,7 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
         if (_root.Child == null) return;
-        var position = transform.position + (-transform.forward * _gameRules.FollowPadding);
+        var position = transform.position + (-transform.forward * _followOffset);
         _root.Child.Move(position, _move.Speed, fixedDeltaTime);
     }
 
