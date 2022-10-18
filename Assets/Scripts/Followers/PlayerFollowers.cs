@@ -4,18 +4,20 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using Jellybeans.Updates;
 using PlayerControllers.Controllers;
+using TMPro;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
 {
+    [SF] private TMP_Text _hudText = null;
     [SF] private GameRules _gameRules = null;
     [SF] private UpdateManager _update = null;
 
+    private int _totalCount = 0;
     private int _followCount = 0;
     private float _followOffset = 0f;
     private Follower _root = null;
     private CapsuleCollider _collider = null;
-    private MovementController _move = null;
 
     [Space, SF] private UnityEvent<Follower> _onPickup = new();
     [Space, SF] private UnityEvent<Follower> _onCrash = new();
@@ -24,7 +26,7 @@ public class PlayerFollowers : MonoBehaviour
 // PROPERTIES
 
     public int Count => _followCount;
-    public int KeeptOnLevelUp => _gameRules.KeptOnLevelUp;
+    public int TotalCount => _totalCount;
 
 // INITIALISATION
 
@@ -38,14 +40,6 @@ public class PlayerFollowers : MonoBehaviour
         _root = new Follower(
             null, transform, _collider.radius
         );
-    }
-
-    /// <summary>
-    /// Initialises the player movement controller reference
-    /// </summary>
-    private void Start(){
-        var controller = GetComponent<Player>().ControllerManager;
-        _move = controller.GetController<MovementController>();
     }
 
     /// <summary>
@@ -64,20 +58,24 @@ public class PlayerFollowers : MonoBehaviour
     /// Adds a group of followers to the player
     /// </summary>
     public void Add(List<Transform> followers){
+        if (_totalCount >= _gameRules.MaxFollowerCount){
+            var newcount = _followCount + followers.Count;
+            RemoveFromBehind(newcount % _gameRules.MaxFollowerCount);
+        }
+
         for (int i = 0; i < followers.Count; i++){
             Add(followers[i]);
         }
+
+        _totalCount += followers.Count;
+        UpdateText();
     }
 
     /// <summary>
     /// Adds a new follower to the player
     /// </summary>
-    public void Add(Transform fellow){
-        Follower parent = _root;
-
-        while (parent.Child != null){
-            parent = parent.Child;
-        }
+    private void Add(Transform fellow){
+        Follower parent = GetLast();
 
         var follower = new Follower(parent, fellow, _followOffset);
         parent.SetChild(follower);
@@ -92,48 +90,67 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     public void Remove(int count){
         count = Mathf.Min(_followCount, count);
-        Remove(_root.Child, count);
+        RemoveFromFront(GetFirst(), count);
+
+        _totalCount -= count;
+        UpdateText();
     }
 
     /// <summary>
     /// Recursively remove followers for count
     /// </summary>
-    private void Remove(Follower follower, int count){
+    private void RemoveFromFront(Follower follower, int count){
         if (count < 1) return;
-        follower.Remove();
 
-        Remove(follower.Child, --count);
+        if (_totalCount >= _gameRules.MaxFollowerCount){
+            var last = GetLast();
+            follower.Reposition(last);
+
+        } else follower.Remove();
+
+        RemoveFromFront(follower.Child, --count);
         _followCount--;
-
-        _onCrash.Invoke(follower);
-    }
-
-
-    /// <summary>
-    /// Removes all followers, starting from the back
-    /// </summary>
-    public void Clear(){
-        var parent = _root;
-        
-        while(parent.Child != null){
-            parent = parent.Child;
-        }
-
-        var count = _followCount - _gameRules.KeptOnLevelUp;
-        Clear(parent, count);
     }
 
     /// <summary>
     /// Recursivly removes followers, from the back, for count
     /// </summary>
-    private void Clear(Follower follower, int count){
+    private void RemoveFromBehind(Follower follower, int count){
         if (count < 1) return;
         follower.Remove();
 
-        Clear(follower.Parent, --count);
+        RemoveFromBehind(follower.Parent, --count);
         _followCount--;
 
         _onRemoved.Invoke(follower);
+    }
+
+    /// <summary>
+    /// Removes followers, from the back, for count
+    /// </summary>
+    private void RemoveFromBehind(int count){
+        RemoveFromBehind(GetLast(), count);
+    }
+
+
+    /// <summary>
+    /// Returns the first follower in the chain
+    /// </summary>
+    public Follower GetFirst(){
+        return _root.Child;
+    }
+
+    /// <summary>
+    /// Returns the last follower in the chain
+    /// </summary>
+    public Follower GetLast(){
+        Follower follower = _root;
+
+        while (follower.Child != null){
+            follower = follower.Child;
+        }
+
+        return follower;
     }
 
 // MOVEMENT
@@ -144,7 +161,7 @@ public class PlayerFollowers : MonoBehaviour
     private void OnFixedUpdate(float fixedDeltaTime){
         if (_root.Child == null) return;
         var position = transform.position + (-transform.forward * _followOffset);
-        _root.Child.Move(position, _move.Speed, fixedDeltaTime);
+        _root.Child.Move(position, fixedDeltaTime);
     }
 
     /// <summary>
@@ -153,5 +170,15 @@ public class PlayerFollowers : MonoBehaviour
     private void RunUpdate(bool run){
         if (run) _update.Subscribe(OnFixedUpdate, UpdateType.FixedUpdate);
         else _update.Unsubscribe(OnFixedUpdate, UpdateType.FixedUpdate);
+    }
+
+// INTERFACE
+
+    /// <summary>
+    /// Updates the hud follow counter
+    /// </summary>
+    private void UpdateText(){
+        if (_hudText == null) return;
+        _hudText.text = _followCount.ToString();
     }
 }

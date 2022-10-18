@@ -5,6 +5,7 @@ public class PlayerFollowerEvents : MonoBehaviour
 {
     [SF] private GameObject _pickupFXPrefab = null;
 
+    // Create pool for pickup fx and then invoke(fx play time) to disable it when done
 
 
     /// <summary>
@@ -13,8 +14,8 @@ public class PlayerFollowerEvents : MonoBehaviour
     public void OnPickedUp(Follower follower){
         if (follower == null) return;
 
-        var tfm = follower.Transform;
-        Instantiate(_pickupFXPrefab, tfm.position, tfm.rotation);
+        //var tfm = follower.Transform;
+        //Instantiate(_pickupFXPrefab, tfm.position, tfm.rotation);
     }
 
     /// <summary>

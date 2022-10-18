@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour
         resetTimer();
 
     }
-
+    
     private void resetTimer()
     {
         UiText.text = "00:00";

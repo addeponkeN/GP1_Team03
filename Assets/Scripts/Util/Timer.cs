@@ -6,7 +6,7 @@ namespace Util
     {
         private float _timer;
         private bool _done;
-
+        
         public event Action<Timer> OnDoneEvent;
 
         public Timer(float time)
