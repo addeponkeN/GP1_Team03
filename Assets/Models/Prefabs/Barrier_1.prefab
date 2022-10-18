@@ -115,6 +115,6 @@ MonoBehaviour:
   _minMaxFollowerLoss: {x: 1, y: 1}
   _playerLayer:
     serializedVersion: 2
-    m_Bits: 1
-  _stats: {fileID: 0}
-  _update: {fileID: 0}
+    m_Bits: 64
+  _stats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
+  _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
