@@ -41,6 +41,11 @@ namespace Util
         private bool IsSpeedAboveMaxSpeed()
             => AbsoluteSpeed > AbsoluteMaxSpeed;
 
+        public void SetSpeed(float speed)
+        {
+            _speed = speed;
+        }
+
         private void Decelerate(float dt)
         {
             //  if acceleration is less than SENSITIVITY, force stop

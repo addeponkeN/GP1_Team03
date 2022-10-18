@@ -432,11 +432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028370, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000018722702
+      value: -0.000000018722702
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028370, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000000441983
+      value: 0.00000000441983
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028370, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -636,7 +636,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _path: {fileID: 0}
+  _turnSpeed: 4
+  _path: {fileID: 686796599}
   _isMoving: 0
   _distanceToNextPoint: 0
 --- !u!1001 &204321477
@@ -3162,6 +3163,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5840440103724248465, guid: 8890b4fc16bbf8d48b7aafc3f09eb002, type: 3}
   m_PrefabInstance: {fileID: 676388404}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &686796599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5840440103724248466, guid: 8890b4fc16bbf8d48b7aafc3f09eb002, type: 3}
+  m_PrefabInstance: {fileID: 676388404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9758c25a26394c90b57d7b3874ef6edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &716212004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8122,7 +8134,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968763310}
-  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: -0.000000018722702, z: 0.00000000441983, w: 0.973249}
   m_LocalPosition: {x: -3.001, y: 5.067, z: -6.7080507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

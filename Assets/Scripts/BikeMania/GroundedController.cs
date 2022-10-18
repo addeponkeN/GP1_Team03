@@ -21,12 +21,13 @@ namespace BikeMania
             _move.Stop();
             _move.Enabled = false;
         }
-
+        
         private void OnGroundedChangedEvent(bool isGrounded)
         {
             if(_isDisabledUntilGrounded && isGrounded)
             {
                 _move.Enabled = true;
+                _move.Accelerator.SetSpeed(_move.MaxSpeed);
                 _isDisabledUntilGrounded = false;
             }
         }

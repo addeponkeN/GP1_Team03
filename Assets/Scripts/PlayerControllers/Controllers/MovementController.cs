@@ -12,6 +12,8 @@ namespace PlayerControllers.Controllers
         public float Speed => _accelerator.Speed;
         public float MaxSpeed => _accelerator.MaxSpeed;
 
+        public Accelerator Accelerator => _accelerator;
+
         public float SpeedMultiplier { get; set; } = 1f;
         public float MaxSpeedMultiplier { get; set; } = 1f;
 
