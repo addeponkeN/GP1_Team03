@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Losing Triggers")] 
     [SerializeField] private UnityEvent _onGameLost;
     
-    [SerializeField ]private PlayerManager _playerManager;
+    [SerializeField] private PlayerManager _playerManager;
 
     private void Awake()
     {
