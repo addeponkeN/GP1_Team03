@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 180
   FollowPadding: 0.5
-  MaxFollowerCount: 5
+  MaxFollowerCount: 15
   PlayerCount: 1
