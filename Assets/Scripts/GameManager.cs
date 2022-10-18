@@ -13,21 +13,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private static GameRules _defaultRules;
 
+    public Util.Timer GameTimer;
+    
     public GameRules Rules;
     public FileLoader<LeaderboardFile> Leaderboard;
     public FileLoader<GameSettingsFile> GameSettings;
 
     [SerializeField] private UpdateManager _updateManager;
+    [SerializeField] private PlayerManager _playerManager;
 
     [Header("Game Winning Triggers")] [SerializeField]
     private UnityEvent _onGameVictory;
 
     [Header("Game Losing Triggers")] [SerializeField]
     private UnityEvent _onGameLost;
-
-    [SerializeField] private PlayerManager _playerManager;
-
-    private Util.Timer _gameTimer;
     
     private void Awake()
     {
@@ -41,13 +40,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _gameTimer = new(Rules.Time);
-        _updateManager.Subscribe(_gameTimer.Update, UpdateType.Update);
+        GameTimer = new(Rules.Time, 1f);
+        _updateManager.Subscribe(GameTimer.Update, UpdateType.Update);
     }
 
     private void OnDestroy()
     {
-        _updateManager.Unsubscribe(_gameTimer.Update, UpdateType.Update);
+        _updateManager.Unsubscribe(GameTimer.Update, UpdateType.Update);
     }
     
 }
