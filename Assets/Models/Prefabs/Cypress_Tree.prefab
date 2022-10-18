@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4386778095149602289}
   - component: {fileID: 814919510700350036}
   - component: {fileID: 3218907924185525918}
+  - component: {fileID: 8317896043929741291}
   m_Layer: 0
   m_Name: Cypress_Tree
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8317896043929741291
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4011343615592435531}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.71438485, y: 6.8290167, z: 0.8052933}
+  m_Center: {x: -0.057244092, y: 3.4294643, z: 0.024348423}

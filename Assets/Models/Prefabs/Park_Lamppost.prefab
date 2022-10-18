@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 967190415933434738}
   - component: {fileID: 4234506364209128663}
   - component: {fileID: 2100659106007224349}
+  - component: {fileID: 7582884140090605050}
   m_Layer: 0
   m_Name: Park_Lamppost
   m_TagString: Untagged
@@ -85,3 +86,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7582884140090605050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443593720809370056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.43914104, y: 4.4567533, z: 0.45661116}
+  m_Center: {x: 0.008760266, y: 2.2283766, z: 0.0077768266}

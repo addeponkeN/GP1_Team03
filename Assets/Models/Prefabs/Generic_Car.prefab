@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1937247019150424987
+--- !u!1 &6299976757239793763
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1272736708186956065}
-  - component: {fileID: 2740001529570946692}
-  - component: {fileID: 135820018499361358}
-  - component: {fileID: 2767038776125625887}
-  - component: {fileID: 7968792197155071290}
+  - component: {fileID: 6639946150274044633}
+  - component: {fileID: 7749015191504919932}
+  - component: {fileID: 5507619818419874230}
+  - component: {fileID: 885802231509431938}
   m_Layer: 0
-  m_Name: Park_Bench
+  m_Name: Generic_Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1272736708186956065
+--- !u!4 &6639946150274044633
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937247019150424987}
+  m_GameObject: {fileID: 6299976757239793763}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.94032335, y: 0.018849015, z: 1.3501551}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2740001529570946692
+--- !u!33 &7749015191504919932
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937247019150424987}
-  m_Mesh: {fileID: -9180856842552378008, guid: 43510144f3314ba499a428460201cb72, type: 3}
---- !u!23 &135820018499361358
+  m_GameObject: {fileID: 6299976757239793763}
+  m_Mesh: {fileID: -8039613103989778838, guid: 842ff54caa9744d4f8abd1ff1232dece, type: 3}
+--- !u!23 &5507619818419874230
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937247019150424987}
+  m_GameObject: {fileID: 6299976757239793763}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +63,13 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 170146ed87473fa49a1cd7ec2f999cdb, type: 2}
-  - {fileID: 2100000, guid: 9d81704dbb0835e44b296871e3aec72c, type: 2}
+  - {fileID: 2100000, guid: abaf96b3bc2fee34ab57820703183cea, type: 2}
+  - {fileID: 2100000, guid: c2e494d488b26e94ea94215bfacd2fbd, type: 2}
+  - {fileID: 2100000, guid: ce2d8a16017bd654aadb7fe8d6055239, type: 2}
+  - {fileID: 2100000, guid: 6dde7f576ebe8b04e97ea227a3f5473f, type: 2}
+  - {fileID: 2100000, guid: 38b6782abab6eb44395bb2250786aeca, type: 2}
+  - {fileID: 2100000, guid: ce2d8a16017bd654aadb7fe8d6055239, type: 2}
+  - {fileID: 2100000, guid: c2e494d488b26e94ea94215bfacd2fbd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,29 +91,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2767038776125625887
+--- !u!65 &885802231509431938
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937247019150424987}
+  m_GameObject: {fileID: 6299976757239793763}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6352384, y: 0.95326066, z: 0.1784063}
-  m_Center: {x: 0.009924948, y: 0.47663033, z: 0.28881088}
---- !u!65 &7968792197155071290
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937247019150424987}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6352384, y: 0.48151264, z: 0.69100726}
-  m_Center: {x: 0.009924948, y: 0.24075632, z: 0.0325104}
+  m_Size: {x: 3.0311382, y: 2.355235, z: 5.0948534}
+  m_Center: {x: -0.1373694, y: 1.6607747, z: 0.12550032}

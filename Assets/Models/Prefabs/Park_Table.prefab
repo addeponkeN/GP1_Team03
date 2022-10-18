@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4497281352251599149}
   - component: {fileID: 704345064251254408}
   - component: {fileID: 3324396853946880578}
+  - component: {fileID: 4689107175596267198}
+  - component: {fileID: 2106176085842689429}
   m_Layer: 0
   m_Name: Park_Table
   m_TagString: Untagged
@@ -84,3 +86,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4689107175596267198
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828725040090821527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.076946, y: 0.5121026, z: 2.850533}
+  m_Center: {x: -0.00737381, y: 0.25605124, z: 0.016571045}
+--- !u!65 &2106176085842689429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828725040090821527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.022794, y: 0.069541454, z: 2.8868055}
+  m_Center: {x: -0.014530718, y: 0.7835033, z: -0.001565218}
