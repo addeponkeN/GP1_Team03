@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Follower
 {
@@ -47,6 +46,21 @@ public class Follower
     }
 
     /// <summary>
+    /// Repositions this follower to be behind parent
+    /// </summary>
+    public void Reposition(Follower parent){
+        Remove();
+
+        var tfm = parent.Transform;
+        var position = tfm.position + (-tfm.forward * _radius);
+        
+        _transform.position = position;
+        _transform.rotation = tfm.rotation;
+
+        SetParent(parent);
+    }
+
+    /// <summary>
     /// Removes this follower from the chain
     /// </summary>
     public void Remove(){
@@ -59,20 +73,20 @@ public class Follower
     /// <summary>
     /// Moves this follower towards the target position
     /// </summary>
-    public void Move(Vector3 target, float speed, float deltaTime){
+    public void Move(Vector3 target, float deltaTime){
         var position = _transform.position;
 
         var difference = (target - position);
-        if (difference.magnitude < _radius * 0.5f) return;
+        if (difference == Vector3.zero) return;
 
         var rotation = Quaternion.LookRotation(difference);
         _transform.rotation = rotation;
         
         var direction = difference.normalized;
-        var velocity = direction * (speed * deltaTime);
+        var velocity = direction * (difference.magnitude * deltaTime);
         _transform.Translate(velocity, Space.World);
 
         var offset = -direction * _radius;
-        _child?.Move(position + offset, speed, deltaTime);
+        _child?.Move(position + offset, deltaTime);
     }
 }

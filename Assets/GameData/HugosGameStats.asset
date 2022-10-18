@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HugosGameStats
   m_EditorClassIdentifier: 
   MovementAcceleration: 1
-  MaxMoveSpeed: 12
+  MaxMoveSpeed: 16.5
   RotationSpeed: 25
   MaxRotationSpeed: 25
   RotationSpeedModifier: 0.1

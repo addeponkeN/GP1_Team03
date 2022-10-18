@@ -11,6 +11,7 @@ namespace PointPathing
 
         private IndexLooper _index;
         [SerializeField] private float _speed = 5f;
+        [SerializeField] private float _turnSpeed = 4f;
         [SerializeField] private PointPather _path;
         [SerializeField, ReadOnly] private bool _isMoving;
         [SerializeField, ReadOnly] private float _distanceToNextPoint;
@@ -62,9 +63,10 @@ namespace PointPathing
             var rotFrom = transform.rotation;
             var rotTo = Quaternion.LookRotation(direction);
             
-            transform.rotation = Quaternion.RotateTowards(rotFrom, rotTo, 5f);
+            //  rotate towards destination
+            transform.rotation = Quaternion.RotateTowards(rotFrom, rotTo, _turnSpeed);
 
-            //  move towards point
+            //  move towards destination
             transform.Translate(direction * (_speed * Time.deltaTime), Space.World);
         }
     }

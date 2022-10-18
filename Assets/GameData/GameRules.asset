@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36960a9b994349a7b71795295de6552e, type: 3}
   m_Name: GameRules
   m_EditorClassIdentifier: 
-  FollowerWinCount: 30
   Time: 180
+  FollowPadding: 0.5
+  MaxFollowerCount: 5
+  PlayerCount: 1

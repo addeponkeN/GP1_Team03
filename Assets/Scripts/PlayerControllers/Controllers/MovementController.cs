@@ -12,6 +12,8 @@ namespace PlayerControllers.Controllers
         public float Speed => _accelerator.Speed;
         public float MaxSpeed => _accelerator.MaxSpeed;
 
+        public Accelerator Accelerator => _accelerator;
+
         public float SpeedMultiplier { get; set; } = 1f;
         public float MaxSpeedMultiplier { get; set; } = 1f;
 
@@ -19,6 +21,10 @@ namespace PlayerControllers.Controllers
         private PlayerStatContainer _stats;
         private InputActionReference _inputMove;
 
+        private Animator _anim;
+
+        private float baseMaxSpeed;
+        
         private bool _isMoving;
         private bool _isOldMoving;
 
@@ -28,7 +34,11 @@ namespace PlayerControllers.Controllers
         public override void Init()
         {
             base.Init();
+
+
+            _anim = Manager.Player.GetComponentInChildren<Animator>();
             _stats = Manager.Player.Stats;
+            baseMaxSpeed = _stats.MaxMoveSpeed;
 
             const float acceleratorBreakSensitivity = 0.25f;
 
@@ -55,6 +65,9 @@ namespace PlayerControllers.Controllers
             var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
             //  temporary permanent forward movement
             forwardVelocity = 1f;
+
+            float prec = Speed / baseMaxSpeed;
+            _anim.speed = prec;
 
             _isMoving = forwardVelocity != 0f;
 
