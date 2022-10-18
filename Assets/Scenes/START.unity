@@ -2459,8 +2459,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -463.4, y: 160.1}
-  m_SizeDelta: {x: -1052.8616, y: -739.4466}
+  m_AnchoredPosition: {x: -456.76968, y: 160.1}
+  m_SizeDelta: {x: -1036.7883, y: -739.4466}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &964113899
 MonoBehaviour:
@@ -2482,8 +2482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ARTIS
-
+  m_text: 'ARTISTS
 
 '
   m_isRightToLeft: 0
@@ -2657,7 +2656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "ELIANA PRADA\n\n\n\nFILIP HAGSTR\xD6M\n\n\n\nCHARLES HUGO\n\n\n\nKEZIAH
+  m_text: "ELIANA PARADA\n\n\n\nFILIP HAGSTR\xD6M\n\n\n\nCHARLES HUGO\n\n\n\nKEZIAH
     FERREIRA DOS SANTOS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
