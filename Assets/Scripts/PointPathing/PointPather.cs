@@ -8,12 +8,9 @@ namespace PointPathing
     public struct PathPoint
     {
         public Vector3 Position;
-        public Vector3 Facing;
-
-        public PathPoint(Vector3 position, Vector3 facing)
+        public PathPoint(Vector3 position)
         {
             Position = position;
-            Facing = facing;
         }
     }
 
@@ -37,6 +34,12 @@ namespace PointPathing
         private void Start()
         {
             var childPoints = transform.GetComponentsInChildren<Transform>();
+            if(childPoints.Length <= 1)
+            {
+                Debug.LogWarning("PointPather needs at least 2 path points");
+                return;
+            }
+            
             _finalPoints.Clear();
 
             for(int i = 0; i < childPoints.Length - 1; i++)
@@ -55,13 +58,13 @@ namespace PointPathing
                 for(int j = 0; j <= steps; j++)
                 {
                     var step = _interval * j;
-                    var checkPos = p1 + new Vector3(0, 3f, 0) + direction * step;
+                    var checkPos = p1 + new Vector3(0, 20f, 0) + direction * step;
                     var ray = new Ray(checkPos, -Vector3.up);
 
                     if(!Physics.Raycast(ray, out var info, 999f, mask))
                         continue;
 
-                    _finalPoints.Add(new PathPoint(info.point, Vector3.zero));
+                    _finalPoints.Add(new PathPoint(info.point));
                 }
             }
         }
