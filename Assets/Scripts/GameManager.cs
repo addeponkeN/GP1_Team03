@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     /// A default ruleset as backup
     /// </summary>
     private static GameRules _defaultRules;
-    
+
     public GameRules Rules;
+    public FileLoader<LeaderboardFile> Leaderboard;
+    public FileLoader<GameSettingsFile> GameSettings;
 
     [SerializeField] private UpdateManager _updateManager;
     
@@ -23,10 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Losing Triggers")] 
     [SerializeField] private UnityEvent _onGameLost;
     
-    private Player _player;
-
-    public FileLoader<LeaderboardFile> Leaderboard;
-    public FileLoader<GameSettingsFile> GameSettings;
+    [SerializeField ]private PlayerManager _playerManager;
 
     private void Awake()
     {
@@ -37,42 +36,4 @@ public class GameManager : MonoBehaviour
         Leaderboard = new(PathHelper.LeaderboardFilename, PathHelper.ExternalDataPath);
         GameSettings = new(PathHelper.GameSettingsFilename, PathHelper.ExternalDataPath);
     }
-
-    private void Start()
-    {
-        _player = GameCore.Get.Player;
-        if(_player == null) return;
-    }
-
-    public void OnFollowerAdded()
-    {
-        if(_player == null) return;
-        if(CheckWinCondition())
-        {
-            _onGameVictory?.Invoke();
-        }
-    }
-
-    public void OnFollowerLost()
-    {
-        if(_player == null) return;
-        var followers = _player.GetComponent<PlayerFollowers>();
-
-        if(CheckLoseCondition())
-        {
-            _onGameLost?.Invoke();
-        }
-    }
-
-    private bool CheckLoseCondition()
-    {
-        return false;
-    }
-
-    private bool CheckWinCondition()
-    {
-        var followers = _player.GetComponent<PlayerFollowers>();
-        return followers.Count >= Rules.FollowerWinCount;
-    }
-    
 }

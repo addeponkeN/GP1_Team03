@@ -4,8 +4,6 @@ public class GameCore : MonoBehaviour
 {
     public static GameCore Get { get; private set; }
 
-    public Player Player;
-
     private void Awake()
     {
         if(Get != null)
@@ -25,11 +23,7 @@ public class GameCore : MonoBehaviour
 
     private void Init()
     {
-        if(Player == null)
-        {
-            Player = FindObjectOfType<Player>();
-            Debug.LogWarning("Player has automatically been assigned in 'GameCore' (temporarily) \n" +
-                             $"Please assign 'Player' to the 'GameCore' script (in the '{gameObject.name}' gameobject)");
-        }
+        
     }
+    
 }

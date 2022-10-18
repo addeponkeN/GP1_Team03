@@ -59,27 +59,4 @@ public class Player : MonoBehaviour
         _updateManager.Unsubscribe(ControllerManager.FixedUpdate, UpdateType.FixedUpdate);
     }
 
-    private void Reset()
-    {
-        return; //  temp
-        CapCollider = GetComponent<CapsuleCollider>();
-        Body = GetComponent<Rigidbody>();
-
-        //  reset capsule collider
-        CapCollider.center = new Vector3(-.42f, -0.065f, -0.039f);
-        CapCollider.radius = 0.65f;
-        CapCollider.height = 2.5f;
-
-        //  reset rigidbody
-        Body.useGravity = true;
-        Body.isKinematic = false;
-
-        Body.mass = 1;
-        Body.drag = 0;
-        Body.angularDrag = 1;
-
-        Body.interpolation = RigidbodyInterpolation.Interpolate;
-        Body.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        Body.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
-    }
 }
