@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementAcceleration: 5
   MaxMoveSpeed: 10
-  RotationSpeed: 10
-  MaxRotationSpeed: 15
+  RotationSpeed: 25
+  MaxRotationSpeed: 25
   RotationSpeedModifier: 0.1
   BoostTime: 1.5
   BoostAmount: 2
