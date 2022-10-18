@@ -36,8 +36,15 @@ public class Hazard : MonoBehaviour
         if (movement.Speed < minSpeed) return;
 
         // Min speed to break hazard
-        var boostSpeed = _stats.MaxMoveSpeed * _stats.BoostAmount;
-        if (_canBeDestroyed && (movement.Speed >= (boostSpeed * _speedPercent))){
+        // var boostSpeed = _stats.MaxMoveSpeed * _stats.BoostAmount;
+        
+        //  Always break hazard when boosting
+        var boost = GetBoost(player);
+
+        var canBreakHazard = boost.IsBoosting;
+        
+        // if (_canBeDestroyed && (movement.Speed >= (boostSpeed * _speedPercent))){
+         if (canBreakHazard){
             this.gameObject.SetActive(false);
             return;
         }
@@ -65,6 +72,14 @@ public class Hazard : MonoBehaviour
     private MovementController GetMovement(GameObject player){
         var controller = player.GetComponent<Player>().ControllerManager;
         return controller.GetController<MovementController>();
+    }
+    
+    /// <summary>
+    /// Returns the player boost controller
+    /// </summary>
+    private BoostController GetBoost(GameObject player){
+        var controller = player.GetComponent<Player>().ControllerManager;
+        return controller.GetController<BoostController>();
     }
 
 // TIMER HANDLING
