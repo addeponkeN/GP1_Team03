@@ -40,7 +40,6 @@ public class Hazard : MonoBehaviour
         
         //  Always break hazard when boosting
         var boost = GetBoost(player);
-
         var canBreakHazard = boost.IsBoosting;
         
         // if (_canBeDestroyed && (movement.Speed >= (boostSpeed * _speedPercent))){
