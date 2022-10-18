@@ -15,7 +15,7 @@ namespace PlayerControllers.Controllers
             }
         }
 
-        public bool IsBoosting => _boostTimer > _stats.BoostTime * .5f;
+        public bool IsBoosting => _boostTimer > 0f;
 
         public event Action BoostedEvent;
         public event Action<BoostResponse> AttemptBoostEvent;

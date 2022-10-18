@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GameRules
   m_EditorClassIdentifier: 
   Time: 180
-  FollowPadding: 2
+  FollowPadding: 0.5
   MaxFollowerCount: 5
   PlayerCount: 1
