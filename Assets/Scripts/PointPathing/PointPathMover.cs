@@ -7,7 +7,7 @@ namespace PointPathing
 {
     public class PointPathMover : MonoBehaviour
     {
-        private Vector3 Destination => _path[_index].position;
+        private Vector3 Destination => _path[_index].Position;
 
         private IndexLooper _index;
         [SerializeField] private float _speed = 5f;
