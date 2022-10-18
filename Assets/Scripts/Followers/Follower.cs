@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Follower
 {
@@ -6,15 +7,14 @@ public class Follower
     private Follower _child = null;
 
     private float _radius = 0f;
-    private Rigidbody _rigidbody = null;
+    private Transform _transform = null;
 
 // PROPERTIES
 
     public Follower Parent => _parent;
     public Follower Child => _child;
-    public Rigidbody RigidBody => _rigidbody;
-    public Transform Transform => _rigidbody?.transform;
-    public GameObject GameObject => _rigidbody?.gameObject;
+    public Transform Transform => _transform;
+    public GameObject GameObject => _transform?.gameObject;
 
 // INITIALISATION
 
@@ -24,9 +24,9 @@ public class Follower
     /// <param name="parent">This follower's parent</param>
     /// <param name="follower">This follower's rigidbody</param>
     /// <param name="radius">This follower's collider radius</param>
-    public Follower(Follower parent, Rigidbody follower, float radius){
+    public Follower(Follower parent, Transform follower, float radius){
         _parent = parent;
-        _rigidbody = follower;
+        _transform = follower;
         _radius = radius;
     }
 
@@ -60,19 +60,19 @@ public class Follower
     /// Moves this follower towards the target position
     /// </summary>
     public void Move(Vector3 target, float speed, float deltaTime){
-        var positon = _rigidbody.position;
+        var position = _transform.position;
 
-        var difference = (target - positon);
+        var difference = (target - position);
         if (difference.magnitude < _radius * 0.5f) return;
 
         var rotation = Quaternion.LookRotation(difference);
-        _rigidbody.MoveRotation(rotation);
-
+        _transform.rotation = rotation;
+        
         var direction = difference.normalized;
         var velocity = direction * (speed * deltaTime);
-        _rigidbody.MovePosition(positon + velocity);
+        _transform.Translate(velocity, Space.World);
 
         var offset = -direction * _radius;
-        _child?.Move(positon + offset, speed, deltaTime);
+        _child?.Move(position + offset, speed, deltaTime);
     }
 }

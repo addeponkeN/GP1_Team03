@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class PlayerFollowerEvents : MonoBehaviour
 {
-    [SF] private ParticleSystem _pickupFX = null;
+    [SF] private GameObject _pickupFXPrefab = null;
+
+
 
     /// <summary>
     /// On follower picked up event
     /// </summary>
     public void OnPickedUp(Follower follower){
         if (follower == null) return;
-        _pickupFX?.Play();
+
+        var tfm = follower.Transform;
+        Instantiate(_pickupFXPrefab, tfm.position, tfm.rotation);
     }
 
     /// <summary>
