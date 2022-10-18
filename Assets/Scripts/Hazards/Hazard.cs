@@ -14,7 +14,7 @@ public class Hazard : MonoBehaviour
     [SF] private UpdateManager _update = null;
     
     private float _timer = 0f;
-    private readonly float _speedPercent = 0.75f;
+    private readonly float _speedPercent = 0.5f;
 
 // COLLISION HANDLING
 
