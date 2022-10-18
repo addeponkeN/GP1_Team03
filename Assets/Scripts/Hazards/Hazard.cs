@@ -35,15 +35,11 @@ public class Hazard : MonoBehaviour
         var minSpeed = _stats.MaxMoveSpeed * _speedPercent;
         if (movement.Speed < minSpeed) return;
 
-        // Min speed to break hazard
-        // var boostSpeed = _stats.MaxMoveSpeed * _stats.BoostAmount;
-        
         //  Always break hazard when boosting
         var boost = GetBoost(player);
         var canBreakHazard = boost.IsBoosting;
         
-        // if (_canBeDestroyed && (movement.Speed >= (boostSpeed * _speedPercent))){
-         if (canBreakHazard){
+        if (_canBeDestroyed && canBreakHazard){
             this.gameObject.SetActive(false);
             return;
         }
