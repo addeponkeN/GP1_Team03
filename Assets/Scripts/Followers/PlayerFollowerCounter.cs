@@ -5,7 +5,7 @@ using TMPro;
 [RequireComponent(typeof(PlayerFollowers))]
 public class PlayerFollowerCounter : MonoBehaviour
 {
-    [SF] private int _levelUpCount = 20;
+    [SF] private GameRules _gameRules = null;
     [SF] private TMP_Text _hudText = null;
 
     private int _level = 0;
@@ -32,18 +32,21 @@ public class PlayerFollowerCounter : MonoBehaviour
     /// Update the follow counter
     /// </summary>
     public void UpdatedFollowers(){
-        if (_followers.Count >= _levelUpCount){
+        if (_followers.Count >= _gameRules.LevelUpCount){
             _followers.Clear();
             _level++;
         }
 
-        var min = (_level * _levelUpCount);
+        var min = (_level * _gameRules.LevelUpCount);
         var current = (_followers.Count - _followers.KeeptOnLevelUp);
         _followerCount = min + current;
 
         UpdateText();
     }
 
+    /// <summary>
+    /// Updates the hud follow counter
+    /// </summary>
     private void UpdateText(){
         if (_hudText == null) return;
         _hudText.text = _followerCount.ToString();

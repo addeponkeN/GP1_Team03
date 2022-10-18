@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using SF = UnityEngine.SerializeField;
 using UnityEngine;
 
 public class PlayerFollowerEvents : MonoBehaviour
 {
+    [SF] private ParticleSystem _pickupFX = null;
+
     /// <summary>
     /// On follower picked up event
     /// </summary>
     public void OnPickedUp(Follower follower){
         if (follower == null) return;
+        _pickupFX?.Play();
     }
 
     /// <summary>

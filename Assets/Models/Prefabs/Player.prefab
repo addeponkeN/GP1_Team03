@@ -4868,7 +4868,6 @@ GameObject:
   - component: {fileID: -719124975866670258}
   - component: {fileID: -5645759843485818991}
   - component: {fileID: 602866508914062138}
-  - component: {fileID: -1169388009905437839}
   - component: {fileID: 6397550863810637000}
   - component: {fileID: 6839268991967416155}
   - component: {fileID: 1478948888806665886}
@@ -4954,36 +4953,6 @@ MonoBehaviour:
     Movement: {fileID: 7503884912492243399, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
     Boost: {fileID: 6532391055967103618, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
   _updateManager: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
---- !u!114 &-1169388009905437839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3959280164926006823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &6397550863810637000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4996,8 +4965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc9d1020fce1534a9be1f887a3d8736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followPadding: 1
-  _keptOnLevelUp: 2
+  _gameRules: {fileID: 11400000, guid: 5782a9cbee4bb1c458491e4401815409, type: 2}
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
   _onPickup:
     m_PersistentCalls:
@@ -5068,7 +5036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3314b2882f214cd4ab11bdc53508d16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelUpCount: 20
+  _gameRules: {fileID: 11400000, guid: 5782a9cbee4bb1c458491e4401815409, type: 2}
   _hudText: {fileID: 0}
 --- !u!114 &1478948888806665886
 MonoBehaviour:
@@ -5082,6 +5050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab84c57b6640a459daad9757a320f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickupFX: {fileID: 0}
 --- !u!82 &1920005127
 AudioSource:
   m_ObjectHideFlags: 0

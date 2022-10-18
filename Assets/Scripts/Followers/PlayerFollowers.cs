@@ -8,8 +8,7 @@ using PlayerControllers.Controllers;
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
 {
-    [SF] private float _followPadding = 1f;
-    [SF] private int _keptOnLevelUp = 2;
+    [SF] private GameRules _gameRules = null;
     [SF] private UpdateManager _update = null;
 
     private int _followCount = 0;
@@ -23,7 +22,7 @@ public class PlayerFollowers : MonoBehaviour
 // PROPERTIES
 
     public int Count => _followCount;
-    public int KeeptOnLevelUp => _keptOnLevelUp;
+    public int KeeptOnLevelUp => _gameRules.KeptOnLevelUp;
 
 // INITIALISATION
 
@@ -31,7 +30,8 @@ public class PlayerFollowers : MonoBehaviour
     /// Initialises the root
     /// </summary>
     private void Awake(){
-        _root = new Follower(null, null, 0f);
+        var rb = GetComponent<Rigidbody>();
+        _root = new Follower(null, rb, 0f);
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class PlayerFollowers : MonoBehaviour
         fellow.transform.SetParent(null);
 
         var collider = fellow.GetComponent<SphereCollider>();
-        var radius = collider.radius + _followPadding;
+        var radius = collider.radius + _gameRules.FollowPadding;
 
         var follower = new Follower(parent, fellow, radius);
         parent.SetChild(follower);
@@ -118,7 +118,7 @@ public class PlayerFollowers : MonoBehaviour
             parent = parent.Child;
         }
 
-        var count = _followCount - _keptOnLevelUp;
+        var count = _followCount - _gameRules.KeptOnLevelUp;
         Clear(parent, count);
     }
 
@@ -142,7 +142,7 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
         if (_root.Child == null) return;
-        var position = transform.position + (-transform.forward * _followPadding);
+        var position = transform.position + (-transform.forward * _gameRules.FollowPadding);
         _root.Child.Move(position, _move.Speed, fixedDeltaTime);
     }
 

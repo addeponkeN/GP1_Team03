@@ -6,13 +6,13 @@ public class Follower
     private Follower _child = null;
 
     private float _radius = 0f;
-    private Vector3 _previous = Vector3.zero;
     private Rigidbody _rigidbody = null;
 
 // PROPERTIES
 
     public Follower Parent => _parent;
     public Follower Child => _child;
+    public Rigidbody RigidBody => _rigidbody;
     public Transform Transform => _rigidbody?.transform;
     public GameObject GameObject => _rigidbody?.gameObject;
 
@@ -28,9 +28,6 @@ public class Follower
         _parent = parent;
         _rigidbody = follower;
         _radius = radius;
-
-        //if (parent == null) return;
-        //_previous = parent.Transform.position;
     }
 
 // MANAGEMENT
@@ -66,19 +63,16 @@ public class Follower
         var positon = _rigidbody.position;
 
         var difference = (target - positon);
-        if (difference == Vector3.zero) return;
+        if (difference.magnitude < _radius * 0.5f) return;
 
         var rotation = Quaternion.LookRotation(difference);
         _rigidbody.MoveRotation(rotation);
 
-        //var direction = (target - _previous).normalized; 
         var direction = difference.normalized;
         var velocity = direction * (speed * deltaTime);
         _rigidbody.MovePosition(positon + velocity);
 
         var offset = -direction * _radius;
         _child?.Move(positon + offset, speed, deltaTime);
-
-        _previous = target;
     }
 }
