@@ -270,6 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 129765058}
+  - component: {fileID: 129765059}
   m_Layer: 5
   m_Name: CreditsMenu
   m_TagString: Untagged
@@ -302,6 +303,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.000014305}
   m_SizeDelta: {x: 1239.3005, y: 780.364}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &129765059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129765057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f86ee45c86bec45b6ee6f02b4f241c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSys: {fileID: 1878081384}
+  firstSelectedOpBack: {fileID: 914148366}
 --- !u!1 &195998643
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 195998644}
+  - component: {fileID: 195998645}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -341,6 +357,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000024319, y: -0.0000076293945}
   m_SizeDelta: {x: 991.738, y: 737.9277}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &195998645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195998643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f86ee45c86bec45b6ee6f02b4f241c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSys: {fileID: 1878081384}
+  firstSelectedOpBack: {fileID: 1460221472}
 --- !u!1 &203811315
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cbec11398da494393891f720cea292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSys: {fileID: 1878081384}
+  firstSelectedOpBack: {fileID: 1868383347}
 --- !u!1 &373410381
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,10 +762,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 0.6745098}
+    m_PressedColor: {r: 0.15395391, g: 1, b: 0, a: 0.9137255}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2347,7 +2379,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 914148369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 203811315}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 129765057}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &914148369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3808,7 +3864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5372549}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
