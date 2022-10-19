@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2645315465334854645}
   - component: {fileID: 2645315465334854644}
   - component: {fileID: 2645315465334854648}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Hazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,10 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7883f6f5439e47e43ae8ccf8eafb1a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionTimer: 2.5
-  _minMaxFollowerLoss: {x: 1, y: 3}
+  _canBeDestroyed: 1
+  _followerLoss: 2
+  _canBeRespawned: 1
+  _respawnTimer: 10
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  _stats: {fileID: 11400000, guid: e50598fc0e5ced949ad055ddbe6eddf4, type: 2}
-  _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
+  _playerStats: {fileID: 11400000, guid: e50598fc0e5ced949ad055ddbe6eddf4, type: 2}
+  _crashFX: {fileID: 0}
+  _crashSound: {fileID: 0}
