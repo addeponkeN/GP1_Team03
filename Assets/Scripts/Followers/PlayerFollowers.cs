@@ -11,6 +11,7 @@ public class PlayerFollowers : MonoBehaviour
 {
     [SF] private TMP_Text _hudText = null;
     [SF] private GameRules _gameRules = null;
+    [SF] private PlayerStatContainer _stats = null;
     [SF] private UpdateManager _update = null;
 
     private int _totalCount = 0;
@@ -36,10 +37,9 @@ public class PlayerFollowers : MonoBehaviour
     private void Awake(){
         _collider = GetComponent<CapsuleCollider>();
         _followOffset = (_collider.height * 0.5f) * _gameRules.FollowPadding;
+        _root = new Follower(null, transform, _collider.radius, 0f);
 
-        _root = new Follower(
-            null, transform, _collider.radius
-        );
+        UpdateText();
     }
 
     /// <summary>
@@ -77,10 +77,15 @@ public class PlayerFollowers : MonoBehaviour
     private void Add(Transform fellow){
         Follower parent = GetLast();
 
-        var follower = new Follower(parent, fellow, _followOffset);
+        var follower = new Follower(
+            parent, fellow, 
+            _followOffset, 
+            _stats.MaxMoveSpeed
+        );
+        
         parent.SetChild(follower);
-
         _followCount++;
+
         _onPickup.Invoke(follower);
     }
 
@@ -110,6 +115,8 @@ public class PlayerFollowers : MonoBehaviour
 
         RemoveFromFront(follower.Child, --count);
         _followCount--;
+
+        _onCrash.Invoke(follower);
     }
 
     /// <summary>

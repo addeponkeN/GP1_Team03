@@ -15,8 +15,8 @@ namespace Ui
 
         private void Start()
         {
-            // _progressBar.Value = _player.Energy.Energy;
-            // _player.Energy.EnergyChangedEvent += EnergyOnEnergyChangedEvent;
+            _progressBar.Value = _player.Energy.Energy;
+            _player.Energy.EnergyChangedEvent += EnergyOnEnergyChangedEvent;
         }
 
         private void EnergyOnEnergyChangedEvent(EnergyInfo energyInfo)

@@ -11,7 +11,7 @@ public class PlayerFollowerEvents : MonoBehaviour
 // INITIALISATION
 
     /// <summary>
-    /// 
+    /// Initialises the follower events
     /// </summary>
     private void Awake(){
         InitFxPool(_pickupFXPrefab, ref _pickupFXPool);
