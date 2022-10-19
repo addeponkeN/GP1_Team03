@@ -23,7 +23,7 @@ namespace Ui.Widgets
 
 //  UNITY EDITOR FIELDS
 
-        [Header("Background")] 
+       /* [Header("Background")] 
         [SerializeField] private Sprite BackgroundImage;
         [SerializeField] private Color BackgroundColor = Color.white;
 
@@ -32,7 +32,7 @@ namespace Ui.Widgets
         [Header("Foreground")] 
         [SerializeField] private Sprite ForegroundImage;
         [SerializeField] private Color ForegroundColor = Color.white;
-
+       */
         [Space(5)]
         
         [SerializeField] private Slider.SliderEvent onValueChanged;
@@ -72,11 +72,12 @@ namespace Ui.Widgets
 
         private void UpdateComponents()
         {
-            _background.sprite = BackgroundImage;
+            /*_background.sprite = BackgroundImage;
             _background.color = BackgroundColor;
 
             _foreground.sprite = ForegroundImage;
             _foreground.color = ForegroundColor;
+            */
         }
 
         public void Slider_ValueChanged()
