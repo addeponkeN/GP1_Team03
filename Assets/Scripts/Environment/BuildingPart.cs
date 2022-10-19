@@ -14,13 +14,13 @@ public class BuildingPart : MonoBehaviour
     public void AssignColours(Color primary, Color secondary, Color tertiary){
         var renderer = GetComponent<MeshRenderer>();
         
-        if (_primaryIndex > -1)
+        if (_primaryIndex > -1 && _primaryIndex < renderer.materials.Length)
             renderer.materials[_primaryIndex].color = primary;
 
-        if (_secondaryIndex > -1)
+        if (_secondaryIndex > -1 && _secondaryIndex < renderer.materials.Length)
             renderer.materials[_secondaryIndex].color = secondary;
 
-        if (_tertiaryIndex > -1)
+        if (_tertiaryIndex > -1 && _tertiaryIndex < renderer.materials.Length)
             renderer.materials[_tertiaryIndex].color = tertiary;
     }
 }
