@@ -4,6 +4,12 @@ namespace PlayerPush
 {
     public class PlayerPusher : MonoBehaviour
     {
+
+        /// <summary>
+        /// On/off switch for the pusher
+        /// </summary>
+        [SerializeField] private bool _isActivated = true;
+        
         /// <summary>
         /// Destination
         /// </summary>
@@ -13,8 +19,8 @@ namespace PlayerPush
 
         private void OnTriggerEnter(Collider other)
         {
-            if(((1 << other.gameObject.layer) & _playerMask) == 0)
-                return;
+            if(!_isActivated) return;
+            if(((1 << other.gameObject.layer) & _playerMask) == 0) return;
 
             //  get player component
             var player = other.gameObject.GetComponent<Player>();
@@ -63,6 +69,11 @@ namespace PlayerPush
         private void StopPlayer(Player player)
         {
             player.GroundedController.DisableMovementUntilGrounded();
+        }
+        
+        public void SetActivated(bool isActivated)
+        {
+            _isActivated = isActivated;
         }
         
     }
