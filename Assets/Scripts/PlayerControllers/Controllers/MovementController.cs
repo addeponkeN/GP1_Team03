@@ -63,33 +63,12 @@ namespace PlayerControllers.Controllers
         public override void FixedUpdate(float dt)
         {
             base.FixedUpdate(dt);
-            // _isOldMoving = _isMoving;
-
-            // var forwardVelocity = _inputMove.action.ReadValue<Vector2>().y;
-
-            //  temporary permanent forward movement
-            var forwardVelocity = 1f;
-
-            // _isMoving = forwardVelocity != 0f;
-            //
-            // if(_isMoving != _isOldMoving)
-            // {
-            //     if(_isMoving)
-            //     {
-            //         Debug.Log("moving started");
-            //         onStartedMoving?.Invoke();
-            //     }
-            //     else
-            //     {
-            //         Debug.Log("moving stopped");
-            //         onStoppedMoving?.Invoke();
-            //     }
-            // }
 
             //  fetch the player stats and apply to the controller
             _accelerator.Acceleration = _stats.MovementAcceleration * SpeedMultiplier;
             _accelerator.MaxSpeed = _stats.MaxMoveSpeed * MaxSpeedMultiplier;
 
+            const float forwardVelocity = 1f;
             _accelerator.Update(dt, forwardVelocity);
 
             if(_accelerator.IsAccelerating())
