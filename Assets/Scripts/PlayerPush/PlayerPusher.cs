@@ -18,7 +18,7 @@ namespace PlayerPush
 
             //  get player component
             var player = other.gameObject.GetComponent<Player>();
-            var body = player.GetComponent<Rigidbody>();
+            var body = player.Body;
 
             //  set locals
             var dest = _destination.position;
@@ -45,7 +45,7 @@ namespace PlayerPush
             StopPlayer(player);
 
             //  Move player a small amount towards direction to avoid groundcheck bugs stuff
-            body.MovePosition(body.position + direction * 0.1f);
+            body.MovePosition(body.position + Vector3.up * 0.1f);
 
             //  reset the velocity to ensure the force amount is always the same
             var bodyVel = body.velocity;
