@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/START.unity
     guid: bf09a165433d59d4b98c61a8cc8f9e71
   - enabled: 1
-    path: Assets/Scenes/HugoTestMovementAndLvL.unity
-    guid: d4d48b1c0d304594ca7d4e0a55b1dcbe
+    path: Assets/Scenes/CutScene.unity
+    guid: e27108073d108b043b3f53209219e969
+  - enabled: 1
+    path: Assets/Scenes/MainLevel.unity
+    guid: 073e1eb897e39c347a813ab5b397d893
   m_configObjects: {}
