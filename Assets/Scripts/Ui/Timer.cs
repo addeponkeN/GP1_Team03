@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-
+using System;
 
 public class Timer : MonoBehaviour
 {
 
+    [SerializeField] GameManager gameManager;
+    
     [Header("Time UI reference :")]
     [SerializeField] private Image UiFillImage;
     [SerializeField] private TMP_Text UiText;
@@ -22,13 +24,33 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+
+      
         resetTimer();
 
     }
-    
+
+    private void Start()
+    {
+        gameManager.GetTimer.OnIntervalEvent += GetTimer_OnIntervalEvent;
+        gameManager.GetTimer.OnDoneEvent += GetTimer_OnDoneEvent;
+    }
+
+    private void GetTimer_OnDoneEvent(Util.Timer obj)
+    {
+        
+    }
+
+    private void GetTimer_OnIntervalEvent(Util.Timer obj)
+    {
+        var span = TimeSpan.FromSeconds(obj.Time);
+        UiFillImage.fillAmount = obj.Time / gameManager.Rules.Time;
+        UiText.text = span.ToString("mm\\:ss");
+    }
+
     private void resetTimer()
     {
-        UiText.text = "00:00";
+        UiText.text = "00:00";  
         UiFillImage.fillAmount = 0f;
 
         Duration = remaningDuration = baseTime;

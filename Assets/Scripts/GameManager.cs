@@ -36,13 +36,20 @@ public class GameManager : MonoBehaviour
 
         Leaderboard = new(PathHelper.LeaderboardFilename, PathHelper.ExternalDataPath);
         GameSettings = new(PathHelper.GameSettingsFilename, PathHelper.ExternalDataPath);
-    }
 
-    private void Start()
-    {
         GameTimer = new(Rules.Time, 1f);
         _updateManager.Subscribe(GameTimer.Update, UpdateType.Update);
     }
+
+    //private void Start()
+    //{
+      //  GameTimer = new(Rules.Time, 1f);
+        //Debug.Log("timer");
+        //_updateManager.Subscribe(GameTimer.Update, UpdateType.Update);
+    //}
+
+    public Util.Timer GetTimer => GameTimer;
+    
 
     private void OnDestroy()
     {

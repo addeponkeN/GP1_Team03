@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Util
 {
@@ -35,7 +36,7 @@ namespace Util
                 if(_intervalTimer <= 0f)
                 {
                     OnIntervalEvent?.Invoke(this);
-                    _intervalTimer -= Interval;
+                    _intervalTimer += Interval;
                 }
             }
 
