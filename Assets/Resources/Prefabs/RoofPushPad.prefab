@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 5535121224176157507}
   - component: {fileID: 5535121224176157506}
   m_Layer: 0
-  m_Name: PushPad
+  m_Name: RoofPushPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

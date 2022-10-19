@@ -121,17 +121,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "e3f90254-4f35-45e6-9a8f-db84848ca379",
-                    "path": "<XInputController>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "down",
                     "id": "6f1c9d29-f8f7-4561-91d5-b7f821da466e",
                     "path": "",
@@ -145,7 +134,7 @@
                 {
                     "name": "left",
                     "id": "34804308-62b5-44e7-b584-c71d61361bd8",
-                    "path": "<XInputController>/dpad/left",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -156,7 +145,7 @@
                 {
                     "name": "right",
                     "id": "3bcf119f-5583-4468-b400-8ffefb31f092",
-                    "path": "<XInputController>/dpad/right",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
