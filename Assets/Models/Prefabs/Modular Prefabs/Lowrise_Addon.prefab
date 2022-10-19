@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 342298513780124871}
   - component: {fileID: 3706406667593524066}
   - component: {fileID: 1480341171960928168}
+  - component: {fileID: 8094436299786292872}
   m_Layer: 0
   m_Name: Lowrise_Addon
   m_TagString: Untagged
@@ -85,3 +86,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8094436299786292872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120206652070590077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c5659177eb43d4fa92104364e7646b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _primaryIndex: 0
+  _secondaryIndex: 1
+  _tertiaryIndex: -1
