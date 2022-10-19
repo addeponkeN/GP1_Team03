@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5493272168848233102}
   - component: {fileID: 8904705510531538219}
   - component: {fileID: 6662839470500538849}
+  - component: {fileID: 6155391225890966542}
+  - component: {fileID: 4081830299116774032}
   m_Layer: 0
   m_Name: Shop_2_1
   m_TagString: Untagged
@@ -87,6 +89,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6155391225890966542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149819179641948212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.772378, y: 4.853198, z: 5.916609}
+  m_Center: {x: 0, y: 1.2174721, z: 0.0076389313}
+--- !u!65 &4081830299116774032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149819179641948212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.306514, y: 4.2501826, z: 0.71099615}
+  m_Center: {x: 1.0031468, y: 0.91596603, z: 3.0888908}
 --- !u!1001 &155146420380281792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +189,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 958fe601750e87c4284c5fa3f0848e04, type: 3}
   m_PrefabInstance: {fileID: 155146420380281792}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1073643456615519889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 958fe601750e87c4284c5fa3f0848e04, type: 3}
+  m_PrefabInstance: {fileID: 155146420380281792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6431623795810908089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073643456615519889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.744771, y: 4.031027, z: 6.0967326}
+  m_Center: {x: 0.15823221, y: 5.659584, z: 0.020883322}
 --- !u!1001 &2241645834364908952
 PrefabInstance:
   m_ObjectHideFlags: 0

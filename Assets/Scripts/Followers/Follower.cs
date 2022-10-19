@@ -6,7 +6,10 @@ public class Follower
     private Follower _child = null;
 
     private float _radius = 0f;
+    private float _maxSpeed = 0f;
+    private float _defAnimSpeed = 0f;
     private Transform _transform = null;
+    private Animator _animator = null;
 
 // PROPERTIES
 
@@ -23,10 +26,15 @@ public class Follower
     /// <param name="parent">This follower's parent</param>
     /// <param name="follower">This follower's rigidbody</param>
     /// <param name="radius">This follower's collider radius</param>
-    public Follower(Follower parent, Transform follower, float radius){
-        _parent = parent;
+    /// <param name="maxSpeed">The player's maximum movement speed</param>
+    public Follower(Follower parent, Transform follower, float radius, float maxSpeed){
+        _animator = follower.GetComponentInChildren<Animator>();
         _transform = follower;
+        _parent = parent;
         _radius = radius;
+
+        _maxSpeed = maxSpeed;
+        _defAnimSpeed = _animator.speed;
     }
 
 // MANAGEMENT
@@ -81,10 +89,14 @@ public class Follower
 
         var rotation = Quaternion.LookRotation(difference);
         _transform.rotation = rotation;
-        
+
+        var speed = difference.magnitude;
         var direction = difference.normalized;
-        var velocity = direction * (difference.magnitude * deltaTime);
+        var velocity = direction * (speed * deltaTime);
         _transform.Translate(velocity, Space.World);
+
+        var multiplier = (speed / _maxSpeed) * 3f;
+        _animator.speed = _defAnimSpeed * multiplier;
 
         var offset = -direction * _radius;
         _child?.Move(position + offset, deltaTime);

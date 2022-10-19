@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f96cb606bb447ead92dc4b860b3256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
+  Stats: {fileID: 11400000, guid: e50598fc0e5ced949ad055ddbe6eddf4, type: 2}
   Input:
     Movement: {fileID: 7503884912492243399, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
     Boost: {fileID: 6532391055967103618, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hudText: {fileID: 0}
   _gameRules: {fileID: 11400000, guid: 5782a9cbee4bb1c458491e4401815409, type: 2}
+  _stats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
   _onPickup:
     m_PersistentCalls:
