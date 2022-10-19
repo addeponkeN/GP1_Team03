@@ -4,6 +4,7 @@ using Jellybeans.Updates;
 using PlayerControllers;
 using PlayerControllers.Controllers;
 using UnityEngine;
+using Util.PostProcessingExtended;
 
 /// <summary>
 /// Main player script
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
     public PlayerControllerManager ControllerManager;
     public GroundedController GroundedController;
     public InputContainer Input;
+
+    public PostProcessLerper PpLerper;
 
     [SerializeField] private UpdateManager _updateManager;
 
