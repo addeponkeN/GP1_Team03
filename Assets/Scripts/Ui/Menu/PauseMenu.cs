@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 //Author Keziah Ferreira Dos Santos
@@ -13,19 +14,27 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject GameHub;
 
+    [SerializeField] InputActionReference back;
+
+
+
     // Update is called once per frame
-    void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        back.action.Enable();
+        back.action.performed += Action_performed;
+    }
+
+    private void Action_performed(InputAction.CallbackContext obj)
+    {
+        if (GameIsPaused)
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
