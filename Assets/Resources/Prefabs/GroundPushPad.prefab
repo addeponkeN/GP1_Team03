@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486857372574125983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 6, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,7 +155,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Center: {x: 0.76195544, y: 0.35488093, z: 0.77560365}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &5535121224176157506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167819047626818146, guid: 04143579572e20c4985ca52efc8246a7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1396641248672218601, guid: 04143579572e20c4985ca52efc8246a7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3305622668652411347, guid: 04143579572e20c4985ca52efc8246a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4262877703468375328, guid: 04143579572e20c4985ca52efc8246a7, type: 3}
       propertyPath: m_Name
       value: Fire_Hydrant_Interact
@@ -303,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5520857449306531528, guid: 04143579572e20c4985ca52efc8246a7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5990046868785317844, guid: 04143579572e20c4985ca52efc8246a7, type: 3}
       propertyPath: m_LocalPosition.x
