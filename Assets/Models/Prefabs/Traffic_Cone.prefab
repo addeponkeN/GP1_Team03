@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4635193358954588257}
   - component: {fileID: 7813451163702970168}
   - component: {fileID: 5353349081224260390}
+  - component: {fileID: -4042271819086144824}
   m_Layer: 0
   m_Name: Traffic_Cone
   m_TagString: Untagged
@@ -31,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5766379854487291160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,3 +118,109 @@ CapsuleCollider:
   m_Height: 0.34989953
   m_Direction: 1
   m_Center: {x: 0, y: 0.17528379, z: -0.0052485764}
+--- !u!114 &-4042271819086144824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580743930496895412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7883f6f5439e47e43ae8ccf8eafb1a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canBeDestroyed: 1
+  _looseFollowers: 1
+  _followerLoss: 2
+  _canBeRespawned: 1
+  _respawnTimer: 10
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _playerStats: {fileID: 11400000, guid: e50598fc0e5ced949ad055ddbe6eddf4, type: 2}
+  _animation: {fileID: 0}
+  _crashFX: {fileID: 0}
+  _crashSound: {fileID: 0}
+  _onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2445566419551620000}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1001 &7330541136885406272
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5771555412535087886}
+    m_Modifications:
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800295113829079376, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+      propertyPath: m_Name
+      value: PickupPoof
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+--- !u!198 &2445566419551620000 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4921086257050604000, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+  m_PrefabInstance: {fileID: 7330541136885406272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5766379854487291160 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3872281758168670040, guid: dad30e5442b41e246adf222b9af71fed, type: 3}
+  m_PrefabInstance: {fileID: 7330541136885406272}
+  m_PrefabAsset: {fileID: 0}

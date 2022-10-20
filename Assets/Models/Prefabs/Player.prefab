@@ -140,7 +140,7 @@ MonoBehaviour:
   _onPickup:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1478948888806665886}
         m_TargetAssemblyTypeName: PlayerFollowerEvents, Assembly-CSharp
         m_MethodName: OnPickedUp
         m_Mode: 0

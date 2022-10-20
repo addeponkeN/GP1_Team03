@@ -16,6 +16,7 @@ public class Hazard : MonoBehaviour
     [SF] private LayerMask _playerLayer = 1 << 0;
     [SF] private PlayerStatContainer _playerStats = null;
     [Space]
+    [SF] private Animation _animation = null;
     [SF] private ParticleSystem _crashFX = null;
     [SF] private AudioSource _crashSound = null;
     [Space]
@@ -24,7 +25,6 @@ public class Hazard : MonoBehaviour
     private BoostController _boost = null;
     private MovementController _movement = null;
     private PlayerFollowers _followers = null;
-    private readonly float _speedPercent = 0.5f;
 
 // COLLISION HANDLING
 
@@ -36,12 +36,8 @@ public class Hazard : MonoBehaviour
         if (((1 << layer) & _playerLayer) == 0) return;
 
         var player = other.gameObject;
-        var movement = GetMovement(player);
-
-        var minSpeed = _playerStats.MaxMoveSpeed * _speedPercent;
-        if (movement.Speed < minSpeed) return;
-
         var boost = GetBoost(player);
+
         if (!boost.IsBoosting && _looseFollowers) 
             RemoveFollower(player);
 
@@ -50,6 +46,9 @@ public class Hazard : MonoBehaviour
 
         if (_canBeRespawned)
             Invoke("Respawn", _respawnTimer);
+
+        if (_animation != null)
+            _animation.Play();
 
         if (_crashFX != null)
             _crashFX.Play();
@@ -94,7 +93,8 @@ public class Hazard : MonoBehaviour
     private MovementController GetMovement(GameObject player){
         if (_movement != null) return _movement;
         var controller = player.GetComponent<Player>().ControllerManager;
-        return controller.GetController<MovementController>();
+        _movement = controller.GetController<MovementController>();
+        return _movement;
     }
     
     /// <summary>
@@ -103,6 +103,7 @@ public class Hazard : MonoBehaviour
     private BoostController GetBoost(GameObject player){
         if (_boost != null) return _boost;
         var controller = player.GetComponent<Player>().ControllerManager;
-        return controller.GetController<BoostController>();
+        _boost = controller.GetController<BoostController>();
+        return _boost;
     }
 }
