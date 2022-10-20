@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 5535121224176157509}
   - component: {fileID: 5535121224176157507}
   - component: {fileID: 5535121224176157506}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundPushPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
