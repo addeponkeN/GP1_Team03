@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1614708307021906902}
+  - component: {fileID: 5488789892192953789}
   m_Layer: 0
   m_Name: FireHydrant
   m_TagString: Untagged
@@ -76,6 +77,44 @@ Transform:
   m_Father: {fileID: 5535121224176157509}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5488789892192953789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675163898702092123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7883f6f5439e47e43ae8ccf8eafb1a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canBeDestroyed: 1
+  _looseFollowers: 0
+  _followerLoss: 2
+  _canBeRespawned: 0
+  _respawnTimer: 10
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _playerStats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
+  _crashFX: {fileID: 0}
+  _crashSound: {fileID: 0}
+  _onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2854527259518211670
 GameObject:
   m_ObjectHideFlags: 0
