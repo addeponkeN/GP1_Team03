@@ -5,14 +5,24 @@ public class Follower
     private Follower _parent = null;
     private Follower _child = null;
 
-    private float _radius = 0f;
-    private float _maxSpeed = 0f;
-    private float _defAnimSpeed = 0f;
-    private Transform _transform = null;
+    private bool _grounded = true;
+    private float _groundTimer = 0f;
+    private int _groundLayer = 1 << 8;
+
+    private float _animDefSpeed = 0f;
+    private int _animJumpHash = Animator.StringToHash("OnJump");
     private Animator _animator = null;
+
+    private float _maxSpeed = 0f;
+    private float _padding = 0f;
+    private Transform _transform = null;
 
 // PROPERTIES
 
+    public bool Grounded { 
+        get => _grounded; 
+        set => _grounded = value;
+    }
     public Follower Parent => _parent;
     public Follower Child => _child;
     public Transform Transform => _transform;
@@ -25,16 +35,16 @@ public class Follower
     /// </summary>
     /// <param name="parent">This follower's parent</param>
     /// <param name="follower">This follower's rigidbody</param>
-    /// <param name="radius">This follower's collider radius</param>
+    /// <param name="padding">This follower's collider radius</param>
     /// <param name="maxSpeed">The player's maximum movement speed</param>
-    public Follower(Follower parent, Transform follower, float radius, float maxSpeed){
-        _animator = follower.GetComponentInChildren<Animator>();
+    public Follower(Follower parent, Transform follower, float padding, float maxSpeed){
         _transform = follower;
         _parent = parent;
-        _radius = radius;
-
+        _padding = padding;
         _maxSpeed = maxSpeed;
-        _defAnimSpeed = _animator.speed;
+        
+        _animator = follower.GetComponentInChildren<Animator>();
+        _animDefSpeed = _animator.speed;
     }
 
 // MANAGEMENT
@@ -60,7 +70,7 @@ public class Follower
         Remove();
 
         var tfm = parent.Transform;
-        var position = tfm.position + (-tfm.forward * _radius);
+        var position = tfm.position + (-tfm.forward * _padding);
         
         _transform.position = position;
         _transform.rotation = tfm.rotation;
@@ -81,26 +91,52 @@ public class Follower
     /// <summary>
     /// Moves this follower towards the target position
     /// </summary>
-    public void Move(Vector3 target, float deltaTime){
+    public void Move(Vector3 target, float deltaTime, float speed){
         var position = _transform.position;
+
+        _grounded = IsGrounded(position, deltaTime);
+        _animator.SetBool(_animJumpHash, !_grounded);
 
         var difference = (target - position);
         if (difference == Vector3.zero) return;
 
-        var rotation = Quaternion.LookRotation(difference);
+        var differenceXZ = difference;
+        differenceXZ.y = 0;
+
+        var rotation = Quaternion.LookRotation(differenceXZ);
         _transform.rotation = rotation;
 
-        var speed = difference.magnitude;
-        speed += speed * (speed / _maxSpeed);
-
+        var followSpeed = Mathf.Max(speed, difference.magnitude);
         var direction = difference.normalized;
-        var velocity = direction * (speed * deltaTime);
+
+        var velocity = direction * (followSpeed * deltaTime);
         _transform.Translate(velocity, Space.World);
 
-        var multiplier = (speed / _maxSpeed) * 3f;
-        _animator.speed = _defAnimSpeed * multiplier;
+        var animMultiplier = (followSpeed / _maxSpeed) * 3f;
+        _animator.speed = _grounded ? 
+            _animDefSpeed * animMultiplier : 
+            _animDefSpeed;
 
-        var offset = -direction * _radius;
-        _child?.Move(position + offset, deltaTime);
+        var offset = -direction * _padding;
+        _child?.Move(position + offset, deltaTime, speed);
+    }
+
+    /// <summary>
+    /// Returns true if follower is grounded
+    /// </summary>
+    private bool IsGrounded(Vector3 position, float deltaTime){
+        _groundTimer += deltaTime;
+
+        if (_groundTimer < 0.05f)
+            return _grounded;
+
+        var offset = Vector3.up * 0.3f;
+        var p1 = position + offset;
+        var p2 = position + - offset;
+
+        var grounded = Physics.Linecast(p1, p2, _groundLayer);
+
+        _groundTimer = 0;
+        return grounded;
     }
 }
