@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2275538329794273137}
   - component: {fileID: 8685012657378832536}
   - component: {fileID: 2869988795174140037}
+  - component: {fileID: 6873257649629120513}
   m_Layer: 0
   m_Name: Cube.002
   m_TagString: Untagged
@@ -85,6 +86,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6873257649629120513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705975132469632685}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02958307, y: 0.021696253, z: 0.03821796}
+  m_Center: {x: -0.0005447208, y: -0.00047071592, z: 0.009013401}
 --- !u!1 &2839054564554587771
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +312,7 @@ GameObject:
   - component: {fileID: 3154630664718625010}
   - component: {fileID: 7824997686684150436}
   - component: {fileID: 8407989890458075909}
+  - component: {fileID: 20908767513067361}
   m_Layer: 0
   m_Name: LightHouse
   m_TagString: Untagged
@@ -373,6 +388,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &20908767513067361
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7096457710926869683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5061651910517314669, guid: bf22f55fe0034c64b91bfa5ea37a67fd, type: 3}
 --- !u!1 &8345141634626828382
 GameObject:
   m_ObjectHideFlags: 0
