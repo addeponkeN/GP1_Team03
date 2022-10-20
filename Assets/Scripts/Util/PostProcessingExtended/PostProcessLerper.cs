@@ -27,6 +27,11 @@ namespace Util.PostProcessingExtended
             _dirty = new PostProcessOverride(_startProfile);
         }
 
+        private void Start()
+        {
+            SetAmount(0f);
+        }
+
         /// <summary>
         /// The amount of dirtiness of the world
         /// </summary>
