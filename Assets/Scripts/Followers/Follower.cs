@@ -91,6 +91,8 @@ public class Follower
         _transform.rotation = rotation;
 
         var speed = difference.magnitude;
+        speed += speed * (speed / _maxSpeed);
+
         var direction = difference.normalized;
         var velocity = direction * (speed * deltaTime);
         _transform.Translate(velocity, Space.World);

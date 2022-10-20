@@ -168,7 +168,11 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
         if (_root.Child == null) return;
-        var position = transform.position + (-transform.forward * _followOffset);
+
+        var direction = -transform.forward;
+        var offset = _followOffset * 0.5f;
+
+        var position = transform.position + (direction * offset);
         _root.Child.Move(position, fixedDeltaTime);
     }
 
