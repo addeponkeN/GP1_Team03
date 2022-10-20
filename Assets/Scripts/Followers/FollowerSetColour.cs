@@ -23,6 +23,8 @@ namespace Assets.Scripts.Followers
             var skin = skins[Random.Range(0, skins.Length)];
             _character.materials[2].color = skin;
 
+            if(_bicycle == null) return;
+            
             var bikes = _colours.Bike;
             var bike = bikes[Random.Range(0, bikes.Length)];
             _bicycle.materials[1].color = bike;
