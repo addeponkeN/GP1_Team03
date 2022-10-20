@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using UnityEngine;
+using static Barmetler.RoadSystem.RoadLinkTool;
 
 public class Follower
 {
@@ -16,6 +20,10 @@ public class Follower
     private float _maxSpeed = 0f;
     private float _padding = 0f;
     private Transform _transform = null;
+
+    // Unfinished
+    private Vector3 _target = Vector3.zero;
+    private static LinkedList<Vector3> _points = null;
 
 // PROPERTIES
 
@@ -45,6 +53,10 @@ public class Follower
         
         _animator = follower.GetComponentInChildren<Animator>();
         _animDefSpeed = _animator.speed;
+
+        _points ??= new LinkedList<Vector3>();
+        _target = _transform.position;
+        Debug.Log(_points.Count);
     }
 
 // MANAGEMENT
@@ -113,8 +125,8 @@ public class Follower
         _transform.Translate(velocity, Space.World);
 
         var animMultiplier = (followSpeed / _maxSpeed) * 3f;
-        _animator.speed = _grounded ? 
-            _animDefSpeed * animMultiplier : 
+        _animator.speed = _grounded ?
+            _animDefSpeed * animMultiplier :
             _animDefSpeed;
 
         var offset = -direction * _padding;
@@ -132,11 +144,95 @@ public class Follower
 
         var offset = Vector3.up * 0.3f;
         var p1 = position + offset;
-        var p2 = position + - offset;
+        var p2 = position + -offset;
 
         var grounded = Physics.Linecast(p1, p2, _groundLayer);
 
         _groundTimer = 0;
         return grounded;
+    }
+
+// UNFINISHED PATHFINDING
+
+    /// <summary>
+    /// Moves followers along the player path
+    /// </summary>
+    private void Move(float speed, float deltaTime){
+        var position = _transform.position;
+        var difference = (_target - position);
+        var magnitude = difference.magnitude;
+
+        var differenceXZ = difference;
+        differenceXZ.y = 0;
+
+        if (magnitude != 0)
+        {
+            var rotation = Quaternion.LookRotation(differenceXZ);
+            _transform.rotation = rotation;
+        }
+
+        var followSpeed = Mathf.Max(speed, magnitude);
+        var direction = difference.normalized;
+
+        var velocity = direction * (followSpeed * deltaTime);
+        _transform.Translate(velocity, Space.World);
+
+        var animMultiplier = (followSpeed / _maxSpeed) * 3f;
+        _animator.speed = _grounded ?
+            _animDefSpeed * animMultiplier :
+            _animDefSpeed;
+
+        var offset = -direction * _padding;
+        _child?.Move(position + offset, deltaTime, speed);
+
+
+        UpdateTarget(magnitude);
+    }
+
+    /// <summary>
+    /// Update the current points target
+    /// </summary>
+    private void UpdateTarget(float distance){
+        if (distance > 0.1f) return;
+        
+        var point = _points.First;
+        if(point == null) return;
+
+        while (point.Value != _target){
+            point = point.Next;
+        }
+
+        _target = point.Next.Value;
+    }
+
+    /// <summary>
+    /// Update the points list
+    /// </summary>
+    public void UpdatePoints(float padding){
+        var position = _transform.position;
+        var difference = (_target - position).magnitude;
+
+        if (difference < padding) return;
+        _points.AddLast(position);
+
+        if (_points.Count > 50)
+            _points.RemoveFirst();
+
+        _target = position;
+    }
+
+    /// <summary>
+    /// Draws the points in the scene
+    /// </summary>
+    public void DrawPoints(){
+        //Debug.Log(_points.Count);
+        if (_points.Count == 0) return;
+        var point = _points.First;
+
+        for (int i = 0; i < _points.Count - 1; i++){
+            Gizmos.DrawSphere(point.Value, 0.1f);
+            point = point.Next;
+        }
+
     }
 }
