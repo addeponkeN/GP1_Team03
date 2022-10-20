@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UpdateManager _updateManager;
     [SerializeField] private PlayerManager _playerManager;
+    public Player player;
 
     [Header("Game Winning Triggers")] [SerializeField]
     private UnityEvent _onGameVictory;

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -38,7 +39,9 @@ public class Timer : MonoBehaviour
 
     private void GetTimer_OnDoneEvent(Util.Timer obj)
     {
-        
+        WinScreen.score = gameManager.player.GetComponent<PlayerFollowers>().TotalCount;
+        SceneManager.LoadScene("EndScene");
+
     }
 
     private void GetTimer_OnIntervalEvent(Util.Timer obj)
