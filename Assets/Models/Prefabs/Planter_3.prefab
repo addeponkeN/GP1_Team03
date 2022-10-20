@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5861307134444150902}
   - component: {fileID: 8553317011572217020}
   - component: {fileID: 7367519822601688120}
+  - component: {fileID: 181325205140160300}
   m_Layer: 0
   m_Name: Planter_3
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   _primaryIndex: 1
   _secondaryIndex: -1
   _tertiaryIndex: -1
+--- !u!65 &181325205140160300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904803543955993961}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1535625, y: 1.4649062, z: 0.9745569}
+  m_Center: {x: 0.052570105, y: 0.54796314, z: -0.03375864}
