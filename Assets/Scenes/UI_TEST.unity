@@ -997,6 +997,7 @@ MonoBehaviour:
   Rules: {fileID: 11400000, guid: 5782a9cbee4bb1c458491e4401815409, type: 2}
   _updateManager: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
   _playerManager: {fileID: 0}
+  player: {fileID: 1485692102}
   _onGameVictory:
     m_PersistentCalls:
       m_Calls: []
@@ -1442,11 +1443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028370, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000187227
+      value: -0.0000000187227
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028370, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000044198294
+      value: 0.0000000044198294
       objectReference: {fileID: 0}
     - target: {fileID: 8085089926272028370, guid: 08a7fe1014037f845a19a18f01def5c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1555,6 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362e62a90523360408602452949e4fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!1001 &855364385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1821,6 +1823,10 @@ PrefabInstance:
       propertyPath: _hudText
       value: 
       objectReference: {fileID: 1773924328}
+    - target: {fileID: 6397550863810637000, guid: 3756f5203995430449d1dcfbab333745, type: 3}
+      propertyPath: _winScreenText
+      value: 
+      objectReference: {fileID: 588009779}
     - target: {fileID: 6839268991967416155, guid: 3756f5203995430449d1dcfbab333745, type: 3}
       propertyPath: _hudText
       value: 
@@ -2004,7 +2010,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027471664}
-  m_LocalRotation: {x: 0.22975291, y: 0.0000000187227, z: -0.0000000044198294, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: -0.0000000187227, z: 0.0000000044198294, w: 0.973249}
   m_LocalPosition: {x: -0.79, y: 4.96, z: -15.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
