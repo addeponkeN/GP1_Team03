@@ -4356,6 +4356,14 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2800752072473390211, guid: be925987c364a864d8aeb58d61b16ef1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -455
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800752072473390211, guid: be925987c364a864d8aeb58d61b16ef1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -285
+      objectReference: {fileID: 0}
     - target: {fileID: 2800752072473390220, guid: be925987c364a864d8aeb58d61b16ef1, type: 3}
       propertyPath: m_text
       value: '360
@@ -4455,8 +4463,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1485692102}
     - target: {fileID: 8474519494112371176, guid: be925987c364a864d8aeb58d61b16ef1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 85.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474519494112371176, guid: be925987c364a864d8aeb58d61b16ef1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 8474519494112371179, guid: be925987c364a864d8aeb58d61b16ef1, type: 3}
       propertyPath: BackgroundImage
