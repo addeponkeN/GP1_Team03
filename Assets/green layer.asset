@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36960a9b994349a7b71795295de6552e, type: 3}
-  m_Name: GameRules
+  m_Script: {fileID: 11500000, guid: c509dbaa7b6f416409e3195321a2187e, type: 3}
+  m_Name: green layer
   m_EditorClassIdentifier: 
-  Time: 180
-  FollowPadding: 0.5
-  MaxFollowerCount: 15
-  PlayerCount: 1
+  PaletteLayers:
+  - {fileID: 8574412962073106934, guid: fdf2842ddebd7e14bb40cba7adccc456, type: 2}
