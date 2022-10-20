@@ -216,7 +216,7 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void UpdateText(){
         if (_hudText == null) return;
-        _hudText.text = _followCount.ToString();
+        _hudText.text = _totalCount.ToString();
         _winScreenText.text = _hudText.text;
     }
 }
