@@ -16,8 +16,8 @@ namespace Util.PostProcessingExtended
             lgg.gain.value = Vector4.Lerp(start.gain.value, end.gain.value, value);
         }
 
-        public static void Lerp(this ShadowsMidtonesHighlights mid, 
-            ShadowsMidtonesHighlights start, ShadowsMidtonesHighlights end, 
+        public static void Lerp(this ShadowsMidtonesHighlights mid,
+            ShadowsMidtonesHighlights start, ShadowsMidtonesHighlights end,
             float value)
         {
             mid.shadows.value = Vector4.Lerp(start.shadows.value, end.shadows.value, value);
@@ -33,6 +33,13 @@ namespace Util.PostProcessingExtended
             bloom.tint.value = Color.Lerp(start.tint.value, end.tint.value, value);
             bloom.clamp.value = Mathf.Lerp(start.clamp.value, end.clamp.value, value);
             bloom.skipIterations.value = (int)Mathf.Lerp(start.skipIterations.value, end.skipIterations.value, value);
+        }
+
+        public static void Lerp(this ColorAdjustments ca, ColorAdjustments start, ColorAdjustments end, float value)
+        {
+            ca.saturation.value = Mathf.Lerp(start.saturation.value, end.saturation.value, value);
+            ca.contrast.value = Mathf.Lerp(start.contrast.value, end.contrast.value, value);
+            
         }
     }
 }
