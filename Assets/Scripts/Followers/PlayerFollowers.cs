@@ -10,6 +10,7 @@ using TMPro;
 public class PlayerFollowers : MonoBehaviour
 {
     [SF] private TMP_Text _hudText = null;
+    [SF] private TMP_Text _winScreenText = null;
     [SF] private GameRules _gameRules = null;
     [SF] private PlayerStatContainer _stats = null;
     [SF] private UpdateManager _update = null;
@@ -187,5 +188,6 @@ public class PlayerFollowers : MonoBehaviour
     private void UpdateText(){
         if (_hudText == null) return;
         _hudText.text = _followCount.ToString();
+        _winScreenText.text = _hudText.text;
     }
 }

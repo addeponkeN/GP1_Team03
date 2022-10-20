@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 1562994175105828467}
   - component: {fileID: 5279363411107597815}
   - component: {fileID: -3365481821976528901}
+  - component: {fileID: 2665467797022850631}
   m_Layer: 0
   m_Name: Shop_1_1
   m_TagString: Untagged
@@ -162,6 +163,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colours: {fileID: 11400000, guid: 6bafe6898c3d6e54fbf1335b15491381, type: 2}
+--- !u!114 &2665467797022850631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058383965433341862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c5659177eb43d4fa92104364e7646b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _primaryIndex: 1
+  _secondaryIndex: 0
+  _tertiaryIndex: -1
 --- !u!1 &7702568234021939927
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +351,14 @@ PrefabInstance:
     - target: {fileID: 1120206652070590077, guid: ba52f92522f98334ebfe9f4b28ee0e02, type: 3}
       propertyPath: m_Name
       value: Lowrise_Addon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8094436299786292872, guid: ba52f92522f98334ebfe9f4b28ee0e02, type: 3}
+      propertyPath: _primaryIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8094436299786292872, guid: ba52f92522f98334ebfe9f4b28ee0e02, type: 3}
+      propertyPath: _secondaryIndex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba52f92522f98334ebfe9f4b28ee0e02, type: 3}

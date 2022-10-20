@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class BuildingPart : MonoBehaviour
 {
+    // Material indices
     [SF] private int _primaryIndex   = 0;
     [SF] private int _secondaryIndex = 1;
     [SF] private int _tertiaryIndex  = -1;

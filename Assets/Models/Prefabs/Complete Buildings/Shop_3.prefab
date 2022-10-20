@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1241949299199841042}
   - component: {fileID: 3133116887157848503}
   - component: {fileID: -4234566512962886859}
+  - component: {fileID: 5841445353933186065}
   m_Layer: 0
   m_Name: Shop_3
   m_TagString: Untagged
@@ -118,6 +119,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colours: {fileID: 11400000, guid: 6bafe6898c3d6e54fbf1335b15491381, type: 2}
+--- !u!114 &5841445353933186065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737664818558120647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c5659177eb43d4fa92104364e7646b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _primaryIndex: 3
+  _secondaryIndex: 0
+  _tertiaryIndex: -1
 --- !u!1001 &503804951576833913
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,10 +1,13 @@
 using SF = UnityEngine.SerializeField;
 using PlayerControllers.Controllers;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Hazard : MonoBehaviour
 {
     [SF] private bool _canBeDestroyed = true;
+    [Space]
+    [SF] private bool _looseFollowers = true;
     [SF] private int _followerLoss = 2;
     [Space]
     [SF] private bool _canBeRespawned = true;
@@ -12,8 +15,11 @@ public class Hazard : MonoBehaviour
     [Space]
     [SF] private LayerMask _playerLayer = 1 << 0;
     [SF] private PlayerStatContainer _playerStats = null;
+    [Space]
     [SF] private ParticleSystem _crashFX = null;
     [SF] private AudioSource _crashSound = null;
+    [Space]
+    [SF] private UnityEvent _onHit = null;
 
     private BoostController _boost = null;
     private MovementController _movement = null;
@@ -35,21 +41,23 @@ public class Hazard : MonoBehaviour
         var minSpeed = _playerStats.MaxMoveSpeed * _speedPercent;
         if (movement.Speed < minSpeed) return;
 
-        if (_crashFX != null) 
-            _crashFX.Play();
-
-        if (_crashSound != null) 
-            _crashSound.Play();
-
         var boost = GetBoost(player);
-        if (!boost.IsBoosting) 
+        if (!boost.IsBoosting && _looseFollowers) 
             RemoveFollower(player);
 
-        if (!_canBeDestroyed) return;
-        ToggleHazard(false);
+        if (_canBeDestroyed)
+            ToggleHazard(false);
 
-        if (!_canBeRespawned) return;
-        Invoke("Respawn", _respawnTimer);
+        if (_canBeRespawned)
+            Invoke("Respawn", _respawnTimer);
+
+        if (_crashFX != null)
+            _crashFX.Play();
+
+        if (_crashSound != null)
+            _crashSound.Play();
+
+        _onHit.Invoke();
     }
         
     /// <summary>

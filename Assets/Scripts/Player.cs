@@ -48,6 +48,14 @@ public class Player : MonoBehaviour
         GroundedController = new(this);
     }
 
+    public void UpdatePostProcess()
+    {
+        var followers = GetComponent<PlayerFollowers>();
+        const float maxFollowersRoof = 50f;
+        var progress = followers.TotalCount / maxFollowersRoof;
+        PpLerper.SetAmount(progress);
+    }
+
     private void Start()
     {
         Energy.Start(this);

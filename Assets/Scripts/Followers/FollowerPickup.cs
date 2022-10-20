@@ -64,6 +64,7 @@ public class FollowerPickup : MonoBehaviour
         SetActiveState(false);
         Invoke("RespawnFollowers", _respawnTimer);
 
+        SetBoost(_player, true);
         _player = null;
     }
 
