@@ -835,8 +835,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1529,8 +1529,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2440,8 +2440,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2984,8 +2984,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
