@@ -27,8 +27,11 @@ namespace Util.PostProcessingExtended
 
         public static void Lerp(this Bloom bloom, Bloom start, Bloom end, float value)
         {
+            bloom.threshold.value = Mathf.Lerp(start.threshold.value, end.threshold.value, value);
             bloom.intensity.value = Mathf.Lerp(start.intensity.value, end.intensity.value, value);
+            bloom.scatter.value = Mathf.Lerp(start.scatter.value, end.scatter.value, value);
             bloom.tint.value = Color.Lerp(start.tint.value, end.tint.value, value);
+            bloom.clamp.value = Mathf.Lerp(start.clamp.value, end.clamp.value, value);
             bloom.skipIterations.value = (int)Mathf.Lerp(start.skipIterations.value, end.skipIterations.value, value);
         }
     }
