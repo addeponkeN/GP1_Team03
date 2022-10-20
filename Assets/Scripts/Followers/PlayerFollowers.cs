@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Jellybeans.Updates;
 using PlayerControllers.Controllers;
 using TMPro;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Player))]
 public class PlayerFollowers : MonoBehaviour
@@ -17,9 +18,10 @@ public class PlayerFollowers : MonoBehaviour
 
     private int _totalCount = 0;
     private int _followCount = 0;
-    private float _followOffset = 0f;
+    private float _followerOffset = 0f;
     private Follower _root = null;
     private CapsuleCollider _collider = null;
+    private MovementController _movement = null;
 
     [Space, SF] private UnityEvent<Follower> _onPickup = new();
     [Space, SF] private UnityEvent<Follower> _onCrash = new();
@@ -37,10 +39,19 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void Awake(){
         _collider = GetComponent<CapsuleCollider>();
-        _followOffset = (_collider.height * 0.5f) * _gameRules.FollowPadding;
-        _root = new Follower(null, transform, _collider.radius, 0f);
+
+        _followerOffset = (_collider.height * 0.5f) + _gameRules.FollowPadding;
+        _root = new Follower(null, transform, _followerOffset, 0f);
 
         UpdateText();
+    }
+
+    /// <summary>
+    /// Initialises the movement controller
+    /// </summary>
+    private void Start(){
+        var controller = GetComponent<Player>().ControllerManager;
+        _movement = controller.GetController<MovementController>();
     }
 
     /// <summary>
@@ -80,7 +91,7 @@ public class PlayerFollowers : MonoBehaviour
 
         var follower = new Follower(
             parent, fellow, 
-            _followOffset, 
+            _followerOffset,
             _stats.MaxMoveSpeed
         );
         
@@ -161,6 +172,22 @@ public class PlayerFollowers : MonoBehaviour
         return follower;
     }
 
+    /// <summary>
+    /// Returns the follower script for this follower
+    /// </summary>
+    public Follower GetFollower(Transform fellow){
+        var follower = _root.Child;
+
+        while (follower.Transform != fellow && follower.Child != null){
+            follower = follower.Child;
+        }
+
+        if (follower.Transform == fellow) 
+            return follower;
+
+        return null;
+    }
+
 // MOVEMENT
 
     /// <summary>
@@ -170,10 +197,8 @@ public class PlayerFollowers : MonoBehaviour
         if (_root.Child == null) return;
 
         var direction = -transform.forward;
-        var offset = _followOffset * 0.5f;
-
-        var position = transform.position + (direction * offset);
-        _root.Child.Move(position, fixedDeltaTime);
+        var position = transform.position + (direction * _followerOffset);
+        _root.Child.Move(position, fixedDeltaTime, _movement.Speed);
     }
 
     /// <summary>

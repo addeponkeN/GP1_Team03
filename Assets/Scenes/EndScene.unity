@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 217972289}
   - component: {fileID: 217972288}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MenuText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: MENU
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -436,8 +436,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: WELL DONE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -882,7 +882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8.6623}
+  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
   m_SizeDelta: {x: 888.3599, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1580551338
@@ -907,8 +907,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'YOUR SCORE IS : 80 FOLLOWERS'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -939,8 +939,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1095,6 +1095,7 @@ GameObject:
   - component: {fileID: 1978959807}
   - component: {fileID: 1978959806}
   - component: {fileID: 1978959808}
+  - component: {fileID: 1978959809}
   m_Layer: 5
   m_Name: EndMenu
   m_TagString: Untagged
@@ -1177,6 +1178,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1580551338}
+--- !u!114 &1978959809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978959804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f86ee45c86bec45b6ee6f02b4f241c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSys: {fileID: 443282905}
+  firstSelectedOpBack: {fileID: 1029327155}
 --- !u!1 &2146312722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1204,7 @@ GameObject:
   - component: {fileID: 2146312725}
   - component: {fileID: 2146312724}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RestartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1237,8 +1252,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: RESTART
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
-  m_sharedMaterial: {fileID: -3760947237527435258, guid: d692fe462a4a041488ed0a82e9f92490, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
+  m_sharedMaterial: {fileID: -1703602746014082448, guid: b8c4af3f71075554abffb7bbe558144e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -15,15 +15,15 @@ public class GroundChecker : MonoBehaviour
     
     [Space(10)]
     
-    [SF, ReadOnly] private bool _isGrounded;
+#if UNITY_EDITOR
+    [ReadOnly]
+#endif
     
-    [Space(10)]
-    
+    [SF] private bool _isGrounded;
+    [Space(10f)]
     [SF] private Transform _center;
     [SF] private float _radius = 0.1f;
-    
-    [Space(10)]
-    
+    [Space(10f)]
     [SF] private int[] _layerMasks;
 
     private bool _oldGrounded;

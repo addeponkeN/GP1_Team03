@@ -1,5 +1,4 @@
-﻿using System;
-using Attributes;
+﻿using Attributes;
 using UnityEngine;
 using Util;
 
@@ -13,9 +12,13 @@ namespace PointPathing
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _turnSpeed = 4f;
         [SerializeField] private PointPather _path;
-        [SerializeField, ReadOnly] private bool _isMoving;
-        [SerializeField, ReadOnly] private float _distanceToNextPoint;
-
+        
+#if UNITY_EDITOR
+        [ReadOnly]
+#endif
+        [SerializeField]
+        private bool _isMoving;
+        
         private void Start()
         {
             StartPathing();
@@ -42,7 +45,7 @@ namespace PointPathing
 
             var pos = transform.position;
             var dest = Destination;
-            var distance = _distanceToNextPoint = Vector3.Distance(pos, dest);
+            var distance = Vector3.Distance(pos, dest);
 
             if(distance < _speed * Time.deltaTime * 1.1f)
             {
@@ -62,7 +65,7 @@ namespace PointPathing
             //  rotate towards point
             var rotFrom = transform.rotation;
             var rotTo = Quaternion.LookRotation(direction);
-            
+
             //  rotate towards destination
             transform.rotation = Quaternion.RotateTowards(rotFrom, rotTo, _turnSpeed);
 

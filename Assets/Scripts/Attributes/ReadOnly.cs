@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Attributes
             EditorGUI.PropertyField(position, property, label);
 
             GUI.enabled = guiState;
-
         }
     }
 }
+#endif

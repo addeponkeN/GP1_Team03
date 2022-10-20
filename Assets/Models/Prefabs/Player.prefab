@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1478948888806665886}
   - component: {fileID: 1920005127}
   - component: {fileID: 1920005134}
+  - component: {fileID: 6992705330141414573}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -117,6 +118,7 @@ MonoBehaviour:
   Input:
     Movement: {fileID: 7503884912492243399, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
     Boost: {fileID: 6532391055967103618, guid: 4428b72d3b21b3b4b81cf3878edaa518, type: 3}
+  PpLerper: {fileID: 0}
   _updateManager: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
 --- !u!114 &6397550863810637000
 MonoBehaviour:
@@ -131,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hudText: {fileID: 0}
+  _winScreenText: {fileID: 0}
   _gameRules: {fileID: 11400000, guid: 5782a9cbee4bb1c458491e4401815409, type: 2}
   _stats: {fileID: 11400000, guid: e8648c7278a3a964eb75e8c6a2f3747e, type: 2}
   _update: {fileID: 11400000, guid: ceab48706b1281448b616d106d71cef8, type: 2}
@@ -149,6 +152,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 602866508914062138}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: UpdatePostProcess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onCrash:
     m_PersistentCalls:
       m_Calls:
@@ -156,6 +171,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerFollowerEvents, Assembly-CSharp
         m_MethodName: OnCrashed
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 602866508914062138}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: UpdatePostProcess
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -304,6 +331,20 @@ MonoBehaviour:
   _center: {fileID: 2143545900}
   _radius: 0.1
   _layerMasks: 08000000
+--- !u!114 &6992705330141414573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959280164926006823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0e9412e8850434db600f1de4a1771e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lowestPoint: -100
+  _respawnPoint: {fileID: 0}
 --- !u!1001 &4238078330867164774
 PrefabInstance:
   m_ObjectHideFlags: 0

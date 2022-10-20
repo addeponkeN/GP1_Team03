@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Util.PostProcessingExtended
@@ -10,7 +11,6 @@ namespace Util.PostProcessingExtended
         [SerializeField, Range(0f, 1f)] private float _value;
 
         [SerializeField] private Volume _mainVolume;
-
         [SerializeField] private VolumeProfile _startProfile;
         [SerializeField] private VolumeProfile _endProfile;
 
@@ -40,7 +40,7 @@ namespace Util.PostProcessingExtended
         //  for testing
         private void Update()
         {
-            if(_prevAmount != _value)
+            if(Math.Abs(_prevAmount - _value) > 0.01f)
             {
                 SetAmount(_value);
                 _prevAmount = _value;

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerStatContainer
   m_EditorClassIdentifier: 
   MovementAcceleration: 3
-  MaxMoveSpeed: 6
-  RotationSpeed: 20
+  MaxMoveSpeed: 8
+  RotationSpeed: 18
   MaxRotationSpeed: 20
   RotationSpeedModifier: 0.1
   BoostTime: 1.5

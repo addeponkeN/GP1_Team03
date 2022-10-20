@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public FileLoader<GameSettingsFile> GameSettings;
 
     [SerializeField] private UpdateManager _updateManager;
-    [SerializeField] private PlayerManager _playerManager;
     public Player player;
 
     [Header("Game Winning Triggers")] [SerializeField]
