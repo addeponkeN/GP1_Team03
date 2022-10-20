@@ -194,10 +194,12 @@ public class PlayerFollowers : MonoBehaviour
     /// On update manager fixed update event
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
+        //_root.UpdatePoints(_followerOffset);
         if (_root.Child == null) return;
 
         var direction = -transform.forward;
         var position = transform.position + (direction * _followerOffset);
+
         _root.Child.Move(position, fixedDeltaTime, _movement.Speed);
     }
 
@@ -219,4 +221,14 @@ public class PlayerFollowers : MonoBehaviour
         _hudText.text = _followCount.ToString();
         _winScreenText.text = _hudText.text;
     }
+
+// DEBUGGING
+#if UNITY_EDITOR
+
+    //private void OnDrawGizmos(){
+    //    if (!Application.isPlaying) return;
+    //    _root.DrawPoints();
+    //}
+
+#endif
 }
