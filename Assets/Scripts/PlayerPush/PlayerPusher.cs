@@ -59,7 +59,7 @@ namespace PlayerPush
             body.velocity = bodyVel;
 
             //  Push player towards the final destination
-            body.AddForce(Vector3.up * powerUp + direction * power, ForceMode.Impulse);
+            body.AddForce(Vector3.up * powerUp + direction * power, ForceMode.VelocityChange);
         }
 
         /// <summary>
