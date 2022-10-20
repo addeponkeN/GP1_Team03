@@ -36,7 +36,7 @@ namespace PlayerPush
                 new Vector2(dest.x, dest.z),
                 new Vector2(playerPos.x, playerPos.z));
 
-            const float magicalMathNumber = 16.666f;
+            const float magicalMathNumber = 2f;
 
             //  the Y difference of the PAD and DESTINATION
             float diffY = dest.y - pos.y;
@@ -54,10 +54,12 @@ namespace PlayerPush
             body.MovePosition(body.position + Vector3.up * 0.1f);
 
             //  reset the velocity to ensure the force amount is always the same
-            var bodyVel = body.velocity;
-            bodyVel.y = 0;
-            body.velocity = bodyVel;
+            // var bodyVel = body.velocity;
+            // bodyVel.y = 0;
+            // body.velocity = bodyVel;
 
+            body.velocity = Vector3.zero;
+            
             //  Push player towards the final destination
             body.AddForce(Vector3.up * powerUp + direction * power, ForceMode.VelocityChange);
         }
