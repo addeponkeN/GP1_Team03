@@ -31,7 +31,7 @@ namespace Util.PostProcessingExtended
         /// The amount of dirtiness of the world
         /// </summary>
         /// <param name="amount">Between 0 and 1</param>
-        public void SetDirtAmount(float amount)
+        public void SetAmount(float amount)
         {
             _value = Mathf.Clamp(amount, 0f, 1f);
             _main.Lerp(_dirty, _clean, amount);
@@ -42,7 +42,7 @@ namespace Util.PostProcessingExtended
         {
             if(_prevAmount != _value)
             {
-                SetDirtAmount(_value);
+                SetAmount(_value);
                 _prevAmount = _value;
             }
         }
