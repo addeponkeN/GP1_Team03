@@ -173,8 +173,12 @@ namespace Magnuth
 			var node = GetAt(index);
             if (node == null) return;
 
-			var node2 = new Node<T>(node.Left, node, data);
+			var node2 = new Node<T>(
+				node.Left, node, data
+			);
+			
 			node.Left = node2;
+			_count++;
         }
 		
 		/// <summary>
@@ -245,11 +249,12 @@ namespace Magnuth
             if (right != null)
                 right.Left = left; 
 			
-			node.Left = null;
+			node.Left  = null;
 			node.Right = null;
-
-			if (left == null && right == null)
-				RemoveFirst();
+			
+			if (--_count > 0) return;
+			_first = null;
+			_last  = null;
         }
 
 // ERRORS
