@@ -1,4 +1,7 @@
+using LinkNode = Magnuth.NodeLink<FollowPoint>.Node<FollowPoint>;
 using UnityEngine;
+using Magnuth;
+using System.Collections.Generic;
 
 public class Follower
 {
@@ -10,12 +13,17 @@ public class Follower
     private int _groundLayer = 1 << 8;
 
     private float _animDefSpeed = 0f;
-    private int _animJumpHash = Animator.StringToHash("OnJump");
     private Animator _animator = null;
+    private static readonly int _animJumpHash = Animator.StringToHash("OnJump");
 
     private float _maxSpeed = 0f;
     private float _padding = 0f;
     private Transform _transform = null;
+
+    // New follower pathfinding
+    private int _maxPoints = 30;
+    private LinkNode _target = null;
+    private static NodeLink<FollowPoint> _points = null;
 
 // PROPERTIES
 
@@ -45,6 +53,9 @@ public class Follower
         
         _animator = follower.GetComponentInChildren<Animator>();
         _animDefSpeed = _animator.speed;
+
+        // New follower pathfinding
+        InitTarget(_transform.position);
     }
 
 // MANAGEMENT
@@ -76,6 +87,9 @@ public class Follower
         _transform.rotation = tfm.rotation;
 
         SetParent(parent);
+
+        // New follower pathfinding
+        InitTarget(position);
     }
 
     /// <summary>
@@ -84,6 +98,9 @@ public class Follower
     public void Remove(){
         _child?.SetParent(_parent);
         _parent?.SetChild(_child);
+
+        // New follower pathfinding
+        _target.Data.Occupied = false;
     }
 
 // MOVEMENT
@@ -139,4 +156,140 @@ public class Follower
         _groundTimer = 0;
         return grounded;
     }
+
+// NEW FOLLOWER PATHFINDING
+
+    /// <summary>
+    /// Initialises the path on player start
+    /// </summary>
+    public void InitPath(float speed, bool grounded, Vector3 position){
+        _points ??= new NodeLink<FollowPoint>();
+        var point = new FollowPoint(speed, grounded, position);
+        
+        _points.AddLast(point);
+        _target = _points.Last;
+    }
+
+    /// <summary>
+    /// Updates the path on player movement
+    /// </summary>
+    public void UpdatePath(float speed, bool grounded, Vector3 position){
+        var point = _target.Data;
+        var diff = (point.Position - position);
+
+        if (diff.magnitude < _padding &&
+            grounded == point.Grounded)
+            return;
+
+        var next = new FollowPoint(
+            speed, grounded, position
+        );
+
+        _points.AddLast(next);
+        _target = _points.Last;
+
+        if (_points.Count > _maxPoints)
+            _points.RemoveFirst();
+    }
+
+
+    /// <summary>
+    /// Assigns the closest target to the current position
+    /// </summary>
+    public void InitTarget(Vector3 position){
+        var node = _points?.Last;
+        if (node == null) return;
+
+        var mindist = float.MaxValue;
+        var point = node.Data;
+        var closest = node;
+
+        for (int i = _points.Count - 1; i > 0; i--){
+            node = node?.Left;
+            if (node == null) break;
+
+            point = node.Data;
+            if (point.Occupied) continue;
+
+            var dist = (point.Position - position).magnitude;
+            if (dist > mindist) break;
+
+            mindist = dist;
+            closest = node;
+        }
+
+        _target = closest;
+        _target.Data.Occupied = true;
+    }
+
+    /// <summary>
+    /// Moves the followers towards its target point
+    /// </summary>
+    public void Move(float deltaTime){
+        var position = _transform.position;
+        var point = _target.Data;
+
+        var difference = (point.Position - position);
+        if (difference == Vector3.zero) return;
+
+        // Rotate towards the target position
+        var differenceXZ = difference;
+        differenceXZ.y = 0f;
+
+        var rotation = Quaternion.LookRotation(differenceXZ);
+        _transform.rotation = Quaternion.RotateTowards(
+            _transform.rotation, rotation, 270f * deltaTime
+        );
+
+        // Move towards target position
+        var magnitude = difference.magnitude;
+        var direction = difference.normalized;
+        var speed = Mathf.Max(point.Speed, magnitude);
+        // ADD CATCH UP TO PLAYER?
+
+        var velocity = direction * (speed * deltaTime);
+        _transform.Translate(velocity, Space.World);
+
+        // Adapt follower animation
+        var animMultiplier = (speed / _maxSpeed);
+        _animator.SetBool(_animJumpHash, !point.Grounded);
+
+        _animator.speed = _grounded ?
+            _animDefSpeed * animMultiplier :
+            _animDefSpeed;
+
+        // Update current target and continue the chain
+        UpdateTarget(magnitude);
+        _child?.Move(deltaTime);
+    }
+
+    /// <summary>
+    /// Updates the target point on follower movement
+    /// </summary>
+    private void UpdateTarget(float magnitude){
+        if (magnitude > _padding * 0.5f) return;
+
+        var next = _target.Right;
+        if (next == null) return;
+
+        if (next.Data.Occupied) return;
+        next.Data.Occupied = true;
+        
+        _target.Data.Occupied = false;
+        _target = next;
+    }
+
+// DEBUGGING
+#if UNITY_EDITOR
+    public void DrawPoints(){
+        var point = _points.Last;
+        
+        for (int i = _points.Count - 1; i > 0; i--){
+            if (point.Left == null) break;
+
+            Gizmos.DrawSphere(point.Data.Position, 0.1f);
+            point = point.Left;
+        }
+    }
+#endif
 }

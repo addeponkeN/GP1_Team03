@@ -2,12 +2,11 @@ using SF = UnityEngine.SerializeField;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
-using Jellybeans.Updates;
 using PlayerControllers.Controllers;
+using Jellybeans.Updates;
 using TMPro;
-using UnityEngine.UIElements;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Player), typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerFollowers : MonoBehaviour
 {
     [SF] private TMP_Text _hudText = null;
@@ -20,7 +19,10 @@ public class PlayerFollowers : MonoBehaviour
     private int _followCount = 0;
     private float _followerOffset = 0f;
     private Follower _root = null;
+    
+    private Rigidbody _rigidbody = null;
     private CapsuleCollider _collider = null;
+    private GroundChecker _groundcheck = null;
     private MovementController _movement = null;
 
     [Space, SF] private UnityEvent<Follower> _onPickup = new();
@@ -38,8 +40,8 @@ public class PlayerFollowers : MonoBehaviour
     /// Initialises the root
     /// </summary>
     private void Awake(){
+        _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
-
         _followerOffset = (_collider.height * 0.5f) + _gameRules.FollowPadding;
         _root = new Follower(null, transform, _followerOffset, 0f);
 
@@ -52,6 +54,10 @@ public class PlayerFollowers : MonoBehaviour
     private void Start(){
         var controller = GetComponent<Player>().ControllerManager;
         _movement = controller.GetController<MovementController>();
+
+        // New follower pathfinding
+        _groundcheck = GetComponent<GroundChecker>();
+        _root.InitPath(_movement.Speed, _groundcheck.IsGrounded, transform.position);
     }
 
     /// <summary>
@@ -94,7 +100,7 @@ public class PlayerFollowers : MonoBehaviour
             _followerOffset,
             _stats.MaxMoveSpeed
         );
-        
+
         parent.SetChild(follower);
         _followCount++;
 
@@ -194,11 +200,15 @@ public class PlayerFollowers : MonoBehaviour
     /// On update manager fixed update event
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
-        if (_root.Child == null) return;
+        var position = transform.position;
+        var speed = Mathf.Max(_movement.Speed, _rigidbody.velocity.magnitude);
+        
+        _root.UpdatePath(speed, _groundcheck.IsGrounded, position);
+        _root.Child?.Move(fixedDeltaTime);
 
-        var direction = -transform.forward;
-        var position = transform.position + (direction * _followerOffset);
-        _root.Child.Move(position, fixedDeltaTime, _movement.Speed);
+        // Old follower pathfinding
+        //var offset = -transform.forward * _followerOffset;
+        //_root.Child?.Move(position + offset, fixedDeltaTime, _movement.Speed);
     }
 
     /// <summary>
@@ -219,4 +229,13 @@ public class PlayerFollowers : MonoBehaviour
         _hudText.text = _totalCount.ToString();
         _winScreenText.text = _hudText.text;
     }
+
+// DEBUGGING
+#if UNITY_EDITOR
+    private void OnDrawGizmos(){
+        if (_root == null) return;
+        Gizmos.color = Color.Lerp(Color.red, Color.yellow, 0.5f);
+        _root.DrawPoints();
+    }
+#endif
 }
