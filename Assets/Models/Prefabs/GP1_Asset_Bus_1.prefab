@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6872000253846708987}
   - component: {fileID: 8699486200965994033}
   - component: {fileID: 6171747021044950530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GP1_Asset_Bus_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7186114341866977252}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.838728, y: 0.037463427, z: -0.44592857}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5258142523044916453}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 5258142523044916453}
   - component: {fileID: 3488006107696633618}
   - component: {fileID: 920590332099084253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bus Tires.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
