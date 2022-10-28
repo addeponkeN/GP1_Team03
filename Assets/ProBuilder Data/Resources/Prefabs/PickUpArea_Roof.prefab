@@ -283,12 +283,12 @@ GameObject:
   - component: {fileID: 3990591873351788606}
   - component: {fileID: 1046302994579228020}
   m_Layer: 0
-  m_Name: SpritesSpeechbubble
+  m_Name: PickupAreaDumpsterPeople
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3990591873351788606
 Transform:
   m_ObjectHideFlags: 0
