@@ -103,7 +103,6 @@ MonoBehaviour:
   _turnSpeed: 4
   _path: {fileID: 0}
   _isMoving: 0
-  _distanceToNextPoint: 0
 --- !u!1001 &8356758298484340395
 PrefabInstance:
   m_ObjectHideFlags: 0
