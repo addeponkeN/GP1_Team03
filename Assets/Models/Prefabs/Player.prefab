@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isGrounded: 0
   _center: {fileID: 2143545900}
-  _radius: 0.25
+  _radius: 0.5
   _distance: 0.5
   _layerMasks: 08000000
 --- !u!114 &6992705330141414573
