@@ -4,22 +4,23 @@ using Magnuth;
 
 public class Follower
 {
-    private Follower _parent = null;
-    private Follower _child = null;
-
+    // OLD
     private bool _grounded = true;
     private float _groundTimer = 0f;
     private int _groundLayer = 1 << 8;
 
-    private float _animDefSpeed = 0f;
-    private Animator _animator = null;
-    private static readonly int _animJumpHash = Animator.StringToHash("OnJump");
+
+    private Follower _parent = null;
+    private Follower _child = null;
 
     private float _maxSpeed = 0f;
     private float _padding = 0f;
     private Transform _transform = null;
 
-    // New follower pathfinding
+    private float _animDefSpeed = 0f;
+    private Animator _animator = null;
+    private static readonly int _animJumpHash = Animator.StringToHash("OnJump");
+
     private int _maxPoints = 50;
     private LinkNode _target = null;
     private static NodeLink<FollowPoint> _points = null;
@@ -182,7 +183,7 @@ public class Follower
         var p2 = position - offset;
 
         var grounded = Physics.CheckCapsule(
-            p1, p2, 0.25f, _groundLayer
+            p1, p2, 0.5f, _groundLayer
         );
 
         _groundTimer = 0;

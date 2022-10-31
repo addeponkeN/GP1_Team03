@@ -220,12 +220,12 @@ public class PlayerFollowers : MonoBehaviour
             _rigidbody.velocity.magnitude
         );
 
-        _root.UpdatePath(speed, _ground.IsGrounded, position);
-        _root.Child?.Move(fixedDeltaTime);
+        //_root.UpdatePath(speed, _ground.IsGrounded, position);
+        //_root.Child?.Move(fixedDeltaTime);
 
         // Old follower pathfinding
-        //var offset = transform.forward * _followerOffset;
-        //_root.Child?.Move(position - offset, fixedDeltaTime, speed);
+        var offset = transform.forward * _followerOffset;
+        _root.Child?.Move(position - offset, fixedDeltaTime, speed);
     }
 
     /// <summary>
@@ -249,9 +249,9 @@ public class PlayerFollowers : MonoBehaviour
 
     // DEBUGGING
 #if UNITY_EDITOR
-    private void OnDrawGizmos(){
-        if (_root == null) return;
-        _root.DrawPoints();
-    }
+    //private void OnDrawGizmos(){
+    //    if (_root == null) return;
+    //    _root.DrawPoints();
+    //}
 #endif
 }
