@@ -194,6 +194,19 @@ public class PlayerFollowers : MonoBehaviour
         return null;
     }
 
+
+    /// <summary>
+    /// Teleports all followers to position with rotation
+    /// </summary>
+    public void Teleport(Vector3 position, Quaternion rotation){
+        var node = _root.Child;
+        
+        while (node.Child != null){
+            node.Transform.SetPositionAndRotation(position, rotation);
+            node = node.Child;
+        }
+    }
+
 // MOVEMENT
 
     /// <summary>
@@ -201,8 +214,12 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
         var position = transform.position;
-        var speed = Mathf.Max(_movement.Speed, _rigidbody.velocity.magnitude);
-        
+
+        var speed = Mathf.Max(
+            _movement.Speed,
+            _rigidbody.velocity.magnitude
+        );
+
         //_root.UpdatePath(speed, _groundcheck.IsGrounded, position);
         //_root.Child?.Move(fixedDeltaTime);
 
@@ -234,7 +251,6 @@ public class PlayerFollowers : MonoBehaviour
 #if UNITY_EDITOR
     //private void OnDrawGizmos(){
     //    if (_root == null) return;
-    //    Gizmos.color = Color.Lerp(Color.red, Color.yellow, 0.5f);
     //    _root.DrawPoints();
     //}
 #endif
