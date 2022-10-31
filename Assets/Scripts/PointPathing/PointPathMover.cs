@@ -64,7 +64,9 @@ namespace PointPathing
 
             //  rotate towards point
             var rotFrom = transform.rotation;
-            var rotTo = Quaternion.LookRotation(direction);
+            var rotTo = direction != Vector3.zero ? 
+                Quaternion.LookRotation(direction) :
+                rotFrom;
 
             //  rotate towards destination
             transform.rotation = Quaternion.RotateTowards(rotFrom, rotTo, _turnSpeed);
