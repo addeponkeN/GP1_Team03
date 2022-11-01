@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d9ffc313f64c3297c5a36e428688e2, type: 3}
   m_Name: HugosGameStats
   m_EditorClassIdentifier: 
-  MovementAcceleration: 1
-  MaxMoveSpeed: 2
+  MovementAcceleration: 9
+  MaxMoveSpeed: 11
   RotationSpeed: 25
   MaxRotationSpeed: 25
   RotationSpeedModifier: 0.1
-  BoostTime: 0
-  BoostAmount: 1
+  BoostTime: 1.5
+  BoostAmount: 2
   MaxEnergy: 100
   EnergyRegeneration: 2
   BoostCost: 20
