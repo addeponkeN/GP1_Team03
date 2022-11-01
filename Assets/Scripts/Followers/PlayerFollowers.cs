@@ -141,7 +141,7 @@ public class PlayerFollowers : MonoBehaviour
     /// Recursivly removes followers, from the back, for count
     /// </summary>
     private void RemoveFromBehind(Follower follower, int count){
-        if (count < 1) return;
+        if (count < 1 || follower == null) return;
         follower.Remove();
 
         RemoveFromBehind(follower.Parent, --count);
