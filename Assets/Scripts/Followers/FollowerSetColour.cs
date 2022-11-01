@@ -11,6 +11,8 @@ namespace Assets.Scripts.Followers
         [SF] private FollowerColours _colours = null;
 
         public void Awake(){
+            if (_character == null) return;
+
             var shirts = _colours.Shirt;
             var shirt = shirts[Random.Range(0, shirts.Length)];
             _character.materials[0].color = shirt;
@@ -24,7 +26,7 @@ namespace Assets.Scripts.Followers
             _character.materials[2].color = skin;
 
             if(_bicycle == null) return;
-            
+
             var bikes = _colours.Bike;
             var bike = bikes[Random.Range(0, bikes.Length)];
             _bicycle.materials[1].color = bike;

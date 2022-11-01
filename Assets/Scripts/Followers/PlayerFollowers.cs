@@ -19,10 +19,10 @@ public class PlayerFollowers : MonoBehaviour
     private int _followCount = 0;
     private float _followerOffset = 0f;
     private Follower _root = null;
-    
+
     private Rigidbody _rigidbody = null;
     private CapsuleCollider _collider = null;
-    private GroundChecker _groundcheck = null;
+    private GroundChecker _ground = null;
     private MovementController _movement = null;
 
     [Space, SF] private UnityEvent<Follower> _onPickup = new();
@@ -56,8 +56,8 @@ public class PlayerFollowers : MonoBehaviour
         _movement = controller.GetController<MovementController>();
 
         // New follower pathfinding
-        _groundcheck = GetComponent<GroundChecker>();
-        _root.InitPath(_movement.Speed, _groundcheck.IsGrounded, transform.position);
+        _ground = GetComponent<GroundChecker>();
+        _root.InitPath(_movement.Speed, _ground.IsGrounded, transform.position);
     }
 
     /// <summary>
@@ -194,6 +194,19 @@ public class PlayerFollowers : MonoBehaviour
         return null;
     }
 
+
+    /// <summary>
+    /// Teleports all followers to position with rotation
+    /// </summary>
+    public void Teleport(Vector3 position, Quaternion rotation){
+        var node = _root.Child;
+        
+        while (node.Child != null){
+            node.Transform.SetPositionAndRotation(position, rotation);
+            node = node.Child;
+        }
+    }
+
 // MOVEMENT
 
     /// <summary>
@@ -201,14 +214,18 @@ public class PlayerFollowers : MonoBehaviour
     /// </summary>
     private void OnFixedUpdate(float fixedDeltaTime){
         var position = transform.position;
-        var speed = Mathf.Max(_movement.Speed, _rigidbody.velocity.magnitude);
-        
-        //_root.UpdatePath(speed, _groundcheck.IsGrounded, position);
+
+        var speed = Mathf.Max(
+            _movement.Speed,
+            _rigidbody.velocity.magnitude
+        );
+
+        //_root.UpdatePath(speed, _ground.IsGrounded, position);
         //_root.Child?.Move(fixedDeltaTime);
 
         // Old follower pathfinding
-        var offset = -transform.forward * _followerOffset;
-        _root.Child?.Move(position + offset, fixedDeltaTime, speed);
+        var offset = transform.forward * _followerOffset;
+        _root.Child?.Move(position - offset, fixedDeltaTime, speed);
     }
 
     /// <summary>
@@ -230,11 +247,10 @@ public class PlayerFollowers : MonoBehaviour
         _winScreenText.text = _hudText.text;
     }
 
-// DEBUGGING
+    // DEBUGGING
 #if UNITY_EDITOR
     //private void OnDrawGizmos(){
     //    if (_root == null) return;
-    //    Gizmos.color = Color.Lerp(Color.red, Color.yellow, 0.5f);
     //    _root.DrawPoints();
     //}
 #endif

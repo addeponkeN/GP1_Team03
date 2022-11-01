@@ -180,6 +180,8 @@ public class FollowerPickup : MonoBehaviour
         if (!enabled) return;
 
         _collider ??= GetComponent<SphereCollider>();
+        if (_collider == null) return;
+        
         var radius = _collider.radius;
         var difference = 1f / _zones;
 
