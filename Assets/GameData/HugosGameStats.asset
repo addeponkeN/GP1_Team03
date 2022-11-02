@@ -17,7 +17,7 @@ MonoBehaviour:
   RotationSpeed: 25
   MaxRotationSpeed: 25
   RotationSpeedModifier: 0.1
-  BoostTime: 1.5
+  BoostTime: 1
   BoostAmount: 2
   MaxEnergy: 100
   EnergyRegeneration: 2
