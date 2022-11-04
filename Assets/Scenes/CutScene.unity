@@ -799,13 +799,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Take the bike to work. Take the bike to school. Take the bike ever you
-    want or just because it''s cool
+  m_text: 'Take the bike to work. Take the bike to school. Take the bike wherever
+    you want or just because it''s cool
 
-    
 
-    The quest is to get the highest
-    number of bike followers to make the world an environment friendly world.
+
+    The quest is to get the highest number
+    of bike followers to make the world an environment friendly world.
 
 '
   m_isRightToLeft: 0

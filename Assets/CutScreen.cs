@@ -7,6 +7,6 @@ public class CutScreen : MonoBehaviour
 {
     public void LetsGo()
     {
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("MainLevel 1");
     }
 }

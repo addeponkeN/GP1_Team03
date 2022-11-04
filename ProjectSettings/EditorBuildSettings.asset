@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/CutScene.unity
     guid: e27108073d108b043b3f53209219e969
   - enabled: 1
-    path: Assets/Scenes/MainLevel.unity
-    guid: 073e1eb897e39c347a813ab5b397d893
+    path: Assets/Scenes/MainLevel 1.unity
+    guid: 3b81152c6401eb943857ef78f9ca6d5c
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: 24e7ca0ab1b7d4942a44c58f1ad36573
+  - enabled: 1
+    path: Assets/Scenes/MainLevel.unity
+    guid: 073e1eb897e39c347a813ab5b397d893
   m_configObjects: {}

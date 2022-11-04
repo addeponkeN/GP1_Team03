@@ -18,7 +18,7 @@ public class WinScreen : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("MainLevel 1");
 
     }
 
