@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 5535121224176157509}
   - component: {fileID: 5535121224176157507}
   - component: {fileID: 5535121224176157506}
+  - component: {fileID: 280393447}
   m_Layer: 11
   m_Name: GroundPushPad
   m_TagString: Untagged
@@ -252,6 +253,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isActivated: 0
   _destination: {fileID: 1289141140252661596}
+--- !u!95 &280393447
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535121224176157508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad0bac988e528a04b8be24ec897e2cdb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6936804912617158318
 PrefabInstance:
   m_ObjectHideFlags: 0
